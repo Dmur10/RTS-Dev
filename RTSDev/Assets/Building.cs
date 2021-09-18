@@ -5,6 +5,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public int health;
+    public Transform _transform;
 
     // Start is called before the first frame update
     void Start()
@@ -16,5 +17,10 @@ public class Building : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void place()
+    {
+
     }
 }
