@@ -25,19 +25,19 @@ public class CameraController : MonoBehaviour
 
         Vector3 pos = transform.position;
 
-        if ((Input.GetKey("w") || Input.mousePosition.y >= Screen.height - borderThickness) && pos.z < startPos.z + 40)
+        if ((Input.GetKey("w") || Input.mousePosition.y >= Screen.height - borderThickness) && pos.z < startPos.z + 20)
         {
             transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
         } 
-        if ((Input.GetKey("s") || Input.mousePosition.y <= 0 + borderThickness) && pos.z > startPos.z - 40)
+        if ((Input.GetKey("s") || Input.mousePosition.y <= 0 + borderThickness) && pos.z > startPos.z - 180)
         {
             transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
         }
-        if ((Input.GetKey("a") || Input.mousePosition.x <= 0 + borderThickness) && pos.x > startPos.x - 40)
+        if ((Input.GetKey("a") || Input.mousePosition.x <= 0 + borderThickness) && pos.x > startPos.x - 15)
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         } 
-        if ((Input.GetKey("d") || Input.mousePosition.x >= Screen.width - borderThickness) && pos.x < startPos.x + 40)
+        if ((Input.GetKey("d") || Input.mousePosition.x >= Screen.width - borderThickness) && pos.x < startPos.x + 175)
         {
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
