@@ -228,7 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e29087e60083145801cd48b10a1c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingToPlace: {fileID: 0}
 --- !u!4 &365570394
 Transform:
   m_ObjectHideFlags: 0
@@ -581,7 +580,7 @@ GameObject:
   - component: {fileID: 1413980344}
   - component: {fileID: 1413980343}
   - component: {fileID: 1413980342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
