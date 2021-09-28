@@ -6,7 +6,7 @@ using UnityEngine;
 public class UnitSelection : MonoBehaviour
 {
     public RectTransform selectionBox;
-    private Vector2 startPos, endPos;
+    private Vector2 startPos,endPos;
     private RaycastHit hit;
     private bool mouseHeld = false;
 
@@ -19,17 +19,16 @@ public class UnitSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        startPos = Input.mousePosition;
-        if (Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            UpdateSelectionBox(Input.mousePosition);
+            startPos = Input.mousePosition;
+            endPos = Input.mousePosition;
+            Debug.Log("pressed");
         }
-        if (Input.GetMouseButtonDown(0)){
+        if (Input.GetMouseButton(0)){
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit))
             {
-                Debug.Log("pressed");
                 LayerMask layerHit = hit.transform.gameObject.layer;
                 switch (layerHit.value)
                 {
@@ -37,7 +36,7 @@ public class UnitSelection : MonoBehaviour
                         SelectUnit(hit.transform);
                         break;
                     default:
-                        if (!Input.GetMouseButtonUp(0))
+                        if (mouseHeld == true)
                         {
                             Debug.Log("held");
                             UpdateSelectionBox(Input.mousePosition);
@@ -85,10 +84,35 @@ private void UpdateSelectionBox(Vector2 mousePosition)
             selectionBox.gameObject.SetActive(true);
         }
 
-        float width = mousePosition.x - startPos.x;
-        float height = mousePosition.y - startPos.y;
-        selectionBox.sizeDelta = new Vector2(Mathf.Abs(width), Mathf.Abs(height));
-        selectionBox.anchoredPosition = startPos + new Vector2(width / 2, height / 2);
+        float diffX = 0; 
+        float diffY = 0;
+        float anchorX;
+        float anchorY;
+
+        if (mousePosition.x < startPos.x)
+        {
+            diffX = endPos.x - mousePosition.x;
+            anchorX = mousePosition.x;
+        } else
+        {
+            diffX = mousePosition.x - startPos.x;
+            anchorX = startPos.x;
+        }
+
+        if(mousePosition.y < startPos.y)
+        {
+            diffY = endPos.y - mousePosition.y;
+            anchorY = mousePosition.y;
+        }
+        else
+        {
+            endPos.y = mousePosition.y;
+            diffY = mousePosition.y - startPos.y;
+            anchorY = startPos.y;
+        }
+
+        selectionBox.sizeDelta = new Vector2(diffX, diffY);
+        selectionBox.anchoredPosition = new Vector2(anchorX,anchorY);
     }
  
 
