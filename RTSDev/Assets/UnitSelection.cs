@@ -21,13 +21,12 @@ public class UnitSelection : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+            Debug.Log("pressed");
             startPos = Input.mousePosition;
             endPos = Input.mousePosition;
-            Debug.Log("pressed");
-        }
-        if (Input.GetMouseButton(0)){
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 LayerMask layerHit = hit.transform.gameObject.layer;
                 switch (layerHit.value)
@@ -35,19 +34,17 @@ public class UnitSelection : MonoBehaviour
                     case 7:
                         SelectUnit(hit.transform);
                         break;
+                    //add case for building pressed and if enemy clicked
                     default:
-                        if (mouseHeld == true)
-                        {
-                            Debug.Log("held");
-                            UpdateSelectionBox(Input.mousePosition);
-                        } else
-                        {
-                            DeSelectUnits();
-                        }  
+                        DeSelectUnits();
+                        mouseHeld = true;
                         break;
                 }
             }
-            mouseHeld = true;
+        }
+        if (Input.GetMouseButton(0) && mouseHeld){
+            Debug.Log("held");
+            UpdateSelectionBox(Input.mousePosition);
         }
 
         if (Input.GetMouseButtonUp(0))

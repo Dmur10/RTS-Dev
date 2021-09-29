@@ -20,8 +20,11 @@ public class BuildingPlacer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(buildingToPlace != null)
+        if(buildingToPlace == null)
         {
+            return;
+        }
+
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 cancelBuildingPlacement();
@@ -40,11 +43,9 @@ public class BuildingPlacer : MonoBehaviour
 
             if (buildingToPlace.HasValidPlacement && Input.GetMouseButtonDown(0))
             {
-                print("here");
                 buildingToPlace.Place();
                 selectBuildingToPlace(buildingToPlace.DataIndex);
             }
-        }
     }
 
     void selectBuildingToPlace(int index) { 
