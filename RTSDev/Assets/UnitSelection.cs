@@ -31,7 +31,7 @@ public class UnitSelection : MonoBehaviour
                 LayerMask layerHit = hit.transform.gameObject.layer;
                 switch (layerHit.value)
                 {
-                    case 7:
+                    case 7: 
                         SelectUnit(hit.transform);
                         break;
                     //add case for building pressed and if enemy clicked
@@ -122,9 +122,10 @@ private void UpdateSelectionBox(Vector2 mousePosition)
 
     void DeSelectUnits()
     {
-        //for (int i = 0; i < Player.instance.selectedUnits.Count; i++)
-        //{
-            //Player.instance.selectedUnits[i].Find("highlight").gameObject.SetActive(false);
-        //}
+        for (int i = 0; i < Player.instance.selectedUnits.Count; i++)
+        {
+            Player.instance.selectedUnits[i].Find("highlight").gameObject.SetActive(false);
+        }
+        Player.instance.selectedUnits.Clear();
     }
 }

@@ -14,7 +14,7 @@ public class BuildingPlacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        selectBuildingToPlace(0);
+        //selectBuildingToPlace(0);
     }
 
     // Update is called once per frame
