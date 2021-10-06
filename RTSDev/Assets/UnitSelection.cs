@@ -20,7 +20,7 @@ public class UnitSelection : MonoBehaviour
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
-        {
+        {     
             Debug.Log("pressed");
             startPos = Input.mousePosition;
             endPos = Input.mousePosition;
@@ -31,7 +31,8 @@ public class UnitSelection : MonoBehaviour
                 LayerMask layerHit = hit.transform.gameObject.layer;
                 switch (layerHit.value)
                 {
-                    case 7: 
+                    case 7:
+                        DeSelectUnits();
                         SelectUnit(hit.transform);
                         break;
                     //add case for building pressed and if enemy clicked
@@ -49,28 +50,32 @@ public class UnitSelection : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            mouseHeld = false;
-            ReleaseSelectionBox();
+            if (mouseHeld == true) {
+                mouseHeld = false;
+                ReleaseSelectionBox();
+            }
         }
     }
 
     private void ReleaseSelectionBox()
     {
+
+        DeSelectUnits();
         selectionBox.gameObject.SetActive(false);
 
-        Vector2 min = selectionBox.anchoredPosition - (selectionBox.sizeDelta / 2);
-        Vector2 max = selectionBox.anchoredPosition + (selectionBox.sizeDelta / 2);
+        Vector2 min = selectionBox.anchoredPosition;// - (selectionBox.sizeDelta / 2);
+        Vector2 max = selectionBox.anchoredPosition + selectionBox.sizeDelta;/// 2);
 
-       // foreach (Transform unit in Player.instance.units)
-       // {
-           // Vector3 screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
-           //
-           // if (screenPos.x > min.x && screenPos.x < max.x && screenPos.y > min.y && screenPos.y < max.y)
-           //? {
-           //     Player.instance.selectedUnits.Add(unit);
-           //     unit.Find("highlight").gameObject.SetActive(true);
-         //   }
-       // }
+        foreach (Transform unit in Player.instance.units)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(unit.transform.position); 
+         
+            if (screenPos.x > min.x && screenPos.x < max.x && screenPos.y > min.y && screenPos.y < max.y)
+            {
+                Player.instance.selectedUnits.Add(unit);
+                unit.Find("highlight").gameObject.SetActive(true);
+            }
+        }
     }
         
 
@@ -115,7 +120,6 @@ private void UpdateSelectionBox(Vector2 mousePosition)
 
     void SelectUnit(Transform unit)
     {
-        DeSelectUnits();
         Player.instance.selectedUnits.Add(unit);
         unit.Find("highlight").gameObject.SetActive(true);
     }
