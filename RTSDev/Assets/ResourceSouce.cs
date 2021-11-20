@@ -8,6 +8,7 @@ public enum ResourceType
     Food,
     Fuel
 }
+
 public class ResourceSource : MonoBehaviour
 {
     public ResourceType type;
@@ -17,11 +18,16 @@ public class ResourceSource : MonoBehaviour
     {
         if (quantity - amount < 0)
         {
-            quantity = 0;
+            RemoveResource()
         }
         else
         {
             quantity -= amount;
         }
+    }
+
+    private void RemoveResource()
+    {
+        // delete the resource source
     }
 }

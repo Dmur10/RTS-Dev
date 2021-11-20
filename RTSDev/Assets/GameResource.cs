@@ -13,13 +13,18 @@ public class GameResource
         _currentAmount = initialAmount;
     }
 
+    public void GetAmount()
+    {
+        return _currentAmount
+    }
+
     public void AddAmount(int value)
     {
         _currentAmount += value;
-        if (_currentAmount < 0)
-        {
-            _currentAmount = 0;
+    }
 
-        }
+    public void RemoveAmount(int value)
+    {
+        _currentAmount -= value;
     }
 }

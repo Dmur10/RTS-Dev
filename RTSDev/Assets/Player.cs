@@ -36,7 +36,10 @@ public class Player : MonoBehaviour
     {
         if(selectedUnits.Count == 1)
         {
-            //selectedUnits.GetComponent<NavMeshAgent>.SetDestination(hit.point);
+// selectedUnits[0];
+        } else
+        {
+
         }
     }
 }
