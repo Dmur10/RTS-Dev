@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
 
     public static Player instance;
+    public List<GameResource> resources;
+
     public List<Transform> selectedUnits;
     public List<Transform> units;
 
@@ -16,6 +18,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         instance = this;
+        resources = new List<GameResource>()
+        {
+            new GameResource(ResourceType.Scrap, 200),
+            new GameResource(ResourceType.Food, 200),
+            new GameResource(ResourceType.Fuel, 50)
+        };
     } 
     // Update is called once per frame
     void Update()

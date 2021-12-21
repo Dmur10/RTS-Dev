@@ -18,7 +18,7 @@ public class ResourceSource : MonoBehaviour
     {
         if (quantity - amount < 0)
         {
-            RemoveResource()
+            RemoveResource();
         }
         else
         {

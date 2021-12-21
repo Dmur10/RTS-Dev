@@ -13,9 +13,9 @@ public class GameResource
         _currentAmount = initialAmount;
     }
 
-    public void GetAmount()
+    public int GetAmount()
     {
-        return _currentAmount
+        return _currentAmount;
     }
 
     public void AddAmount(int value)
