@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public List<Transform> selectedUnits;
     public List<Transform> units;
 
+    public Transform selectedBuilding;
+
     public Camera cam;
     public NavMeshAgent agent;
     // Start is called before the first frame update
