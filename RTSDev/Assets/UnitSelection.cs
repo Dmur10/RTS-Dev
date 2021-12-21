@@ -34,8 +34,11 @@ public class UnitSelection : MonoBehaviour
                     case 7:
                         DeSelectUnits();
                         SelectUnit(hit.transform);
+                        break; 
+                    case 6:
+                        DeSelect();
+                        SelectBuilding(hit.transform);
                         break;
-                    //add case for building pressed and if enemy clicked
                     default:
                         DeSelectUnits();
                         mouseHeld = true;
@@ -124,6 +127,12 @@ private void UpdateSelectionBox(Vector2 mousePosition)
         unit.Find("highlight").gameObject.SetActive(true);
     }
 
+    void SelectBuilding(Transform building)
+    {
+        Player.instance.selectedBuilding = building;
+        building.Find("highlight").gameObject.SetActive(true);
+    }
+
     void DeSelectUnits()
     {
         for (int i = 0; i < Player.instance.selectedUnits.Count; i++)
@@ -131,5 +140,11 @@ private void UpdateSelectionBox(Vector2 mousePosition)
             Player.instance.selectedUnits[i].Find("highlight").gameObject.SetActive(false);
         }
         Player.instance.selectedUnits.Clear();
+    }
+
+    void DeSelect()
+    {
+        DeSelectUnits();
+        Player.instance.selectedBuilding.Find("highlight").gameObject.SetActive(false);
     }
 }
