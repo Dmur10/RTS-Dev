@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4021508217225226410}
   - component: {fileID: 369670857515723005}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,8 @@ GameObject:
   - component: {fileID: 33975377375410455}
   - component: {fileID: 3936470892896499948}
   - component: {fileID: 8168967213428965077}
-  m_Layer: 0
+  - component: {fileID: 8031809055878647880}
+  m_Layer: 7
   m_Name: building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +145,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8031809055878647880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7146199325165986501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b8e76f95f8a524f81cb7980d80e77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteracting: 0
+  highlight: {fileID: 4810860305779552869}
 --- !u!1 &8902841373255736113
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +171,7 @@ GameObject:
   - component: {fileID: 8486744329537200666}
   - component: {fileID: 4672514210715773435}
   - component: {fileID: 7737565927370458291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

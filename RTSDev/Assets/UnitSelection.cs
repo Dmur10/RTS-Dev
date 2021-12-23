@@ -10,11 +10,10 @@ public class UnitSelection : MonoBehaviour
     private RaycastHit hit;
     private bool mouseHeld = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<Transform> selectedUnits = new List<Transform>();  
+    public Transform selectedBuilding = null;
+
+    public LayerMask interactabeLayer = new LayerMask();
 
     // Update is called once per frame
     void Update()
@@ -26,9 +25,16 @@ public class UnitSelection : MonoBehaviour
             endPos = Input.mousePosition;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
             {
-                LayerMask layerHit = hit.transform.gameObject.layer;
+                if (addedUnit(hit.transform))
+                {
+                    // use unit ui
+                } else if(addedBuilding(hit.transform))
+                {
+                    // use building ui
+                }
+                /*LayerMask layerHit = hit.transform.gameObject.layer;
                 switch (layerHit.value)
                 {
                     case 7:
@@ -43,7 +49,11 @@ public class UnitSelection : MonoBehaviour
                         DeSelectUnits();
                         mouseHeld = true;
                         break;
-                }
+                }*/
+            } else
+            {
+                mouseHeld = true;
+                DeSelectUnits();
             }
         }
         if (Input.GetMouseButton(0) && mouseHeld){
@@ -62,9 +72,9 @@ public class UnitSelection : MonoBehaviour
 
     private void ReleaseSelectionBox()
     {
-
-        DeSelectUnits();
         selectionBox.gameObject.SetActive(false);
+        DeSelectUnits();
+        
 
         Vector2 min = selectionBox.anchoredPosition;// - (selectionBox.sizeDelta / 2);
         Vector2 max = selectionBox.anchoredPosition + selectionBox.sizeDelta;/// 2);
@@ -75,8 +85,8 @@ public class UnitSelection : MonoBehaviour
          
             if (screenPos.x > min.x && screenPos.x < max.x && screenPos.y > min.y && screenPos.y < max.y)
             {
-                Player.instance.selectedUnits.Add(unit);
-                unit.Find("highlight").gameObject.SetActive(true);
+                selectedUnits.Add(unit);
+                unit.gameObject.GetComponent<IUnit>().OnInteractEnter();
             }
         }
     }
@@ -119,32 +129,56 @@ private void UpdateSelectionBox(Vector2 mousePosition)
         selectionBox.sizeDelta = new Vector2(diffX, diffY);
         selectionBox.anchoredPosition = new Vector2(anchorX,anchorY);
     }
- 
-
-    void SelectUnit(Transform unit)
-    {
-        Player.instance.selectedUnits.Add(unit);
-        unit.Find("highlight").gameObject.SetActive(true);
-    }
-
-    void SelectBuilding(Transform building)
-    {
-        Player.instance.selectedBuilding = building;
-        building.Find("highlight").gameObject.SetActive(true);
-    }
 
     void DeSelectUnits()
     {
-        for (int i = 0; i < Player.instance.selectedUnits.Count; i++)
-        {
-            Player.instance.selectedUnits[i].Find("highlight").gameObject.SetActive(false);
+        if (selectedBuilding) {
+            selectedBuilding.gameObject.GetComponent<IBuilding>().OnInteractExit();
+            selectedBuilding = null;
         }
-        Player.instance.selectedUnits.Clear();
+        for (int i = 0; i < selectedUnits.Count; i++)
+        {
+            selectedUnits[i].gameObject.GetComponent<IUnit>().OnInteractExit();
+        }
+        selectedUnits.Clear();
     }
 
-    void DeSelect()
+    private IUnit addedUnit(Transform tf, bool canMultiSelect = false)
     {
-        DeSelectUnits();
-        Player.instance.selectedBuilding.Find("highlight").gameObject.SetActive(false);
+        IUnit iUnit = tf.GetComponent<IUnit>();
+        if (iUnit)
+        {
+            if (!canMultiSelect)
+            {
+                DeSelectUnits();
+            }
+            selectedUnits.Add(iUnit.gameObject.transform);
+
+            iUnit.OnInteractEnter();
+            return iUnit;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private IBuilding addedBuilding(Transform tf)
+    {
+        IBuilding iBuilding = tf.GetComponent<IBuilding>();
+        if (iBuilding)
+        {
+            DeSelectUnits();
+
+            selectedBuilding = iBuilding.gameObject.transform;
+
+            iBuilding.OnInteractEnter();
+
+            return iBuilding;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
