@@ -10,6 +10,6 @@ public class ResourceCounter : MonoBehaviour
 
     public void Update()
     {
-        resourceAmt.text = Player.instance.resources[(int)type].GetAmount().ToString(); 
+        resourceAmt.text = RTSGame.Player.PlayerManager.instance.resources[(int)type].GetAmount().ToString(); 
     }
 }

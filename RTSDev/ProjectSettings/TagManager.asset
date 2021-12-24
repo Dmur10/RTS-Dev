@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Buildings
-  - Units
+  - EnemyLayer
+  - Interactables
   - Terrain
   - 
   - 
