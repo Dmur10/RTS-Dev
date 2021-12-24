@@ -10,12 +10,10 @@ namespace RTSGame.Player
     {
 
         public static PlayerManager instance;
-        public Transform playerUnits;
 
+        public Transform playerUnits;
         public List<GameResource> resources;
- 
-        public Camera cam;
-        public NavMeshAgent agent;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -31,22 +29,6 @@ namespace RTSGame.Player
         void Update()
         {
             InputHandler.instance.HandleUnitMovement();
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    agent.SetDestination(hit.point);
-                }
-            }
-        }
-
-        void moveSelectedUnits()
-        {
-             
         }
     }
 

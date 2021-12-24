@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RTSGame.Units.Player;
 
 namespace RTSGame.InputManager
 {
@@ -61,6 +62,22 @@ namespace RTSGame.InputManager
                 {
                     mouseHeld = false;
                     ReleaseSelectionBox();
+                }
+            }
+
+            if(Input.GetMouseButtonDown(1))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (HaveSelectedUnits())
+                    {
+                        foreach(Transform unit in selectedUnits)
+                        {
+                            Moveable mv = unit.gameObject.GetComponent<Moveable>();
+                            mv.MoveUnit(hit.point);
+                        }
+                    }
                 }
             }
         }
@@ -182,6 +199,15 @@ namespace RTSGame.InputManager
             {
                 return null;
             }
+        }
+
+        private bool HaveSelectedUnits()
+        {
+            if (selectedUnits.Count > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

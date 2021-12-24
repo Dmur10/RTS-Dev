@@ -13,7 +13,7 @@ namespace RTSGame.Units
             Scaveger,
             Warrior
         }
-        public bool isPlayerUnit;
+
         public unitTye type;
 
         public string unitName;
