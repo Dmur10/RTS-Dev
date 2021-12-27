@@ -14,15 +14,20 @@ namespace RTSGame.Units
             Warrior
         }
 
+        [Space(15)]
+        [Header("Unit Settings")]
+
         public unitTye type;
-
         public string unitName;
-
         public GameObject HumanPrefab;
         public GameObject BurnedPrefab;
 
+        [Space(15)]
+        [Header("Unit Stats")]
+        [Space(40)]
         public int cost;
         public int damage;
+        public int atkRange;
         public int health;
 
     }
