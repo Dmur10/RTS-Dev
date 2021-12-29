@@ -5,13 +5,13 @@ using UnityEngine;
 namespace RTSGame.Units
 {
     [CreateAssetMenu(fileName ="New Unit", menuName ="New Unit/Basic")]
-    public class Unit : ScriptableObject
+    public class BasicUnit : ScriptableObject
     {
         public enum unitTye
         {
-            Worker,
-            Scaveger,
-            Warrior
+            worker,
+            scaveger,
+            warrior
         }
 
         [Space(15)]
@@ -25,10 +25,8 @@ namespace RTSGame.Units
         [Space(15)]
         [Header("Unit Stats")]
         [Space(40)]
-        public int cost;
-        public int damage;
-        public int atkRange;
-        public int health;
+
+        public UnitStatTypes.Base baseStats;
 
     }
 }

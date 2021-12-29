@@ -12,12 +12,19 @@ namespace RTSGame.Player
         public static PlayerManager instance;
 
         public Transform playerUnits;
+        public Transform enemyUnits; 
         public List<GameResource> resources;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
             instance = this;
+        }
+        // Start is called before the first frame update
+        private void Start()
+        {
+            Units.UnitHandler.instance.SetBasicUnitStats(playerUnits);
+            Units.UnitHandler.instance.SetBasicUnitStats(enemyUnits);
+
             resources = new List<GameResource>()
         {
             new GameResource(ResourceType.Scrap, 200),
@@ -26,7 +33,7 @@ namespace RTSGame.Player
         };
         }
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             InputHandler.instance.HandleUnitMovement();
         }

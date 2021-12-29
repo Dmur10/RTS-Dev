@@ -6,10 +6,12 @@ using UnityEngine.AI;
 namespace RTSGame.Units.Player
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Moveable : MonoBehaviour
+    public class PlayerUnit : MonoBehaviour
     {
 
         private NavMeshAgent navAgent;
+
+        public UnitStatTypes.Base baseStats;
         
         private void OnEnable()
         {

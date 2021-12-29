@@ -20,7 +20,7 @@ namespace RTSGame.InputManager
 
         public LayerMask interactabeLayer = new LayerMask();
 
-        void Start()
+        private void Awake()
         {
             instance = this;
         } 
@@ -74,8 +74,8 @@ namespace RTSGame.InputManager
                     {
                         foreach(Transform unit in selectedUnits)
                         {
-                            Moveable mv = unit.gameObject.GetComponent<Moveable>();
-                            mv.MoveUnit(hit.point);
+                            PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                            pU.MoveUnit(hit.point);
                         }
                     }
                 }
