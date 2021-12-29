@@ -16,7 +16,9 @@ MonoBehaviour:
   unitName: Warrior
   HumanPrefab: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
   BurnedPrefab: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
-  cost: 20
-  damage: 5
-  atkRange: 4
-  health: 25
+  baseStats:
+    cost: 150
+    aggroRange: 20
+    atkRange: 10
+    damage: 50
+    health: 100

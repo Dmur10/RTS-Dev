@@ -339,7 +339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531614018}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Workers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 546842674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Warriors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 691722700}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Scavengers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &999056583
 RectTransform:
   m_ObjectHideFlags: 0
@@ -779,6 +779,14 @@ PrefabInstance:
     - target: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7515771766131954911, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
@@ -1117,7 +1125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1611030138}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyUnits
   m_TagString: Untagged
   m_Icon: {fileID: 0}

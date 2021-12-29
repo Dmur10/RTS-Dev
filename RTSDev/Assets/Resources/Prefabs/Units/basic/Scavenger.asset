@@ -16,7 +16,9 @@ MonoBehaviour:
   unitName: Scavenger
   HumanPrefab: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
   BurnedPrefab: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
-  cost: 15
-  damage: 3
-  atkRange: 2
-  health: 8
+  baseStats:
+    cost: 125
+    aggroRange: 15
+    atkRange: 10
+    damage: 30
+    health: 75
