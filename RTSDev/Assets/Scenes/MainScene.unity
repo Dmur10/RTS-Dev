@@ -297,6 +297,12 @@ MonoBehaviour:
   worker: {fileID: 11400000, guid: 58a28208aba768b41ad2d88d389374a3, type: 2}
   warrior: {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
   scavenger: {fileID: 11400000, guid: b7bf3e1290e79bf40b02015cd9174390, type: 2}
+  pUnitLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  eUnitLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &430797754
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430797756}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player Units
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1147346563}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scavengers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,15 +744,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1474282322220180652, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16584778
+      value: 22.754
       objectReference: {fileID: 0}
     - target: {fileID: 1474282322220180652, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15899807
+      value: -31.71
       objectReference: {fileID: 0}
     - target: {fileID: 1474282322220180652, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.53842926
+      value: 55.46
       objectReference: {fileID: 0}
     - target: {fileID: 1474282322220180652, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -912,6 +918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ally (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -922,11 +932,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -31.880001
+      value: -31.42
       objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 57.254356
+      value: 58.97
       objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalRotation.w
@@ -955,6 +965,10 @@ PrefabInstance:
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671201979883741581, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
@@ -1070,6 +1084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ally
       objectReference: {fileID: 0}
+    - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1113,6 +1131,10 @@ PrefabInstance:
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671201979883741581, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
@@ -1165,6 +1187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ally
       objectReference: {fileID: 0}
+    - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3079992841712314668, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Height
       value: 1
@@ -1179,11 +1205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -31
+      value: -28.83
       objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 58.41
+      value: 63.72
       objectReference: {fileID: 0}
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1212,6 +1238,10 @@ PrefabInstance:
     - target: {fileID: 3642560288882987518, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671201979883741581, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
@@ -1299,7 +1329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1714732276}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Warriors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1554,7 +1584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1924636744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Workers
   m_TagString: Untagged
   m_Icon: {fileID: 0}

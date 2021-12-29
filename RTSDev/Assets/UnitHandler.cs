@@ -12,9 +12,17 @@ namespace RTSGame.Units
         [SerializeField]
         private BasicUnit worker, warrior, scavenger;
 
+        public LayerMask pUnitLayer, eUnitLayer;
+
         private void Awake()
         {
             instance = this;
+        }
+
+        private void Start()
+        {
+            pUnitLayer = LayerMask.NameToLayer("PlayerLayer");
+            eUnitLayer = LayerMask.NameToLayer("EnemyLayer"); 
         }
 
         public (float cost, float aggroRange, float damage, float atkRange, float health) GetBasicUnitStats(string type)
