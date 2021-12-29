@@ -154,6 +154,9 @@ MonoBehaviour:
     atkRange: 0
     damage: 0
     health: 0
+  unitStatsDisplay: {fileID: 1761072533067027364}
+  heathBar: {fileID: 6531610909307811999}
+  currentHealth: 0
 --- !u!1 &5671201979883741581
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +246,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3642560288882987518}
     m_Modifications:
+    - target: {fileID: 2805481785743622265, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4772045592534364198, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -333,8 +340,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+--- !u!1 &1761072533067027364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7222495579608197954, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+  m_PrefabInstance: {fileID: 8956502242249701606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4499752965165467840 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4772045592534364198, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
   m_PrefabInstance: {fileID: 8956502242249701606}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6531610909307811999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2805481785743622265, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+  m_PrefabInstance: {fileID: 8956502242249701606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

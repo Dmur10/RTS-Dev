@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.UI;
 namespace RTSGame.Units.Player
 {
     [RequireComponent(typeof(NavMeshAgent))]
@@ -12,6 +12,12 @@ namespace RTSGame.Units.Player
         private NavMeshAgent navAgent;
 
         public UnitStatTypes.Base baseStats;
+
+        public GameObject unitStatsDisplay;
+
+        public Image heathBar;
+
+        public float currentHealth;
         
         private void OnEnable()
         {
@@ -22,6 +28,11 @@ namespace RTSGame.Units.Player
         public void MoveUnit(Vector3 _destination)
         {
             navAgent.SetDestination(_destination);
+        }
+
+        private void handleHeath()
+        {
+            Camera camera  
         }
     }
 }

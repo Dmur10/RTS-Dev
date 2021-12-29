@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace RTSGame.Units.Enemy
 {
@@ -12,13 +13,19 @@ namespace RTSGame.Units.Enemy
 
         public UnitStatTypes.Base baseStats;
 
-        public Collider[] colliders;
+        public GameObject unitStatsDisplay;
 
-        public Transform target;
+        public Image heathBar;
 
-        public bool hasAggro = false;
+        public float currentHealth;
 
-        public float distance;
+        private Collider[] colliders;
+
+        private Transform target;
+
+        private bool hasAggro = false;
+
+        private float distance;
 
         private void Start()
         {
