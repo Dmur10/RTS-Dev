@@ -25,7 +25,7 @@ namespace RTSGame.Units
             eUnitLayer = LayerMask.NameToLayer("EnemyLayer"); 
         }
 
-        public (float cost, float aggroRange, float damage, float atkRange, float health) GetBasicUnitStats(string type)
+        public UnitStatTypes.Base GetUnitBaseStats(string type)
         {
             BasicUnit unit;
             switch (type)
@@ -41,9 +41,9 @@ namespace RTSGame.Units
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} not found");
-                    return (0, 0, 0, 0, 0);
+                    return null;
             }
-            return (unit.baseStats.cost, unit.baseStats.aggroRange, unit.baseStats.damage, unit.baseStats.atkRange, unit.baseStats.health);
+            return unit.baseStats;
         }
 
         public void SetBasicUnitStats(Transform type)
@@ -56,27 +56,19 @@ namespace RTSGame.Units
                 foreach(Transform unit in child)
                 {
                     string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = GetBasicUnitStats(unitName);
+                    var stats = GetUnitBaseStats(unitName);
 
                     if (type == pUnits)
                     {
                         Player.PlayerUnit pU = unit.GetComponent<Player.PlayerUnit>();
 
-                        pU.baseStats.cost = stats.cost;
-                        pU.baseStats.aggroRange = stats.aggroRange;
-                        pU.baseStats.damage = stats.damage;
-                        pU.baseStats.atkRange = stats.atkRange;
-                        pU.baseStats.health = stats.health;
+                        pU.baseStats = GetUnitBaseStats(unitName); ;
 
                     } else if(type == eUnits)
                     {
-                        Enemy.EnemyUnit eU = unit.GetComponent<Enemy.EnemyUnit>(); 
+                        Enemy.EnemyUnit eU = unit.GetComponent<Enemy.EnemyUnit>();
 
-                        eU.baseStats.cost = stats.cost;
-                        eU.baseStats.aggroRange = stats.aggroRange;
-                        eU.baseStats.damage = stats.damage;
-                        eU.baseStats.atkRange = stats.atkRange;
-                        eU.baseStats.health = stats.health;
+                        eU.baseStats = GetUnitBaseStats(unitName); ;
                     }
                     
 

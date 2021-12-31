@@ -84,6 +84,12 @@ namespace RTSGame.Units.Enemy
             
         }
 
+        public void takeDamage(float damage)
+        {
+            float totalDamage = damage;
+            currentHealth -= totalDamage;
+        }
+
         private void HandleHeath()
         {
             Camera camera = Camera.main;

@@ -37,6 +37,12 @@ namespace RTSGame.Units.Player
             navAgent.SetDestination(_destination);
         }
 
+        public void takeDamage(float damage)
+        {
+            float totalDamage = damage;
+            currentHealth -= totalDamage;
+        }
+
         private void HandleHeath()
         {
             Camera camera = Camera.main;
@@ -46,6 +52,7 @@ namespace RTSGame.Units.Player
             heathBar.fillAmount = currentHealth / baseStats.health;
             if (currentHealth <= 0)
             {
+                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform);
                 Die();
             }
         }
