@@ -17,6 +17,7 @@ namespace RTSGame.InputManager
 
         public List<Transform> selectedUnits = new List<Transform>();
         public Transform selectedBuilding = null;
+        public Transform selectedResource = null;
 
         public LayerMask interactabeLayer = new LayerMask();
 
@@ -43,7 +44,10 @@ namespace RTSGame.InputManager
                     else if (addedBuilding(hit.transform))
                     {
                         // use building ui
-                    }
+                    } else if (addedResource(hit.transform))
+                    {
+                        // show resource stats
+                    } 
                 }
                 else
                 {
@@ -154,6 +158,10 @@ namespace RTSGame.InputManager
             {
                 selectedBuilding.gameObject.GetComponent<IBuilding>().OnInteractExit();
                 selectedBuilding = null;
+            } else if (selectedResource)
+            {
+                selectedResource.gameObject.GetComponent<IResource>().OnInteractExit();
+                selectedResource = null;
             }
             for (int i = 0; i < selectedUnits.Count; i++)
             {
@@ -194,6 +202,25 @@ namespace RTSGame.InputManager
                 iBuilding.OnInteractEnter();
 
                 return iBuilding;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private IResource addedResource(Transform tf)
+        {
+            IResource iResource = tf.GetComponent<IResource>();
+            if (iResource)
+            {
+                DeSelectUnits();
+
+                selectedResource = iResource.gameObject.transform;
+
+                iResource.OnInteractEnter();
+
+                return iResource;
             }
             else
             {

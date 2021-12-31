@@ -56,8 +56,7 @@ namespace RTSGame.Units.Enemy
             for (int i = 0; i < colliders.Length; i++)
             { 
                 if (colliders[i].gameObject.layer == UnitHandler.instance.pUnitLayer)
-                {
-                    Debug.Log("hi");
+                { 
                     target = colliders[i].gameObject.transform;
                     hasAggro = true;
                     break;
