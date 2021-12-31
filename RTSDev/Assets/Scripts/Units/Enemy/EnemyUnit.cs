@@ -67,13 +67,22 @@ namespace RTSGame.Units.Enemy
 
         private void MoveToTarget()
         {
-            distance = Vector3.Distance(target.position, transform.position);
-            navAgent.stoppingDistance = (baseStats.atkRange + 1);
-
-            if (distance <= baseStats.aggroRange)
+            if (target  == null)
             {
-                navAgent.SetDestination(target.position);
+                navAgent.SetDestination(transform.position);
+                hasAggro = false;
             }
+            else
+            {
+                distance = Vector3.Distance(target.position, transform.position);
+                navAgent.stoppingDistance = (baseStats.atkRange + 1);
+
+                if (distance <= baseStats.aggroRange)
+                {
+                    navAgent.SetDestination(target.position);
+                }
+            }
+            
         }
 
         private void HandleHeath()
