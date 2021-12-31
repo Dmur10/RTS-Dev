@@ -1,18 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+
+namespace RTSGame.Units
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Health : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public GameObject unitStatsDisplay;
+
+        public Image heathBar;
+
+        public float currentHealth;
+
+        // Update is called once per frame
+        private void Update()
+        {
+            if (gameObject.GetComponent<Player.PlayerUnit>())
+            {
+
+            } else if(gameObject.GetComponent<Enemy.EnemyUnit>() ){
+
+            }
+        }
+
+        private void HandleHeath()
+        {
+            Camera camera = Camera.main;
+            unitStatsDisplay.transform.LookAt(unitStatsDisplay.transform.position +
+                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
+
+           // heathBar.fillAmount = currentHealth / baseStats.health;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
     }
 }
+
+
+

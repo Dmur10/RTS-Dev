@@ -44,6 +44,11 @@ namespace RTSGame.Units.Enemy
             }
         }
 
+        private void LateUpdate()
+        {
+            HandleHeath();
+        }
+
         private void checkForTarget()
         {
             colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange);
@@ -69,6 +74,24 @@ namespace RTSGame.Units.Enemy
             {
                 navAgent.SetDestination(target.position);
             }
+        }
+
+        private void HandleHeath()
+        {
+            Camera camera = Camera.main;
+            unitStatsDisplay.transform.LookAt(unitStatsDisplay.transform.position +
+                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
+
+            heathBar.fillAmount = currentHealth / baseStats.health;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }

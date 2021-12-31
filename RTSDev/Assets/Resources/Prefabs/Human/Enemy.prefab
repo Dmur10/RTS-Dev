@@ -154,10 +154,9 @@ MonoBehaviour:
     atkRange: 0
     damage: 0
     health: 0
-  colliders: []
-  target: {fileID: 0}
-  hasAggro: 0
-  distance: 0
+  unitStatsDisplay: {fileID: 470827818889344751}
+  heathBar: {fileID: 4926041681628143060}
+  currentHealth: 0
 --- !u!1 &7515771766131954911
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,8 +336,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+--- !u!1 &470827818889344751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7222495579608197954, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+  m_PrefabInstance: {fileID: 7112241672953879981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2344814306914200971 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4772045592534364198, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
   m_PrefabInstance: {fileID: 7112241672953879981}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4926041681628143060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2805481785743622265, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+  m_PrefabInstance: {fileID: 7112241672953879981}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

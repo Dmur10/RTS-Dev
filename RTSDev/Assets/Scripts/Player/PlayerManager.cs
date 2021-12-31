@@ -18,6 +18,7 @@ namespace RTSGame.Player
         private void Awake()
         {
             instance = this;
+            
         }
         // Start is called before the first frame update
         private void Start()

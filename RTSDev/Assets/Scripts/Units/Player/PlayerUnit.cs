@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+
 namespace RTSGame.Units.Player
 {
     [RequireComponent(typeof(NavMeshAgent))]
@@ -18,10 +20,15 @@ namespace RTSGame.Units.Player
         public Image heathBar;
 
         public float currentHealth;
-        
+
         private void OnEnable()
         {
             navAgent = GetComponent<NavMeshAgent>();
+        }
+
+        private void Update()
+        {
+            HandleHeath();
         }
 
         // Update is called once per frame
@@ -30,9 +37,22 @@ namespace RTSGame.Units.Player
             navAgent.SetDestination(_destination);
         }
 
-        private void handleHeath()
+        private void HandleHeath()
         {
-            Camera camera  
+            Camera camera = Camera.main;
+            unitStatsDisplay.transform.LookAt(unitStatsDisplay.transform.position +
+                camera.transform.rotation*Vector3.forward, camera.transform.rotation*Vector3.up  );
+
+            heathBar.fillAmount = currentHealth / baseStats.health;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }
