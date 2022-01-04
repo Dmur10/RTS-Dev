@@ -10,7 +10,7 @@ namespace RTSGame.Units
         public static UnitHandler instance;
 
         [SerializeField]
-        private BasicUnit worker, warrior, scavenger;
+        private BasicUnit Worker, Warrior, Scavenger;
 
         public LayerMask pUnitLayer, eUnitLayer;
 
@@ -22,7 +22,8 @@ namespace RTSGame.Units
         private void Start()
         {
             pUnitLayer = LayerMask.NameToLayer("PlayerLayer");
-            eUnitLayer = LayerMask.NameToLayer("EnemyLayer"); 
+            eUnitLayer = LayerMask.NameToLayer("EnemyLayer");
+
         }
 
         public UnitStatTypes.Base GetUnitBaseStats(string type)
@@ -31,13 +32,13 @@ namespace RTSGame.Units
             switch (type)
             {
                 case "worker":
-                    unit = worker;
+                    unit = Worker;
                     break;
                 case "warrior":
-                    unit = warrior;
+                    unit = Warrior;
                     break;
                 case "scavenger":
-                    unit = scavenger;
+                    unit = Scavenger;
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} not found");
@@ -55,8 +56,8 @@ namespace RTSGame.Units
             {
                 foreach(Transform unit in child)
                 {
-                    string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = GetUnitBaseStats(unitName);
+                    string unitName = child.name.Substring(0, child.name.Length - 1).ToLower(); 
+                    var stats = GetUnitBaseStats(unitName); 
 
                     if (type == pUnits)
                     {
@@ -70,9 +71,7 @@ namespace RTSGame.Units
 
                         eU.baseStats = GetUnitBaseStats(unitName); ;
                     }
-                    
-
-                    
+                     
 
                     //upgrades?
                 }

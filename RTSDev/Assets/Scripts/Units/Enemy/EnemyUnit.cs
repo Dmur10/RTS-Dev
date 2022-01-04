@@ -23,23 +23,30 @@ namespace RTSGame.Units.Enemy
 
         private Transform target;
 
+        private Player.PlayerUnit targetUnit;
+
         private bool hasAggro = false;
 
         private float distance;
 
+        private float atkCooldown;
+
         private void Start()
         {
             navAgent = gameObject.GetComponent<NavMeshAgent>();
+            currentHealth = baseStats.health;
         }
 
         private void Update()
         {
+            atkCooldown -= Time.deltaTime;
             if (!hasAggro)
             {
                 checkForTarget();
             }
             else
             {
+                Attack();
                 MoveToTarget();
             }
         }
@@ -58,6 +65,7 @@ namespace RTSGame.Units.Enemy
                 if (colliders[i].gameObject.layer == UnitHandler.instance.pUnitLayer)
                 { 
                     target = colliders[i].gameObject.transform;
+                    targetUnit = target.gameObject.GetComponent<Player.PlayerUnit>();
                     hasAggro = true;
                     break;
                 }
@@ -82,6 +90,15 @@ namespace RTSGame.Units.Enemy
                 }
             }
             
+        }
+
+        private void Attack()
+        {
+            if(atkCooldown <= 0 && distance <= baseStats.atkRange+1)
+            {
+                targetUnit.takeDamage(baseStats.damage);
+                atkCooldown = baseStats.atkSpeed;
+            }
         }
 
         public void takeDamage(float damage)

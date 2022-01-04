@@ -9,7 +9,7 @@ namespace RTSGame.Units
         [System.Serializable]
         public class Base
         {
-            public float cost, aggroRange, atkRange, damage, health;
+            public float cost, aggroRange, atkRange, atkSpeed, damage, health;
         }
     }
 }

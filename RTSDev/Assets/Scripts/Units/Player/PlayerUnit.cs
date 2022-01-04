@@ -23,9 +23,13 @@ namespace RTSGame.Units.Player
 
         private void OnEnable()
         {
-            navAgent = GetComponent<NavMeshAgent>();
+            navAgent = GetComponent<NavMeshAgent>(); 
         }
-
+         
+        private void Start()
+        {
+            currentHealth = baseStats.health;
+        }
         private void Update()
         {
             HandleHeath();
@@ -47,7 +51,7 @@ namespace RTSGame.Units.Player
         {
             Camera camera = Camera.main;
             unitStatsDisplay.transform.LookAt(unitStatsDisplay.transform.position +
-                camera.transform.rotation*Vector3.forward, camera.transform.rotation*Vector3.up  );
+                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up  );
 
             heathBar.fillAmount = currentHealth / baseStats.health;
             if (currentHealth <= 0)

@@ -18,13 +18,13 @@ namespace RTSGame.Player
         private void Awake()
         {
             instance = this;
-            
+            Units.UnitHandler.instance.SetBasicUnitStats(playerUnits);
+            Units.UnitHandler.instance.SetBasicUnitStats(enemyUnits);
         }
         // Start is called before the first frame update
         private void Start()
         {
-            Units.UnitHandler.instance.SetBasicUnitStats(playerUnits);
-            Units.UnitHandler.instance.SetBasicUnitStats(enemyUnits);
+            
 
             resources = new List<GameResource>()
         {
