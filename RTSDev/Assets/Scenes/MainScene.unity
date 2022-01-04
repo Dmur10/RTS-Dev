@@ -295,15 +295,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b258280625285944a1db462776d561c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worker: {fileID: 11400000, guid: 58a28208aba768b41ad2d88d389374a3, type: 2}
-  warrior: {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
-  scavenger: {fileID: 11400000, guid: b7bf3e1290e79bf40b02015cd9174390, type: 2}
+  Worker: {fileID: 11400000, guid: 58a28208aba768b41ad2d88d389374a3, type: 2}
+  Warrior: {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
+  Scavenger: {fileID: 11400000, guid: b7bf3e1290e79bf40b02015cd9174390, type: 2}
   pUnitLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   eUnitLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &430797754
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430797756}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Player Units
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1147346563}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Scavengers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,6 +796,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 531614018}
     m_Modifications:
+    - target: {fileID: 470827818889344751, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341150145764133850, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1474282322220180652, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -845,6 +853,14 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802255405582008272, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
@@ -974,11 +990,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 893007645283266193, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1761072533067027364, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Name
@@ -986,7 +1002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3367952551950984980, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: currentHealth
@@ -1038,11 +1054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5671201979883741581, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6655520433599093403, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
@@ -1156,11 +1172,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 893007645283266193, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1761072533067027364, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Name
@@ -1168,7 +1184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3367952551950984980, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: currentHealth
@@ -1220,11 +1236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5671201979883741581, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6655520433599093403, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
@@ -1275,11 +1291,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 893007645283266193, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1761072533067027364, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Name
@@ -1287,7 +1303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3079992841712314668, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Height
@@ -1339,11 +1355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5671201979883741581, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6655520433599093403, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
@@ -1431,7 +1447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1714732276}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Warriors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1686,7 +1702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1924636744}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Workers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
