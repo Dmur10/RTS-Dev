@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace RTSGame.Units
         {
             try
             {
-                maxHealth = gameObject.GetComponent.InParent<Player.PlayerUnit>().baseStats.health;
+                maxHealth = gameObject.GetComponentInParent<Player.PlayerUnit>().baseStats.health;
                 isPLayerUnit = true;
             }
             catch (Exception)
@@ -27,20 +28,54 @@ namespace RTSGame.Units
                 Debug.Log("No player Unit");
                 try
                 {
-                    maxHealth = gameObject.GetComponent.InParent<Enemy.EnemyUnit>().baseStats.health;
+                    maxHealth = gameObject.GetComponentInParent<Enemy.EnemyUnit>().baseStats.health;
                     isPLayerUnit = false;
                 }
-                catch
+                catch(Exception)
                 {
                     Debug.Log("No Scripts Found");
-                }
+                } 
             }
+            currentHealth = maxHealth;
         }
 
         // Update is called once per frame
-        void Update()
-        {
+         private void Update()
+         {
+            HandleHeath();
+         }
 
+        public void takeDamage(float damage)
+        {
+            float totalDamage = damage;
+            currentHealth -= totalDamage;
+        }
+
+        private void HandleHeath()
+        {
+            Camera camera = Camera.main;
+            gameObject.transform.LookAt(gameObject.transform.position +
+                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
+
+            healthBarAmount.fillAmount = currentHealth / maxHealth;
+            if (currentHealth <= 0)
+            { 
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            if (isPLayerUnit)
+            {
+                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform);
+                Destroy(gameObject.transform.parent.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject.transform.parent.gameObject);
+            }
+            
         }
     }
 }

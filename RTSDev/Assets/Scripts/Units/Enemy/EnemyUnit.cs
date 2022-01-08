@@ -9,21 +9,15 @@ namespace RTSGame.Units.Enemy
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyUnit : MonoBehaviour
     {
-        NavMeshAgent navAgent;
+        private NavMeshAgent navAgent;
 
-        public UnitStatTypes.Base baseStats;
-
-        public GameObject unitStatsDisplay;
-
-        public Image heathBar;
-
-        public float currentHealth;
+        public UnitStatTypes.Base baseStats; 
 
         private Collider[] colliders;
 
         private Transform target;
 
-        private Player.PlayerUnit targetUnit;
+        private UnitStatDisplay targetUnit;
 
         private bool hasAggro = false;
 
@@ -33,8 +27,7 @@ namespace RTSGame.Units.Enemy
 
         private void Start()
         {
-            navAgent = gameObject.GetComponent<NavMeshAgent>();
-            currentHealth = baseStats.health;
+            navAgent = gameObject.GetComponent<NavMeshAgent>(); 
         }
 
         private void Update()
@@ -50,12 +43,7 @@ namespace RTSGame.Units.Enemy
                 MoveToTarget();
             }
         }
-
-        private void LateUpdate()
-        {
-            HandleHeath();
-        }
-
+         
         private void checkForTarget()
         {
             colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange);
@@ -65,7 +53,7 @@ namespace RTSGame.Units.Enemy
                 if (colliders[i].gameObject.layer == UnitHandler.instance.pUnitLayer)
                 { 
                     target = colliders[i].gameObject.transform;
-                    targetUnit = target.gameObject.GetComponent<Player.PlayerUnit>();
+                    targetUnit = target.gameObject.GetComponentInChildren<UnitStatDisplay>();
                     hasAggro = true;
                     break;
                 }
@@ -101,29 +89,6 @@ namespace RTSGame.Units.Enemy
             }
         }
 
-        public void takeDamage(float damage)
-        {
-            float totalDamage = damage;
-            currentHealth -= totalDamage;
-        }
-
-        private void HandleHeath()
-        {
-            Camera camera = Camera.main;
-            unitStatsDisplay.transform.LookAt(unitStatsDisplay.transform.position +
-                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
-
-            heathBar.fillAmount = currentHealth / baseStats.health;
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-        }
-
-        private void Die()
-        {
-            Destroy(gameObject);
-        }
     }
 }
 

@@ -152,6 +152,7 @@ MonoBehaviour:
     cost: 0
     aggroRange: 0
     atkRange: 0
+    atkSpeed: 0
     damage: 0
     health: 0
   unitStatsDisplay: {fileID: 1761072533067027364}
@@ -246,6 +247,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3642560288882987518}
     m_Modifications:
+    - target: {fileID: 24584377535780775, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2805481785743622265, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
       propertyPath: m_FillAmount
       value: 1

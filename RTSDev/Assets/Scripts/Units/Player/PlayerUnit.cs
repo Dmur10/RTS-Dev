@@ -15,12 +15,6 @@ namespace RTSGame.Units.Player
 
         public UnitStatTypes.Base baseStats;
 
-        public GameObject unitStatsDisplay;
-
-        public Image heathBar;
-
-        public float currentHealth;
-
         private void OnEnable()
         {
             navAgent = GetComponent<NavMeshAgent>(); 
@@ -28,12 +22,8 @@ namespace RTSGame.Units.Player
          
         private void Start()
         {
-            currentHealth = baseStats.health;
         }
-        private void Update()
-        {
-            HandleHeath();
-        }
+        
 
         // Update is called once per frame
         public void MoveUnit(Vector3 _destination)
@@ -41,30 +31,7 @@ namespace RTSGame.Units.Player
             navAgent.SetDestination(_destination);
         }
 
-        public void takeDamage(float damage)
-        {
-            float totalDamage = damage;
-            currentHealth -= totalDamage;
-        }
-
-        private void HandleHeath()
-        {
-            Camera camera = Camera.main;
-            unitStatsDisplay.transform.LookAt(unitStatsDisplay.transform.position +
-                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up  );
-
-            heathBar.fillAmount = currentHealth / baseStats.health;
-            if (currentHealth <= 0)
-            {
-                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform);
-                Die();
-            }
-        }
-
-        private void Die()
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }
 

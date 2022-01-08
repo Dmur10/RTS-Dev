@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 5375499725826719736}
   - component: {fileID: 24584377535780775}
   - component: {fileID: 6610425091575799551}
+  - component: {fileID: 8839963453558637295}
   m_Layer: 5
   m_Name: UnitStatsBar
   m_TagString: Untagged
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6610425091575799551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +177,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8839963453558637295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222495579608197954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6e599707316e842a6eb936f45052ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  healthBarAmount: {fileID: 2805481785743622265}
 --- !u!1 &8083815015109973623
 GameObject:
   m_ObjectHideFlags: 0
