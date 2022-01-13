@@ -47,36 +47,7 @@ namespace RTSGame.Units
             return unit.baseStats;
         }
 
-        public void SetBasicUnitStats(Transform type)
-        {
-            Transform pUnits = PlayerManager.instance.playerUnits;
-            Transform eUnits = PlayerManager.instance.enemyUnits;
-
-            foreach (Transform child in type)
-            {
-                foreach(Transform unit in child)
-                {
-                    string unitName = child.name.Substring(0, child.name.Length - 1).ToLower(); 
-                    var stats = GetUnitBaseStats(unitName); 
-
-                    if (type == pUnits)
-                    {
-                        Player.PlayerUnit pU = unit.GetComponent<Player.PlayerUnit>();
-
-                        pU.baseStats = GetUnitBaseStats(unitName); ;
-
-                    } else if(type == eUnits)
-                    {
-                        Enemy.EnemyUnit eU = unit.GetComponent<Enemy.EnemyUnit>();
-
-                        eU.baseStats = GetUnitBaseStats(unitName); ;
-                    }
-                     
-
-                    //upgrades?
-                }
-            }
-        }
+        
     }
 }
 

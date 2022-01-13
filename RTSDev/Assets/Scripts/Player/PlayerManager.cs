@@ -18,8 +18,8 @@ namespace RTSGame.Player
         private void Awake()
         {
             instance = this;
-            Units.UnitHandler.instance.SetBasicUnitStats(playerUnits);
-            Units.UnitHandler.instance.SetBasicUnitStats(enemyUnits);
+            SetBasicUnitStats(playerUnits);
+            SetBasicUnitStats(enemyUnits);
         }
         // Start is called before the first frame update
         private void Start()
@@ -37,6 +37,36 @@ namespace RTSGame.Player
         private void Update()
         {
             InputHandler.instance.HandleUnitMovement();
+        }
+
+        public void SetBasicUnitStats(Transform type)
+        {
+
+            foreach (Transform child in type)
+            {
+                foreach (Transform unit in child)
+                {
+                    string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
+                    var stats = Units.UnitHandler.instance.GetUnitBaseStats(unitName);
+
+                    if (type == playerUnits)
+                    {
+                        Units.Player.PlayerUnit pU = unit.GetComponent<Units.Player.PlayerUnit>();
+
+                        pU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(unitName); ;
+
+                    }
+                    else if (type == enemyUnits)
+                    {
+                        Units.Enemy.EnemyUnit eU = unit.GetComponent<Units.Enemy.EnemyUnit>();
+
+                        eU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(unitName); ;
+                    }
+
+
+                    //upgrades?
+                }
+            }
         }
     }
 
