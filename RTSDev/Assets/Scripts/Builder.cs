@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RTSGame.Units
 {
-    public class Gather : MonoBehaviour
+    public class Builder : MonoBehaviour
     {
 
     }
