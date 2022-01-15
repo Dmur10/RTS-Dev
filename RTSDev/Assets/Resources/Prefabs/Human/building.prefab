@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3936470892896499948}
   - component: {fileID: 8168967213428965077}
   - component: {fileID: 8031809055878647880}
+  - component: {fileID: -1472972480128234916}
   m_Layer: 7
   m_Name: building
   m_TagString: Untagged
@@ -159,6 +160,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteracting: 0
   highlight: {fileID: 4810860305779552869}
+--- !u!114 &-1472972480128234916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7146199325165986501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169dc7013d49e894e863186bba604fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    health: 0
+    attack: 0
 --- !u!1 &8902841373255736113
 GameObject:
   m_ObjectHideFlags: 0

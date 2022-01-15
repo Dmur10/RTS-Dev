@@ -103,8 +103,7 @@ namespace RTSGame.InputManager
 
                     if (screenPos.x > min.x && screenPos.x < max.x && screenPos.y > min.y && screenPos.y < max.y)
                     {
-                        selectedUnits.Add(unit);
-                        unit.gameObject.GetComponent<IUnit>().OnInteractEnter();
+                        addedUnit(unit, true);
                     }
                 }
                 
@@ -156,23 +155,23 @@ namespace RTSGame.InputManager
         {
             if (selectedBuilding)
             {
-                selectedBuilding.gameObject.GetComponent<IBuilding>().OnInteractExit();
+                selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().OnInteractExit();
                 selectedBuilding = null;
             } else if (selectedResource)
             {
-                selectedResource.gameObject.GetComponent<IResource>().OnInteractExit();
+                selectedResource.gameObject.GetComponent<Interactables.IResource>().OnInteractExit();
                 selectedResource = null;
             }
             for (int i = 0; i < selectedUnits.Count; i++)
             {
-                selectedUnits[i].gameObject.GetComponent<IUnit>().OnInteractExit();
+                selectedUnits[i].gameObject.GetComponent<Interactables.IUnit>().OnInteractExit();
             }
             selectedUnits.Clear();
         }
 
-        private IUnit addedUnit(Transform tf, bool canMultiSelect = false)
+        private Interactables.IUnit addedUnit(Transform tf, bool canMultiSelect = false)
         {
-            IUnit iUnit = tf.GetComponent<IUnit>();
+            Interactables.IUnit iUnit = tf.GetComponent<Interactables.IUnit>();
             if (iUnit)
             {
                 if (!canMultiSelect)
@@ -190,9 +189,9 @@ namespace RTSGame.InputManager
             }
         }
 
-        private IBuilding addedBuilding(Transform tf)
+        private Interactables.IBuilding addedBuilding(Transform tf)
         {
-            IBuilding iBuilding = tf.GetComponent<IBuilding>();
+            Interactables.IBuilding iBuilding = tf.GetComponent<Interactables.IBuilding>();
             if (iBuilding)
             {
                 DeSelectUnits();
@@ -209,9 +208,9 @@ namespace RTSGame.InputManager
             }
         }
 
-        private IResource addedResource(Transform tf)
+        private Interactables.IResource addedResource(Transform tf)
         {
-            IResource iResource = tf.GetComponent<IResource>();
+            Interactables.IResource iResource = tf.GetComponent<Interactables.IResource>();
             if (iResource)
             {
                 DeSelectUnits();

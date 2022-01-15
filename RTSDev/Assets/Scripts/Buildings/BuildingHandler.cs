@@ -16,12 +16,12 @@ namespace RTSGame.Buildings
             instance = this;
         }
 
-        public BuildingStatTypes.Base GetUnitBaseStats(string type)
+        public BuildingStatTypes.Base GetBuildingBaseStats(string type)
         {
             BasicBuilding building;
             switch (type)
             {
-                case "barracks":
+                case "barrack":
                     building = Barracks;
                     break;
                 default:

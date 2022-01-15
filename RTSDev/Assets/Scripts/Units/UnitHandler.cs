@@ -19,13 +19,6 @@ namespace RTSGame.Units
             instance = this;
         }
 
-        private void Start()
-        {
-            pUnitLayer = LayerMask.NameToLayer("PlayerLayer");
-            eUnitLayer = LayerMask.NameToLayer("EnemyLayer");
-
-        }
-
         public UnitStatTypes.Base GetUnitBaseStats(string type)
         {
             BasicUnit unit;

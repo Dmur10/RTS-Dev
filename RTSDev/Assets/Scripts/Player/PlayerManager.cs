@@ -12,14 +12,17 @@ namespace RTSGame.Player
         public static PlayerManager instance;
 
         public Transform playerUnits;
-        public Transform enemyUnits; 
+        public Transform enemyUnits;
+
+        public Transform playerBuildings;
         public List<GameResource> resources;
 
         private void Awake()
         {
             instance = this;
-            SetBasicUnitStats(playerUnits);
-            SetBasicUnitStats(enemyUnits);
+            SetBasicStats(playerUnits);
+            SetBasicStats(enemyUnits);
+            SetBasicStats(playerBuildings);
         }
         // Start is called before the first frame update
         private void Start()
@@ -39,28 +42,33 @@ namespace RTSGame.Player
             InputHandler.instance.HandleUnitMovement();
         }
 
-        public void SetBasicUnitStats(Transform type)
+        public void SetBasicStats(Transform type)
         {
 
             foreach (Transform child in type)
             {
-                foreach (Transform unit in child)
+                foreach (Transform tf in child)
                 {
-                    string unitName = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = Units.UnitHandler.instance.GetUnitBaseStats(unitName);
+                    string name = child.name.Substring(0, child.name.Length - 1).ToLower();
+                    var stats = Units.UnitHandler.instance.GetUnitBaseStats(name);
 
                     if (type == playerUnits)
                     {
-                        Units.Player.PlayerUnit pU = unit.GetComponent<Units.Player.PlayerUnit>();
+                        Units.Player.PlayerUnit pU = tf.GetComponent<Units.Player.PlayerUnit>();
 
-                        pU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(unitName); ;
+                        pU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(name); ;
 
                     }
                     else if (type == enemyUnits)
                     {
-                        Units.Enemy.EnemyUnit eU = unit.GetComponent<Units.Enemy.EnemyUnit>();
+                        Units.Enemy.EnemyUnit eU = tf.GetComponent<Units.Enemy.EnemyUnit>();
 
-                        eU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(unitName); ;
+                        eU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(name); 
+                    }
+                    else if (type = playerBuildings)
+                    {
+                        Buildings.Player.PlayerBuilding pB = tf.GetComponent<Buildings.Player.PlayerBuilding>();
+                        pB.baseStats = Buildings.BuildingHandler.instance.GetBuildingBaseStats(name);
                     }
 
 
