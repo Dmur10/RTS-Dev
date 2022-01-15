@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RTSGame.Units.Player;
+using UnityEngine.EventSystems;
 
 namespace RTSGame.InputManager
 {
@@ -31,28 +32,35 @@ namespace RTSGame.InputManager
         {
             if (Input.GetMouseButtonDown(0))
             {
-                startPos = Input.mousePosition;
-                endPos = Input.mousePosition;
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    // No code needed here your UI elements will receive this hit and NOT do raycast info in the else below
+                
 
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
-                {
-                    if (addedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
+                    startPos = Input.mousePosition;
+                    endPos = Input.mousePosition;
+
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
                     {
-                        // use unit ui
+                        if (addedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
+                        {
+                            // use unit ui
+                        }
+                        else if (addedBuilding(hit.transform))
+                        {
+                            // use building ui
+                        }
+                        else if (addedResource(hit.transform))
+                        {
+                            // show resource stats
+                        }
                     }
-                    else if (addedBuilding(hit.transform))
+                    else
                     {
-                        // use building ui
-                    } else if (addedResource(hit.transform))
-                    {
-                        // show resource stats
-                    } 
-                }
-                else
-                {
-                    mouseHeld = true;
-                    DeSelectUnits();
+                        mouseHeld = true;
+                        DeSelectUnits();
+                    }
                 }
             }
             if (Input.GetMouseButton(0) && mouseHeld)
@@ -71,15 +79,18 @@ namespace RTSGame.InputManager
 
             if(Input.GetMouseButtonDown(1))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit))
+                if (!EventSystem.current.IsPointerOverGameObject())
                 {
-                    if (HaveSelectedUnits())
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        foreach(Transform unit in selectedUnits)
+                        if (HaveSelectedUnits())
                         {
-                            PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                            pU.MoveUnit(hit.point);
+                            foreach (Transform unit in selectedUnits)
+                            {
+                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                pU.MoveUnit(hit.point);
+                            }
                         }
                     }
                 }
