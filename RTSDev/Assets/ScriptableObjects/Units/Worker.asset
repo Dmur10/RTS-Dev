@@ -18,7 +18,7 @@ MonoBehaviour:
   BurnedPrefab: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
   baseStats:
     cost: 100
-    aggroRange: 20
+    aggroRange: 5
     atkRange: 4
     atkSpeed: 5
     damage: 25

@@ -68,7 +68,7 @@ namespace RTSGame.Units
         {
             if (isPLayerUnit)
             {
-                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform);
+                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform.parent);
                 Destroy(gameObject.transform.parent.gameObject);
             }
             else

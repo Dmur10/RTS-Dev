@@ -46,17 +46,14 @@ namespace RTSGame.Units.Enemy
          
         private void checkForTarget()
         {
-            colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange);
+            colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.pUnitLayer);
 
-            for (int i = 0; i < colliders.Length; i++)
+            for (int i = 0; i < colliders.Length;)
             { 
-                if (colliders[i].gameObject.layer == UnitHandler.instance.pUnitLayer)
-                { 
                     target = colliders[i].gameObject.transform;
                     targetUnit = target.gameObject.GetComponentInChildren<UnitStatDisplay>();
                     hasAggro = true;
                     break;
-                }
             }
         }
 

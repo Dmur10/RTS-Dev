@@ -19,7 +19,6 @@ namespace RTSGame.Buildings
         public buildingType type;
         public new string name;
         public GameObject buildingPrefab;
-        public BuildingActions.BuildingUnits Units;
 
         [Space(15)]
         [Header("Buildig Base Stats")]
