@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 145050640}
   - component: {fileID: 145050639}
   - component: {fileID: 145050641}
+  - component: {fileID: 145050642}
   m_Layer: 5
   m_Name: ActionFrame
   m_TagString: Untagged
@@ -295,6 +296,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionButton: {fileID: 1026911671910026148, guid: 739243a1e5450f047896eb1177d86230, type: 3}
   layoutGroup: {fileID: 187837435}
+  spawnTimers: []
+  spawnOrder: []
+--- !u!114 &145050642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145050637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3c45a6818ad1543bf8495feac511c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &187837434
 GameObject:
   m_ObjectHideFlags: 0

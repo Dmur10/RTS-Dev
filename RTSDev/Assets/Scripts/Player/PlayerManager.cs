@@ -50,7 +50,6 @@ namespace RTSGame.Player
                 foreach (Transform tf in child)
                 {
                     string name = child.name.Substring(0, child.name.Length - 1).ToLower();
-                    var stats = Units.UnitHandler.instance.GetUnitBaseStats(name);
 
                     if (type == playerUnits)
                     {

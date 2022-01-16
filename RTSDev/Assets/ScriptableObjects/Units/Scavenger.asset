@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53bfbcf0ce6675e4899984cac6ce3ebe, type: 3}
-  m_Name: Scavenger
+  m_Name: scavenger
   m_EditorClassIdentifier: 
   type: 1
   unitName: Scavenger

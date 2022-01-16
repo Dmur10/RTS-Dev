@@ -21,6 +21,7 @@ namespace RTSGame.Units
         public string unitName;
         public GameObject HumanPrefab;
         public GameObject BurnedPrefab;
+        public float SpawnTime;
 
         [Space(15)]
         [Header("Unit Stats")]

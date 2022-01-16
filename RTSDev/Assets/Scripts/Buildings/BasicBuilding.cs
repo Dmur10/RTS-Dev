@@ -19,6 +19,7 @@ namespace RTSGame.Buildings
         public buildingType type;
         public new string name;
         public GameObject buildingPrefab;
+        public float SpawnTime;
 
         [Space(15)]
         [Header("Buildig Base Stats")]
