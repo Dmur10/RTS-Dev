@@ -96,6 +96,10 @@ namespace RTSGame.InputManager
                     }
                 }
             }
+            if (Input.GetMouseButtonDown(1) && selectedBuilding != null)
+            {
+                selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();
+            }  
         }
 
         private void ReleaseSelectionBox()
