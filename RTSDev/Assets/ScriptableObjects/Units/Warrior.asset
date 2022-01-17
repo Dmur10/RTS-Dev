@@ -16,7 +16,7 @@ MonoBehaviour:
   unitName: warrior
   HumanPrefab: {fileID: 1947688385226542238, guid: aa7ce3756d8f47946a58824ac6c3b014, type: 3}
   BurnedPrefab: {fileID: 4467253049074121164, guid: 6f86f017333445343bd425c7a7f99e9c, type: 3}
-  SpawnTime: 0
+  SpawnTime: 15
   baseStats:
     cost: 150
     aggroRange: 10
