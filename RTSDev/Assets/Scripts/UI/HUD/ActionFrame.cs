@@ -112,7 +112,7 @@ namespace RTSGame.UI.HUD
 
         public void SpawnObject()
         {
-            GameObject spawnedObject = Instantiate(spawnOrder[0], new Vector3(spawnPoint.transform.position.x-4,spawnPoint.transform.position.y,spawnPoint.transform.position.z), Quaternion.identity);
+            GameObject spawnedObject = Instantiate(spawnOrder[0], new Vector3(spawnPoint.transform.position.x,spawnPoint.transform.position.y,spawnPoint.transform.position.z), Quaternion.identity);
             spawnedObject.GetComponent<Units.Player.PlayerUnit>().baseStats.health = 50;
         }
     }
