@@ -30,6 +30,7 @@ namespace RTSGame.InputManager
         // Update is called once per frame
         public void HandleUnitMovement()
         {
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (!EventSystem.current.IsPointerOverGameObject())

@@ -16,14 +16,15 @@ namespace RTSGame.UI.HUD
 
         public IEnumerator SpawnQueueTimer()
         {
-            if (ActionFrame.instance.spawnTimers.Count>0)
+            if (ActionFrame.instance.spawnQueue.Count>0)
             {
-                Debug.Log($"Waiting for {ActionFrame.instance.spawnTimers[0]}");
-                yield return new WaitForSeconds(ActionFrame.instance.spawnTimers[0]);
-                ActionFrame.instance.spawnTimers.Remove(ActionFrame.instance.spawnTimers[0]);
+                Debug.Log($"Waiting for {ActionFrame.instance.spawnQueue[0]}");
+                yield return new WaitForSeconds(ActionFrame.instance.spawnQueue[0]);
+                ActionFrame.instance.SpawnObject();
+                ActionFrame.instance.spawnQueue.Remove(ActionFrame.instance.spawnQueue[0]);
             }
 
-            if (ActionFrame.instance.spawnTimers.Count > 0)
+            if (ActionFrame.instance.spawnQueue.Count > 0)
             {
                 StartCoroutine(SpawnQueueTimer());
             }

@@ -10,7 +10,7 @@ namespace RTSGame.Units
 
         public void OnBuilderSelect()
         {
-            UI.HUD.ActionFrame.instance.SetActionButtons(actions);
+            //UI.HUD.ActionFrame.instance.SetActionButtons(actions);
         }
 
         public void OnBuilderExit()

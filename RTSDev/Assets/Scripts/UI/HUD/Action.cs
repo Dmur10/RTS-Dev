@@ -8,7 +8,7 @@ namespace RTSGame.UI.HUD
     {
         public void OnClick(){
             Debug.Log(name);
-            ActionFrame.instance.Spawn(name);
+            ActionFrame.instance.StartSpawnTimer(name);
         }
     }
 

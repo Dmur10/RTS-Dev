@@ -15,8 +15,10 @@ namespace RTSGame.UI.HUD
         private List<Button> buttons = new List<Button>();
         private PlayerActions actionList = null;
 
-        public List<float> spawnTimers = new List<float>();
+        public List<float> spawnQueue = new List<float>();
         public List<GameObject> spawnOrder = new List<GameObject>();
+
+        public GameObject spawnPoint = null;
 
         private void Awake()
         {
@@ -24,9 +26,11 @@ namespace RTSGame.UI.HUD
         
         }
 
-        public void SetActionButtons(PlayerActions actions)
+        public void SetActionButtons(PlayerActions actions, GameObject spawnLocation)
         {
             actionList = actions;
+            spawnPoint = spawnLocation;
+
             if (actions.basicUnits.Count>0)
             {
                 foreach(Units.BasicUnit unit in actions.basicUnits)
@@ -59,19 +63,27 @@ namespace RTSGame.UI.HUD
             buttons.Clear();
         }
 
-       public void Spawn(string objectToSpawn)
+       public void StartSpawnTimer(string objectToSpawn)
         {
             if (IsUnit(objectToSpawn))
             {
                 Units.BasicUnit unit = IsUnit(objectToSpawn);
-                spawnTimers.Add(unit.SpawnTime);
+                spawnQueue.Add(unit.SpawnTime);
                 spawnOrder.Add(unit.HumanPrefab);
             }
             else
             {
                 Debug.Log($"{objectToSpawn} is not spawnable");
             }
-            ActionTimer.instance.SpawnQueueTimer();
+
+            if (spawnQueue.Count == 1) 
+            {
+                ActionTimer.instance.StartCoroutine(ActionTimer.instance.SpawnQueueTimer());
+            } else if (spawnQueue.Count == 0)
+            {
+                ActionTimer.instance.StopAllCoroutines();
+            }
+            
         }
 
         private Units.BasicUnit IsUnit(string name)
@@ -98,7 +110,13 @@ namespace RTSGame.UI.HUD
             return null;
         }
 
+        public void SpawnObject()
+        {
+            GameObject spawnedObject = Instantiate(spawnOrder[0], new Vector3(spawnPoint.transform.position.x-4,spawnPoint.transform.position.y,spawnPoint.transform.position.z), Quaternion.identity);
+            spawnedObject.GetComponent<Units.Player.PlayerUnit>().baseStats.health = 50;
+        }
     }
 
+   
    
 }

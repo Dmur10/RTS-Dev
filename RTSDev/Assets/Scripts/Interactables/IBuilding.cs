@@ -9,7 +9,7 @@ namespace RTSGame.Interactables
         public UI.HUD.PlayerActions actions;
         public override void OnInteractEnter()
         {
-            UI.HUD.ActionFrame.instance.SetActionButtons(actions); 
+            UI.HUD.ActionFrame.instance.SetActionButtons(actions,gameObject); 
             base.OnInteractEnter();
         }
 
