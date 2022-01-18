@@ -21,7 +21,6 @@ namespace RTSGame.UI.HUD
                 Debug.Log($"Waiting for {ActionFrame.instance.spawnQueue[0]}");
                 yield return new WaitForSeconds(ActionFrame.instance.spawnQueue[0]);
                 ActionFrame.instance.SpawnObject();
-                ActionFrame.instance.spawnQueue.Remove(ActionFrame.instance.spawnQueue[0]);
             }
 
             if (ActionFrame.instance.spawnQueue.Count > 0)

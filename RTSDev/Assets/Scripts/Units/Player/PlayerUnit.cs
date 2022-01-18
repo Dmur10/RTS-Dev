@@ -12,23 +12,29 @@ namespace RTSGame.Units.Player
     {
 
         private NavMeshAgent navAgent;
+        public BasicUnit unitType;
 
+        [HideInInspector]
         public UnitStatTypes.Base baseStats;
 
-        private void OnEnable()
-        {
-            navAgent = GetComponent<NavMeshAgent>(); 
-        }
-         
+        public UnitStatDisplay statDisplay;
+
         private void Start()
         {
-        }
-        
+            baseStats = unitType.baseStats;
+            statDisplay.SetStatDisplayBasicUnit(baseStats, true);
+            navAgent = GetComponent<NavMeshAgent>();
+            
+        }  
 
         // Update is called once per frame
-        public void MoveUnit(Vector3 _destination)
+        public void MoveUnit(Vector3 destination)
         {
-            navAgent.SetDestination(_destination);
+            if (navAgent == null)
+            {
+                navAgent = GetComponent<NavMeshAgent>();
+            }
+            navAgent.SetDestination(destination);
         }
 
         

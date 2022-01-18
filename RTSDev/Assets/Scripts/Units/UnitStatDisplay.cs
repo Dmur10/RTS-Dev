@@ -39,8 +39,24 @@ namespace RTSGame.Units
             currentHealth = maxHealth;
         }
 
+        public void SetStatDisplayBasicUnit(UnitStatTypes.Base stats, bool isPlayer )
+        {
+            maxHealth = stats.health;
+            isPLayerUnit = isPlayer;
+
+            currentHealth = maxHealth;
+        }
+
+        public void SetStatDisplayBasicBuilding(Buildings.BuildingStatTypes.Base stats, bool isPlayer)
+        {
+            maxHealth = stats.health;
+            isPLayerUnit = isPlayer;
+
+            currentHealth = maxHealth;
+        }
+
         // Update is called once per frame
-         private void Update()
+        private void Update()
          {
             HandleHeath();
          }

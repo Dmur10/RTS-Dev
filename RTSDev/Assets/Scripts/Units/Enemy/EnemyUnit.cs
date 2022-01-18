@@ -11,7 +11,12 @@ namespace RTSGame.Units.Enemy
     {
         private NavMeshAgent navAgent;
 
-        public UnitStatTypes.Base baseStats; 
+        public BasicUnit unitType;
+
+        [HideInInspector]
+        public UnitStatTypes.Base baseStats;
+
+        public UnitStatDisplay statDisplay;
 
         private Collider[] colliders;
 
@@ -23,10 +28,12 @@ namespace RTSGame.Units.Enemy
 
         private float distance;
 
-        private float atkCooldown;
+        public float atkCooldown;
 
         private void Start()
         {
+            baseStats = unitType.baseStats;
+            statDisplay.SetStatDisplayBasicUnit(baseStats, false);
             navAgent = gameObject.GetComponent<NavMeshAgent>(); 
         }
 

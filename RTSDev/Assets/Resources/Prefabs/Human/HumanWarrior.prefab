@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6496031739549054710}
   - component: {fileID: 3367952551950984980}
   m_Layer: 7
-  m_Name: Ally
+  m_Name: HumanWarrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353cfa0d18ac8c043be6a3ed108f7b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitType: {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
   baseStats:
     cost: 0
     aggroRange: 0
@@ -155,9 +156,7 @@ MonoBehaviour:
     atkSpeed: 0
     damage: 0
     health: 0
-  unitStatsDisplay: {fileID: 1761072533067027364}
-  heathBar: {fileID: 6531610909307811999}
-  currentHealth: 0
+  statDisplay: {fileID: 497147177022536201}
 --- !u!1 &5671201979883741581
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,24 +348,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
---- !u!1 &1761072533067027364 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7222495579608197954, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
-  m_PrefabInstance: {fileID: 8956502242249701606}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4499752965165467840 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4772045592534364198, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
   m_PrefabInstance: {fileID: 8956502242249701606}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6531610909307811999 stripped
+--- !u!114 &497147177022536201 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2805481785743622265, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8839963453558637295, guid: 1e7a524e23e87484581d3d50a8e4dcbb, type: 3}
   m_PrefabInstance: {fileID: 8956502242249701606}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e6e599707316e842a6eb936f45052ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
