@@ -11,14 +11,8 @@ public class BuildingPlacer : MonoBehaviour
     private RaycastHit raycastHit;
     private Vector3 _lastPlacementPosition;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //selectBuildingToPlace(0);
-    }
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(buildingToPlace == null)
         {
@@ -27,7 +21,7 @@ public class BuildingPlacer : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Escape))
             {
-                cancelBuildingPlacement();
+                CancelBuildingPlacement();
                 return;
             }
 
@@ -44,11 +38,11 @@ public class BuildingPlacer : MonoBehaviour
             if (buildingToPlace.HasValidPlacement && Input.GetMouseButtonDown(0))
             {
                 buildingToPlace.Place();
-                selectBuildingToPlace(buildingToPlace.DataIndex);
+                SelectBuildingToPlace(buildingToPlace.DataIndex);
             }
     }
 
-    void selectBuildingToPlace(int index) { 
+    void SelectBuildingToPlace(int index) { 
 
         if (buildingToPlace != null && !buildingToPlace.IsFixed)
         {
@@ -61,7 +55,7 @@ public class BuildingPlacer : MonoBehaviour
         _lastPlacementPosition = Vector3.zero;
     }
 
-    void cancelBuildingPlacement()
+    void CancelBuildingPlacement()
     {
         Destroy(buildingToPlace.Transform.gameObject);
         buildingToPlace = null;

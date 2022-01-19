@@ -35,8 +35,6 @@ namespace RTSGame.InputManager
             {
                 if (!EventSystem.current.IsPointerOverGameObject())
                 {
-                    // No code needed here your UI elements will receive this hit and NOT do raycast info in the else below
-                
 
                     startPos = Input.mousePosition;
                     endPos = Input.mousePosition;
@@ -44,15 +42,21 @@ namespace RTSGame.InputManager
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
                     {
-                        if (addedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
+                        if (AddedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
                         {
                             // use unit ui
+                            Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
+
+                            if (IsBuilderSelected())
+                            {
+                                iUnit.GetComponent<Interactables.IWorker>().OnBuilderSelect();
+                            }
                         }
-                        else if (addedBuilding(hit.transform))
+                        else if (AddedBuilding(hit.transform))
                         {
                             // use building ui
                         }
-                        else if (addedResource(hit.transform))
+                        else if (AddedResource(hit.transform))
                         {
                             // show resource stats
                         }
@@ -60,7 +64,7 @@ namespace RTSGame.InputManager
                     else
                     {
                         mouseHeld = true;
-                        DeSelectUnits();
+                        DeSelect();
                     }
                 }
             }
@@ -78,20 +82,18 @@ namespace RTSGame.InputManager
                 }
             }
 
-            if(Input.GetMouseButtonDown(1))
+            if(Input.GetMouseButtonDown(1) && HaveSelectedUnits())
             {
                 if (!EventSystem.current.IsPointerOverGameObject())
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    //check if hit resource
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (HaveSelectedUnits())
+                        foreach (Transform unit in selectedUnits)
                         {
-                            foreach (Transform unit in selectedUnits)
-                            {
-                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                                pU.MoveUnit(hit.point);
-                            }
+                            PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                            pU.MoveUnit(hit.point);
                         }
                     }
                 }
@@ -99,13 +101,14 @@ namespace RTSGame.InputManager
             if (Input.GetMouseButtonDown(1) && selectedBuilding != null)
             {
                 selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();
-            }  
+            }
+
         }
 
         private void ReleaseSelectionBox()
         {
             selectionBox.gameObject.SetActive(false);
-            DeSelectUnits();
+            DeSelect();
 
 
             Vector2 min = selectionBox.anchoredPosition;// - (selectionBox.sizeDelta / 2);
@@ -119,7 +122,7 @@ namespace RTSGame.InputManager
 
                     if (screenPos.x > min.x && screenPos.x < max.x && screenPos.y > min.y && screenPos.y < max.y)
                     {
-                        addedUnit(unit, true);
+                        AddedUnit(unit, true);
                     }
                 }
                 
@@ -167,32 +170,36 @@ namespace RTSGame.InputManager
             selectionBox.anchoredPosition = new Vector2(anchorX, anchorY);
         }
 
-        void DeSelectUnits()
+        void DeSelect()
         {
             if (selectedBuilding)
             {
                 selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().OnInteractExit();
                 selectedBuilding = null;
-            } else if (selectedResource)
+            }
+            else if (selectedResource)
             {
                 selectedResource.gameObject.GetComponent<Interactables.IResource>().OnInteractExit();
                 selectedResource = null;
             }
-            for (int i = 0; i < selectedUnits.Count; i++)
+            else if (HaveSelectedUnits())
             {
-                selectedUnits[i].gameObject.GetComponent<Interactables.IUnit>().OnInteractExit();
+                for (int i = 0; i < selectedUnits.Count; i++)
+                {
+                    selectedUnits[i].gameObject.GetComponent<Interactables.IUnit>().OnInteractExit();
+                }
+                selectedUnits.Clear();
             }
-            selectedUnits.Clear();
         }
 
-        private Interactables.IUnit addedUnit(Transform tf, bool canMultiSelect = false)
+        private Interactables.IUnit AddedUnit(Transform tf, bool canMultiSelect = false)
         {
             Interactables.IUnit iUnit = tf.GetComponent<Interactables.IUnit>();
             if (iUnit)
             {
                 if (!canMultiSelect)
                 {
-                    DeSelectUnits();
+                    DeSelect();
                 }
                 selectedUnits.Add(iUnit.gameObject.transform);
 
@@ -205,12 +212,12 @@ namespace RTSGame.InputManager
             }
         }
 
-        private Interactables.IBuilding addedBuilding(Transform tf)
+        private Interactables.IBuilding AddedBuilding(Transform tf)
         {
             Interactables.IBuilding iBuilding = tf.GetComponent<Interactables.IBuilding>();
             if (iBuilding)
             {
-                DeSelectUnits();
+                DeSelect();
 
                 selectedBuilding = iBuilding.gameObject.transform;
 
@@ -224,12 +231,12 @@ namespace RTSGame.InputManager
             }
         }
 
-        private Interactables.IResource addedResource(Transform tf)
+        private Interactables.IResource AddedResource(Transform tf)
         {
             Interactables.IResource iResource = tf.GetComponent<Interactables.IResource>();
             if (iResource)
             {
-                DeSelectUnits();
+                DeSelect();
 
                 selectedResource = iResource.gameObject.transform;
 
@@ -250,6 +257,19 @@ namespace RTSGame.InputManager
                 return true;
             }
             return false;
+        }
+
+        private bool IsBuilderSelected()
+        {
+            foreach(Transform unit in selectedUnits)
+            {
+                if (!unit.gameObject.GetComponent<Interactables.IWorker>()  )
+                {
+                    Debug.Log("here");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
