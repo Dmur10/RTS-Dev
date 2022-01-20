@@ -10,6 +10,8 @@ namespace RTSGame.UI.HUD
         public static ActionFrame instance = null;
 
         [SerializeField] private Button actionButton = null;
+        [SerializeField] private Button actionButtonBuilding = null;
+
         [SerializeField] private Transform layoutGroup = null;
 
         private List<Button> buttons = new List<Button>();
@@ -45,7 +47,7 @@ namespace RTSGame.UI.HUD
             {
                 foreach (Buildings.BasicBuilding building in actions.basicBuildings)
                 {
-                    Button btn = Instantiate(actionButton, layoutGroup);
+                    Button btn = Instantiate(actionButtonBuilding, layoutGroup);
                     btn.name = building.name;
 
                     buttons.Add(btn);

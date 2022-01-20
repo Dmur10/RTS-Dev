@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IScavenger : MonoBehaviour
+namespace RTSGame.Interactables
 {
-    // Start is called before the first frame update
-    void Start()
+    public class IScavenger :IUnit
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+

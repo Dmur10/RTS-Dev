@@ -47,7 +47,7 @@ namespace RTSGame.InputManager
                             // use unit ui
                             Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
 
-                            if (IsBuilderSelected())
+                            if (IsWorkerSelected())
                             {
                                 iUnit.GetComponent<Interactables.IWorker>().OnBuilderSelect();
                             }
@@ -259,11 +259,24 @@ namespace RTSGame.InputManager
             return false;
         }
 
-        private bool IsBuilderSelected()
+        private bool IsWorkerSelected()
         {
             foreach(Transform unit in selectedUnits)
             {
                 if (!unit.gameObject.GetComponent<Interactables.IWorker>()  )
+                {
+                    Debug.Log("here");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool IsScavengerSelected()
+        {
+            foreach (Transform unit in selectedUnits)
+            {
+                if (!unit.gameObject.GetComponent<Interactables.IScavenger>())
                 {
                     Debug.Log("here");
                     return false;
