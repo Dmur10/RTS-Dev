@@ -9,7 +9,6 @@ namespace RTSGame.UI.HUD
         public void OnClick()
         {
             Debug.Log(name);
-            ActionFrame.instance.StartSpawnTimer(name);
             Buildings.BuildingPlacer.instance.SelectBuildingToPlace(name);
         }
     }

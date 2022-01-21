@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 900582405347813916}
   - component: {fileID: 900582405347813917}
   - component: {fileID: 1026911671910026148}
-  - component: {fileID: 2734725441851815393}
+  - component: {fileID: 2540532727611092365}
   m_Layer: 5
-  m_Name: Action
+  m_Name: BuildUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2734725441851815393}
-        m_TargetAssemblyTypeName: RTSGame.UI.HUD.Action, Assembly-CSharp
+      - m_Target: {fileID: 2540532727611092365}
+        m_TargetAssemblyTypeName: RTSGame.UI.HUD.BuildUnit, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -133,7 +133,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2734725441851815393
+--- !u!114 &2540532727611092365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,6 +142,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 900582405347813919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db97657785c9bf949b29a4b5686db64e, type: 3}
+  m_Script: {fileID: 11500000, guid: de5b8e204e810d7439b4c194c27ca864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

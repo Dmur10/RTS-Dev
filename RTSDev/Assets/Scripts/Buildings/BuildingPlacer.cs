@@ -90,7 +90,7 @@ namespace RTSGame.Buildings
                 _materials.Add(new Material(material));
             }*/
 
-            SetMaterials();
+           // SetMaterials();
             /*Building building = new Building(
                 Globals.BUILDING_DATA[index]
             );*/
