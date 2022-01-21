@@ -7,7 +7,7 @@ namespace RTSGame.Buildings
     [CreateAssetMenu(fileName = "New Building", menuName = "New Building/Basic")]
     public class BasicBuilding : ScriptableObject
     {
-        public enum buildingType
+        public enum BuildingType
         {
             Headquarters,
             Barracks
@@ -16,7 +16,7 @@ namespace RTSGame.Buildings
         [Space(15)]
         [Header("Buildig Settngs")]
 
-        public buildingType type;
+        public BuildingType type;
         public new string name;
         public GameObject buildingPrefab;
         public float SpawnTime;

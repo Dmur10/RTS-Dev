@@ -31,6 +31,21 @@ namespace RTSGame.Buildings
             return building.baseStats;
         }
 
+        public BasicBuilding GetBasicBuilding(string type)
+        {
+            BasicBuilding building;
+            switch (type)
+            {
+                case "barrack":
+                    building = Barracks;
+                    break;
+                default:
+                    Debug.Log($"Building Type: {type} not found");
+                    return null;
+            }
+            return building;
+        }
+
 
     }
 }

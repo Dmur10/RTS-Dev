@@ -5,17 +5,29 @@ using UnityEngine;
 
 namespace RTSGame.Buildings
 {
+    public enum BuildingPlacement
+    {
+        VALID,
+        INVALID,
+        FIXED
+    };
+
     public class BuildingPlacer : MonoBehaviour
     {
 
-        public BuildingPlacer instance = null;
-        private Player.PlayerBuilding buildingToPlace = null;
-        private GameObject building = null;
+        public static BuildingPlacer instance = null;
+        private BasicBuilding basicBuilding = null;
+        private GameObject buildingToPlace = null;
 
         private Ray ray;
         private RaycastHit raycastHit;
         private Vector3 _lastPlacementPosition;
         public bool isPlacing;
+
+        private BuildingPlacement Placement = BuildingPlacement.VALID;
+        private Transform _transform;
+        private List<Material> _materials;
+        public bool HasValidPlacement = true;
 
         private void Awake()
         {
@@ -41,14 +53,14 @@ namespace RTSGame.Buildings
 
                 if (_lastPlacementPosition != raycastHit.point)
                 {
-                    buildingToPlace.CheckValidPlacement();
+                    //????IsValid;???? what is this for?
                 }
-                buildingToPlace.SetPosition(raycastHit.point);
+                SetPosition(raycastHit.point);
             }
 
-            if (buildingToPlace.HasValidPlacement && Input.GetMouseButtonDown(0))
+            if (HasValidPlacement && Input.GetMouseButtonDown(0))
             {
-                buildingToPlace.Place();
+                Place();
                 buildingToPlace = null;
                 //SelectBuildingToPlace(buildingToPlace.DataIndex);
             }
@@ -58,28 +70,93 @@ namespace RTSGame.Buildings
         public void SelectBuildingToPlace(string type)
         {
 
-            if (buildingToPlace != null && !buildingToPlace.IsFixed)
+            if (buildingToPlace != null && !IsFixed)
             {
-                Destroy(buildingToPlace.Transform.gameObject);
+                Destroy(buildingToPlace.gameObject);
             }
 
             //need to instantiate playerbuilding of correct type here use building
-            GameObject g = GameObject.Instantiate(
+            basicBuilding = BuildingHandler.instance.GetBasicBuilding(type);
+            buildingToPlace = basicBuilding.buildingPrefab;
+            _transform = buildingToPlace.transform;
+
+            /*GameObject g = GameObject.Instantiate(
                 Resources.Load($"Prefabs/Human/{_bluePrint.Code}")
             ) as GameObject;
-            _transform = g.transform;
+            _transform = g.transform;*/
+            /*_materials = new List<Material>();
+            foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
+            {
+                _materials.Add(new Material(material));
+            }*/
 
-            Building building = new Building(
+            SetMaterials();
+            /*Building building = new Building(
                 Globals.BUILDING_DATA[index]
-            );
-            buildingToPlace = building;
+            );*/
+            // buildingToPlace = building;
+
+
             _lastPlacementPosition = Vector3.zero;
         }
 
         void CancelBuildingPlacement()
         {
-            Destroy(buildingToPlace.Transform.gameObject);
+            Destroy(buildingToPlace.gameObject);
             buildingToPlace = null;
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            _transform.position = position;
+        }
+
+        public bool IsValid { get => Placement == BuildingPlacement.VALID; }
+        
+        public void Place()
+        {
+            // set placement state
+            Placement = BuildingPlacement.FIXED;
+            // remove "is trigger" flag from box collider to allow
+            // for collisions with units
+            _transform.GetComponent<BoxCollider>().isTrigger = false;
+            SetMaterials();
+        }
+
+        public bool IsFixed { get => Placement == BuildingPlacement.FIXED; }
+
+        public void SetMaterials() { SetMaterials(Placement); }
+
+        public void SetMaterials(BuildingPlacement placement)
+        {
+            List<Material> materials;
+            if (placement == BuildingPlacement.VALID)
+            {
+                Material refMaterial = Resources.Load("Materials/Valid") as Material;
+                materials = new List<Material>();
+                for (int i = 0; i < _materials.Count; i++)
+                {
+                    materials.Add(refMaterial);
+                }
+            }
+            else if (placement == BuildingPlacement.INVALID)
+            {
+                Material refMaterial = Resources.Load("Materials/Invalid") as Material;
+                materials = new List<Material>();
+                for (int i = 0; i < _materials.Count; i++)
+                {
+                    materials.Add(refMaterial);
+                }
+            }
+            else if (placement == BuildingPlacement.FIXED)
+            {
+                materials = _materials;
+            }
+            else
+            {
+                return;
+            }
+            _transform.Find("Mesh").GetComponent<Renderer>().materials = materials.ToArray();
         }
     }
 }

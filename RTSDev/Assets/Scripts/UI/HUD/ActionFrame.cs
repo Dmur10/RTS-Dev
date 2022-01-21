@@ -47,7 +47,7 @@ namespace RTSGame.UI.HUD
             {
                 foreach (Buildings.BasicBuilding building in actions.basicBuildings)
                 {
-                    Button btn = Instantiate(actionButtonBuilding, layoutGroup);
+                    Button btn = Instantiate(actionButton, layoutGroup);
                     btn.name = building.name;
 
                     buttons.Add(btn);
