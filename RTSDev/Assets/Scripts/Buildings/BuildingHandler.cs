@@ -36,7 +36,7 @@ namespace RTSGame.Buildings
             BasicBuilding building;
             switch (type)
             {
-                case "barrack":
+                case "Barracks":
                     building = Barracks;
                     break;
                 default:
