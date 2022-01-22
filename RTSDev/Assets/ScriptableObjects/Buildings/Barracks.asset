@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   name: Barracks
-  buildingPrefab: {fileID: 7146199325165986501, guid: c2a85f515034a924b9b4a0a10ffa58b9, type: 3}
-  Units:
-    basicUnits:
-    - {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
+  buildingPrefab: {fileID: 6287805073163531369, guid: ea01def6cb974fd4283e8ce8bde5aa1c, type: 3}
+  SpawnTime: 0
   baseStats:
     health: 500
     attack: 0

@@ -77,23 +77,23 @@ namespace RTSGame.Buildings
 
             //need to instantiate playerbuilding of correct type here use building
             basicBuilding = BuildingHandler.instance.GetBasicBuilding(type);
-            buildingToPlace = Instantiate(basicBuilding.buildingPrefab);
+            buildingToPlace = GameObject.Instantiate(basicBuilding.buildingPrefab);
             _transform = buildingToPlace.transform;
 
             Buildings.Player.PlayerBuilding pb = buildingToPlace.GetComponent<Buildings.Player.PlayerBuilding>();
-            pb.transform.SetParent(GameObject.Find(pb.buildingType.type.ToString() + "s").transform);
+            pb.transform.SetParent(GameObject.Find(pb.buildingType.type.ToString()).transform);
 
             /*GameObject g = GameObject.Instantiate(
                 Resources.Load($"Prefabs/Human/{_bluePrint.Code}")
             ) as GameObject;
             _transform = g.transform;*/
-            /*_materials = new List<Material>();
+            _materials = new List<Material>();
             foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
             {
                 _materials.Add(new Material(material));
-            }*/
+            }
 
-            // SetMaterials();
+            SetMaterials();
             /*Building building = new Building(
                 Globals.BUILDING_DATA[index]
             );*/
@@ -159,7 +159,7 @@ namespace RTSGame.Buildings
             {
                 return;
             }
-            _transform.Find("Mesh").GetComponent<Renderer>().materials = materials.ToArray();
+            buildingToPlace.transform.Find("Mesh").GetComponent<Renderer>().materials = materials.ToArray();
         }
     }
 }
