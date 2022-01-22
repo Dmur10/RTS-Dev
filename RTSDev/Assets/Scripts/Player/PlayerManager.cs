@@ -15,7 +15,7 @@ namespace RTSGame.Player
         public Transform enemyUnits;
 
         public Transform playerBuildings;
-        public List<GameResource> resources;
+        public List<RTSResources.GameResource> resources;
 
         private void Awake()
         {
@@ -29,11 +29,11 @@ namespace RTSGame.Player
         {
             
 
-            resources = new List<GameResource>()
+            resources = new List<RTSResources.GameResource>()
         {
-            new GameResource(ResourceType.Scrap, 200),
-            new GameResource(ResourceType.Food, 200),
-            new GameResource(ResourceType.Fuel, 50)
+            new RTSResources.GameResource(RTSResources.ResourceType.Scrap, 200),
+            new RTSResources.GameResource(RTSResources.ResourceType.Food, 200),
+            new RTSResources.GameResource(RTSResources.ResourceType.Fuel, 50)
         };
         }
         // Update is called once per frame
