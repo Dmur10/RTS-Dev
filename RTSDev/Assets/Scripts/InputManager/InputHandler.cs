@@ -90,6 +90,20 @@ namespace RTSGame.InputManager
                     //check if hit resource
                     if (Physics.Raycast(ray, out hit))
                     {
+                        Interactables.IResource iResource = hit.transform.GetComponent<Interactables.IResource>();
+                        if (iResource)
+                        {
+                            if (IsScavengerSelected()) {
+                                RTSResources.ResourceSource resource = iResource.gameObject.GetComponent<RTSResources.ResourceSource>();
+                                foreach (Transform unit in selectedUnits)
+                                {
+                                    Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
+                                    resource.GatherResource(10);
+                                    scavenger.GatherResource(10, resource.GetResourceType());
+                                }
+                            }
+                        }
+
                         foreach (Transform unit in selectedUnits)
                         {
                             PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();

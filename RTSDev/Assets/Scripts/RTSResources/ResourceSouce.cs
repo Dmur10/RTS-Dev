@@ -14,7 +14,7 @@ namespace RTSGame.RTSResources
     public class ResourceSource : MonoBehaviour
     {
         public ResourceType type;
-        public float quantity;
+        public float quantity = 10;
 
         public void GatherResource(float amount)
         {
@@ -26,6 +26,11 @@ namespace RTSGame.RTSResources
             {
                 quantity -= amount;
             }
+        }
+
+        public ResourceType GetResourceType()
+        {
+            return type;
         }
 
         private void RemoveResource()
