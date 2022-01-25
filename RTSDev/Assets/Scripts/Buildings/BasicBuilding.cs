@@ -10,7 +10,10 @@ namespace RTSGame.Buildings
         public enum BuildingType
         {
             Headquarters,
-            Barracks
+            House,
+            Barracks,
+            ResourceGather,
+            Defense
         }
 
         [Space(15)]

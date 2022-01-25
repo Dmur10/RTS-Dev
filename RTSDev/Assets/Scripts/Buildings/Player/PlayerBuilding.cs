@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RTSGame.Buildings.Player
 {
-    
     public class PlayerBuilding : MonoBehaviour
     {
 
@@ -13,7 +12,7 @@ namespace RTSGame.Buildings.Player
         [HideInInspector]
         public BuildingStatTypes.Base baseStats;
 
-        public Buildings.BuildingStatDisplay statDisplay;
+        public BuildingStatDisplay statDisplay;
 
         
 
