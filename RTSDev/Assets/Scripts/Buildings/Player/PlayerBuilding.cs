@@ -13,14 +13,14 @@ namespace RTSGame.Buildings.Player
         [HideInInspector]
         public BuildingStatTypes.Base baseStats;
 
-        public Units.UnitStatDisplay statDisplay;
+        public Buildings.BuildingStatDisplay statDisplay;
 
         
 
         private void Start()
         {
             baseStats = buildingType.baseStats;
-            //statDisplay.SetStatDisplayBasicBuilding(baseStats, true);
+            statDisplay.SetStatDisplayBasicBuilding(baseStats, true);
         }
 
         

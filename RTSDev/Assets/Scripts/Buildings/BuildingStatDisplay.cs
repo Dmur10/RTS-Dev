@@ -1,33 +1,31 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RTSGame.Units
+namespace RTSGame.Buildings
 {
-    public class UnitStatDisplay : MonoBehaviour
+    public class BuildingStatDisplay : MonoBehaviour
     {
-
         public float maxHealth, currentHealth;
 
         [SerializeField] private Image healthBarAmount;
 
-        private bool isPLayerUnit = false;
+        private bool isPLayerBuilding = false;
 
-        public void SetStatDisplayBasicUnit(UnitStatTypes.Base stats, bool isPlayer )
+        public void SetStatDisplayBasicBuilding(BuildingStatTypes.Base stats, bool isPlayer)
         {
             maxHealth = stats.health;
-            isPLayerUnit = isPlayer;
+            isPLayerBuilding = isPlayer;
 
             currentHealth = maxHealth;
         }
 
         // Update is called once per frame
         private void Update()
-         {
+        {
             HandleHeath();
-         }
+        }
 
         public void takeDamage(float damage)
         {
@@ -43,18 +41,21 @@ namespace RTSGame.Units
 
             healthBarAmount.fillAmount = currentHealth / maxHealth;
             if (currentHealth <= 0)
-            { 
+            {
                 Die();
             }
         }
 
         private void Die()
         {
-            if (isPLayerUnit)
+            if (isPLayerBuilding)
             {
-                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform.parent);
-                Destroy(gameObject.transform.parent.gameObject);
-            } 
+                if (InputManager.InputHandler.instance.selectedBuilding == this.transform.parent.gameObject.GetComponent<Player.PlayerBuilding>())
+                {
+                    InputManager.InputHandler.instance.selectedBuilding = null;
+                    Destroy(gameObject.transform.parent.gameObject);
+                }
+            }
             else
             {
                 Destroy(gameObject.transform.parent.gameObject);
