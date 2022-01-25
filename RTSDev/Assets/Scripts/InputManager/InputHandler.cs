@@ -103,11 +103,13 @@ namespace RTSGame.InputManager
                                 }
                             }
                         }
-
-                        foreach (Transform unit in selectedUnits)
+                        else
                         {
-                            PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                            pU.MoveUnit(hit.point);
+                            foreach (Transform unit in selectedUnits)
+                            {
+                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                pU.MoveUnit(hit.point);
+                            }
                         }
                     }
                 }

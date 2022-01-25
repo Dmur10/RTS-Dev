@@ -18,7 +18,7 @@ namespace RTSGame.RTSResources
 
         public void GatherResource(float amount)
         {
-            if (quantity - amount < 0)
+            if (quantity - amount <= 0)
             {
                 RemoveResource();
             }
