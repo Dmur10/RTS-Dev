@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e159283d425144d47b1ddccb4cb5512a, type: 3}
-  m_Name: House
+  m_Script: {fileID: 11500000, guid: e861f379cb3ff3b48a39c3743c7872ec, type: 3}
+  m_Name: Resourcehut
   m_EditorClassIdentifier: 
-  type: 1
-  name: House
-  buildingPrefab: {fileID: 0}
-  SpawnTime: 0
-  baseStats:
-    health: 200
-    attack: 0
+  basicUnits: []
+  basicBuildings: []

@@ -15,7 +15,7 @@ namespace RTSGame.Player
         public Transform enemyUnits;
 
         public Transform playerBuildings;
-        public List<RTSResources.GameResource> resources;
+        public List<RTSResources.GameResource> playerResources;
 
         private void Awake()
         {
@@ -29,7 +29,7 @@ namespace RTSGame.Player
         {
             
 
-            resources = new List<RTSResources.GameResource>()
+            playerResources = new List<RTSResources.GameResource>()
         {
             new RTSResources.GameResource(RTSResources.ResourceType.Scrap, 200),
             new RTSResources.GameResource(RTSResources.ResourceType.Food, 200),

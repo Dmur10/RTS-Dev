@@ -7,25 +7,25 @@ namespace RTSGame.RTSResources
     public class GameResource
     {
         private ResourceType _type;
-        private int _currentAmount;
+        private float _currentAmount;
 
-        public GameResource(ResourceType type, int initialAmount)
+        public GameResource(ResourceType type, float initialAmount)
         {
             _type = type;
             _currentAmount = initialAmount;
         }
 
-        public int GetAmount()
+        public float GetAmount()
         {
             return _currentAmount;
         }
 
-        public void AddAmount(int value)
+        public void AddAmount(float value)
         {
             _currentAmount += value;
         }
 
-        public void RemoveAmount(int value)
+        public void RemoveAmount(float value)
         {
             _currentAmount -= value;
         }

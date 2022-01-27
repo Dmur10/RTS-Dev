@@ -12,7 +12,7 @@ namespace RTSGame.RTSResources
 
         public void Update()
         {
-            resourceAmt.text = RTSGame.Player.PlayerManager.instance.resources[(int)type].GetAmount().ToString();
+            resourceAmt.text = RTSGame.Player.PlayerManager.instance.playerResources[(int)type].GetAmount().ToString();
         }
     }
 }
