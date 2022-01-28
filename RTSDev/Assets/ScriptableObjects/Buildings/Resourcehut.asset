@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Resourcehut
   m_EditorClassIdentifier: 
   type: 3
-  name: Scavengerhut
-  buildingPrefab: {fileID: 0}
+  name: Resourcehut
+  buildingPrefab: {fileID: 397844985300492584, guid: 5f7265ee3b8702d49a991e708a7dd438, type: 3}
   SpawnTime: 0
   baseStats:
     health: 0
