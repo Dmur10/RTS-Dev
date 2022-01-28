@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace RTSGame.RTSResources
     {
         private ResourceType _type;
         private float _currentAmount;
+
+        public static event EventHandler onAmountChange;
 
         public GameResource(ResourceType type, float initialAmount)
         {
