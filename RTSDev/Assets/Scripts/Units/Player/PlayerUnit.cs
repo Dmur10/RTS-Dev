@@ -37,7 +37,22 @@ namespace RTSGame.Units.Player
             navAgent.SetDestination(destination);
         }
 
-        
+        internal void MoveUnit(Vector3 destination, float v, Action p)
+        {
+            if (navAgent == null)
+            {
+                navAgent = GetComponent<NavMeshAgent>();
+            }
+            while ()
+            {
+                navAgent.SetDestination(destination);
+            }
+        }
+
+        internal bool IsIdle()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
