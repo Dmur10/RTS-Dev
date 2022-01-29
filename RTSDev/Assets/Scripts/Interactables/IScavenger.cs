@@ -39,7 +39,7 @@ namespace RTSGame.Interactables
                     if(unit.IsIdle())
                     {
                         unit.MoveUnit(resourceTransform.position, 10f, () => {
-                            state = State.GatheringResource;
+                           state = State.GatheringResource;
                         });
                     }
                     break;
@@ -53,10 +53,10 @@ namespace RTSGame.Interactables
                         }
                         else
                         {
-                            PlayAnimationMine(resourceTransform.position, 10f, () =>
+                            PlayAnimationMine(resourceTransform.position, 20f, () =>
                             {
                                 resourceAmt++;
-                                resourceTransform.gameObject.GetComponent<RTSResources.ResourceSource>().GatherResource(10);
+                                resourceTransform.gameObject.GetComponent<RTSResources.ResourceSource>().DecrementResource();
                             });
                         }
                     }

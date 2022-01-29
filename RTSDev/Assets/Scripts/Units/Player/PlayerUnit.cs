@@ -44,8 +44,10 @@ namespace RTSGame.Units.Player
                 navAgent = GetComponent<NavMeshAgent>();
             }
                 navAgent.SetDestination(destination);
-
-            p.Invoke();
+            if (Vector3.Distance(transform.position, destination) < v)
+            {
+                p.Invoke();
+            }
         }
 
         public bool IsIdle()

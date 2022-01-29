@@ -30,7 +30,7 @@ namespace RTSGame.RTSResources
 
         public void DecrementResource()
         {
-            if(quantity > 0)
+            if(quantity > 1)
             {
                 quantity--;
             } else
