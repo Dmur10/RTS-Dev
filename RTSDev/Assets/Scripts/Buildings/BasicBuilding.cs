@@ -12,7 +12,7 @@ namespace RTSGame.Buildings
             Headquarters,
             House,
             Barracks,
-            ResourceGather,
+            Resourcehut,
             Defense
         }
 

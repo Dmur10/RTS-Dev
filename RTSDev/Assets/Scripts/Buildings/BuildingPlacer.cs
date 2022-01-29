@@ -50,11 +50,6 @@ namespace RTSGame.Buildings
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out raycastHit, 1000f, Globals.TERRAIN_LAYER_MASK))
             {
-
-                if (_lastPlacementPosition != raycastHit.point)
-                {
-                    //????IsValid;???? what is this for?
-                }
                 SetPosition(raycastHit.point);
             }
 
@@ -62,7 +57,6 @@ namespace RTSGame.Buildings
             {
                 Place();
                 buildingToPlace = null;
-                //SelectBuildingToPlace(buildingToPlace.DataIndex);
             }
         }
 
@@ -80,13 +74,9 @@ namespace RTSGame.Buildings
             buildingToPlace = GameObject.Instantiate(basicBuilding.buildingPrefab);
             _transform = buildingToPlace.transform;
 
-            Buildings.Player.PlayerBuilding pb = buildingToPlace.GetComponent<Buildings.Player.PlayerBuilding>();
+            Player.PlayerBuilding pb = buildingToPlace.GetComponent<Player.PlayerBuilding>();
             pb.transform.SetParent(GameObject.Find(pb.buildingType.type.ToString()).transform);
 
-            /*GameObject g = GameObject.Instantiate(
-                Resources.Load($"Prefabs/Human/{_bluePrint.Code}")
-            ) as GameObject;
-            _transform = g.transform;*/
             _materials = new List<Material>();
             foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
             {
@@ -94,12 +84,6 @@ namespace RTSGame.Buildings
             }
 
             SetMaterials();
-            /*Building building = new Building(
-                Globals.BUILDING_DATA[index]
-            );*/
-            // buildingToPlace = building;
-
-
             _lastPlacementPosition = Vector3.zero;
         }
 
@@ -118,10 +102,7 @@ namespace RTSGame.Buildings
         
         public void Place()
         {
-            // set placement state
             Placement = BuildingPlacement.FIXED;
-            // remove "is trigger" flag from box collider to allow
-            // for collisions with units
             _transform.GetComponent<BoxCollider>().isTrigger = false;
             SetMaterials();
         }

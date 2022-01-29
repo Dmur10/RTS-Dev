@@ -15,13 +15,15 @@ namespace RTSGame.Interactables
         }
 
         private State state;
-        private Transform BuildZone;
+        private Transform BuildZoneTransform;
+        private Units.Player.PlayerUnit unit;
 
         public UI.HUD.PlayerActions actions;
         public GameObject spawnMarker = null;
 
         private void Awake()
         {
+            unit = GetComponent<Units.Player.PlayerUnit>();
             state = State.Idle;
         }
 
@@ -32,8 +34,18 @@ namespace RTSGame.Interactables
                 case State.Idle:
                     break;
                 case State.MovingToBuildingZone:
+                    if (unit.IsIdle())
+                    {
+                        unit.MoveUnit(BuildZoneTransform.position, 10f, () => {
+                            state = State.Building;
+                        });
+                    }
                     break;
                 case State.Building:
+                    if (unit.IsIdle())
+                    {
+                        //Play build animation for time building takes to build
+                    }
                     break;
             }
         }
@@ -47,6 +59,12 @@ namespace RTSGame.Interactables
         {
             base.OnInteractExit();
             UI.HUD.ActionFrame.instance.ClearActions();
+        }
+
+        public void SetBuildZone(Transform tf)
+        {
+            BuildZoneTransform = tf;
+            state = State.MovingToBuildingZone;
         }
 
         public void OnBuilderSelect()
