@@ -7,8 +7,36 @@ namespace RTSGame.Interactables
     public class IWorker : IUnit
     {
 
+        private enum State
+        {
+            Idle,
+            MovingToBuildingZone,
+            Building
+        }
+
+        private State state;
+        private Transform BuildZone;
+
         public UI.HUD.PlayerActions actions;
         public GameObject spawnMarker = null;
+
+        private void Awake()
+        {
+            state = State.Idle;
+        }
+
+        private void Update()
+        {
+            switch (state)
+            {
+                case State.Idle:
+                    break;
+                case State.MovingToBuildingZone:
+                    break;
+                case State.Building:
+                    break;
+            }
+        }
 
         public override void OnInteractEnter()
         {

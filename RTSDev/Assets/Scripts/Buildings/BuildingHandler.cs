@@ -8,8 +8,9 @@ namespace RTSGame.Buildings
     {
         public static BuildingHandler instance;
 
-        [SerializeField]
-        private BasicBuilding Barracks;
+        [SerializeField] private BasicBuilding Headquarters;
+        [SerializeField] private BasicBuilding Barracks;
+        [SerializeField] private BasicBuilding Resourcehut;
 
         private void Awake()
         {
@@ -21,9 +22,15 @@ namespace RTSGame.Buildings
             BasicBuilding building;
             switch (type)
             {
-                case "barrack":
+                case "Headquarters":
+                    building = Headquarters;
+                    break;
+                case "Barracks":
                     building = Barracks;
                     break;
+                case "Resourcehut":
+                    building = Resourcehut;
+                    break;;
                 default:
                     Debug.Log($"Building Type: {type} not found");
                     return null;

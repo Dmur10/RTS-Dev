@@ -28,6 +28,17 @@ namespace RTSGame.RTSResources
             }
         }
 
+        public void DecrementResource()
+        {
+            if(quantity > 0)
+            {
+                quantity--;
+            } else
+            {
+                RemoveResource();
+            }
+        }
+
         public ResourceType GetResourceType()
         {
             return type;

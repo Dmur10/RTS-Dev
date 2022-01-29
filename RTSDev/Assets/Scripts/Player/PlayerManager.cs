@@ -49,7 +49,7 @@ namespace RTSGame.Player
             {
                 foreach (Transform tf in child)
                 {
-                    string name = child.name.Substring(0, child.name.Length - 1).ToLower();
+                    string name = child.name;
 
                     if (type == playerUnits)
                     {
@@ -72,6 +72,32 @@ namespace RTSGame.Player
                     //upgrades?
                 }
             }
+        }
+
+        public Transform GetClosestStorage(Vector3 position)
+        {
+            Transform closest = null;
+            
+            foreach (Transform tf in playerBuildings)
+            {
+                if(tf.name == "Headquarters" || tf.name == "Resourcehut")
+                {
+                    foreach(Transform resourceStore in tf)
+                    {
+                        if(closest == null)
+                        {
+                            closest = resourceStore;
+                        } else
+                        {
+                            if(Vector3.Distance(position, resourceStore.position) < Vector3.Distance(position, closest.position))
+                            {
+                                closest = resourceStore;
+                            }
+                        }
+                    }
+                }
+            }
+            return closest;
         }
     }
 

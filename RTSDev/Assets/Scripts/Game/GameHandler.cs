@@ -16,25 +16,7 @@ namespace RTSGame.Game
             instance = this;
         }
 
-        private Transform GetResourceNode()
-        {
-            return resourceTransform;
-        }
-
-        private Transform GetStorageNode()
-        {
-            return storageTransform;
-        }
-
-        public static Transform GetResourceNode_Static()
-        {
-            return instance.GetResourceNode();
-        }
-
-        public static Transform GetStorageNode_Static()
-        {
-            return instance.GetStorageNode();
-        }
+        
     }
 }
 

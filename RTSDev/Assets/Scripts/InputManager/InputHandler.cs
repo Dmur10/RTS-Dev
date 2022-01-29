@@ -101,9 +101,7 @@ namespace RTSGame.InputManager
                                     foreach (Transform unit in selectedUnits)
                                     {
                                         Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
-                                        resource.GatherResource(10);
                                         scavenger.SetResource(hit.transform);
-                                        scavenger.GatherResource(10, resource.GetResourceType());
                                     }
                                 }
                             }

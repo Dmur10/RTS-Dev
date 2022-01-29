@@ -16,8 +16,9 @@ namespace RTSGame.Interactables
         }
 
         public RTSResources.ResourceType type;
-        public float resourceAmt = 0;
+        private float resourceAmt = 0;
         private float carryLimit = 10;
+
         private State state;
         private Transform resourceTransform;
         private Transform storageTransform;
@@ -33,9 +34,6 @@ namespace RTSGame.Interactables
             switch (state)
             {
                 case State.Idle:
-                    //get resource node
-                    resourceTransform = Game.GameHandler.GetResourceNode_Static();
-                    state = State.MovingToResource;
                     break;
                 case State.MovingToResource:
                     if(unit.IsIdle())
@@ -48,16 +46,18 @@ namespace RTSGame.Interactables
                 case State.GatheringResource:
                     if(unit.IsIdle())
                     {
-                        if(resourceAmt > carryLimit-1)
+                        if (resourceAmt > carryLimit - 1 || resourceTransform == null)
                         {
-                            storageTransform = Game.GameHandler.GetStorageNode_Static();
+                            storageTransform = Player.PlayerManager.instance.GetClosestStorage(transform.position);
                             state = State.MovingToStorage;
                         }
                         else
                         {
-                            PlayAnimationMine(resourceTransform.position, 10f, () => {
+                            PlayAnimationMine(resourceTransform.position, 10f, () =>
+                            {
                                 resourceAmt++;
-                            })
+                                resourceTransform.gameObject.GetComponent<RTSResources.ResourceSource>().GatherResource(10);
+                            });
                         }
                     }
                     break;
@@ -86,11 +86,7 @@ namespace RTSGame.Interactables
         public void SetResource(Transform tf)
         {
             resourceTransform = tf;
-        }
-
-        public void SetStorage(Transform tf)
-        {
-            storageTransform = tf;
+            state = State.MovingToResource;
         }
 
         public void GatherResource(float amount, RTSResources.ResourceType rType)
@@ -100,15 +96,10 @@ namespace RTSGame.Interactables
                 resourceAmt += amount;
             }              
         }
-        public void DumpResource()
-        {
-            storageTransform.gameObject.GetComponent<IStorage>().StoreResource(resourceAmt, type);
-            resourceAmt = 0;
-        }
 
         private void PlayAnimationMine(Vector3 position, float v, Action p)
         {
-            throw new NotImplementedException();
+            p.Invoke();
         }
     }
 }

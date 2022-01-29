@@ -17,5 +17,5 @@ MonoBehaviour:
   buildingPrefab: {fileID: 397844985300492584, guid: 5f7265ee3b8702d49a991e708a7dd438, type: 3}
   SpawnTime: 0
   baseStats:
-    health: 0
+    health: 100
     attack: 0

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53bfbcf0ce6675e4899984cac6ce3ebe, type: 3}
-  m_Name: Worker
+  m_Name: Workers
   m_EditorClassIdentifier: 
   type: 0
-  unitName: Worker
+  unitName: Workers
   HumanPrefab: {fileID: 2739868811898644455, guid: 0e9e231636f58784082dfa366fce3b6b, type: 3}
   BurnedPrefab: {fileID: 8443722267586602786, guid: cf8efe357bc3f674b8acb5a8b1ee4f7f, type: 3}
   SpawnTime: 15

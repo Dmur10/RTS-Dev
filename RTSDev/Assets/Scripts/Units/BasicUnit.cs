@@ -9,9 +9,9 @@ namespace RTSGame.Units
     {
         public enum unitTye
         {
-            Worker,
-            Scavenger,
-            Warrior
+            Workers,
+            Scavengers,
+            Warriors
         }
 
         [Space(15)]
