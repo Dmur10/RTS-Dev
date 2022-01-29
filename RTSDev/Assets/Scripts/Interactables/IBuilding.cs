@@ -13,14 +13,20 @@ namespace RTSGame.Interactables
         public override void OnInteractEnter()
         {
             UI.HUD.ActionFrame.instance.SetActionButtons(actions,spawnMarker);
-            spawnMarkerGraphic.SetActive(true);
+            if (spawnMarker)
+            {
+                spawnMarkerGraphic.SetActive(true);
+            }
             base.OnInteractEnter();
         }
 
         public override void OnInteractExit()
         {
             UI.HUD.ActionFrame.instance.ClearActions();
-            spawnMarkerGraphic.SetActive(false);
+            if (spawnMarker)
+            {
+                spawnMarkerGraphic.SetActive(false);
+            }
             base.OnInteractExit();
         }
 

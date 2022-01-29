@@ -67,7 +67,14 @@ namespace RTSGame.Interactables
                         unit.MoveUnit(storageTransform.position, 10f, () => {
                             Player.PlayerManager.instance.playerResources[(int)type].AddAmount(resourceAmt);
                             resourceAmt = 0;
-                            state = State.Idle;
+                            if (resourceTransform != null)
+                            {
+                                state = State.MovingToResource;
+                            }
+                            else
+                            {
+                                state = State.Idle;
+                            }
                         });
                     }
                     break;
