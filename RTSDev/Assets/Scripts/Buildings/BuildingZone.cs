@@ -7,6 +7,13 @@ namespace RTSGame.Buildings
 {
     public class BuildingZone : MonoBehaviour
     {
+
+        /*public static BuildingZone Create(Vector3 position, Vector3 size,)
+        {
+            Transform buildingZoneTransform
+            BuildingZone buildingZone =
+        }*/
+
         private int constructionTick;
         private int maxConstructionTick;
         public GameObject prefab;
@@ -21,6 +28,16 @@ namespace RTSGame.Buildings
                 onConstructionComplete();
                 Destroy(gameObject);
             }
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
+        }
+
+        public bool IsBuilt()
+        {
+            return constructionTick >= maxConstructionTick;
         }
     }
 }

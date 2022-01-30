@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace RTSGame.Interactables
         }
 
         private State state;
-        private Transform BuildZoneTransform;
+        private Buildings.BuildingZone BuildZone;
         private Units.Player.PlayerUnit unit;
 
         public UI.HUD.PlayerActions actions;
@@ -36,7 +37,7 @@ namespace RTSGame.Interactables
                 case State.MovingToBuildingZone:
                     if (unit.IsIdle())
                     {
-                        unit.MoveUnit(BuildZoneTransform.position, 10f, () => {
+                        unit.MoveUnit(BuildZone.GetPosition(), 10f, () => {
                             state = State.Building;
                         });
                     }
@@ -44,7 +45,15 @@ namespace RTSGame.Interactables
                 case State.Building:
                     if (unit.IsIdle())
                     {
-                        //Play build animation for time building takes to build
+                        PlayAnimationBuild(BuildZone.GetPosition(), 20f, () =>
+                        {
+                            BuildZone.AddConstructionTick();
+                            if(BuildZone.IsBuilt())
+                            {
+                                BuildZone = null;
+                                state = State.Idle;
+                            }
+                        });
                     }
                     break;
             }
@@ -61,15 +70,20 @@ namespace RTSGame.Interactables
             UI.HUD.ActionFrame.instance.ClearActions();
         }
 
-        public void SetBuildZone(Transform tf)
+        public void SetBuildZone(Buildings.BuildingZone bz)
         {
-            BuildZoneTransform = tf;
+            BuildZone = bz;
             state = State.MovingToBuildingZone;
         }
 
         public void OnBuilderSelect()
         {
             UI.HUD.ActionFrame.instance.SetActionButtons(actions, spawnMarker);
+        }
+
+        private void PlayAnimationBuild(Vector3 position, float v, Action p)
+        {
+            p.Invoke();
         }
     }
 }

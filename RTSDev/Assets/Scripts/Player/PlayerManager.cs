@@ -15,7 +15,10 @@ namespace RTSGame.Player
         public Transform enemyUnits;
 
         public Transform playerBuildings;
+        public Transform enemyBuildings;
+
         public List<RTSResources.GameResource> playerResources;
+        public List<RTSResources.GameResource> enemyResources;
 
         private void Awake()
         {
