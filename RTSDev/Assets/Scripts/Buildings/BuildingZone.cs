@@ -35,7 +35,8 @@ namespace RTSGame.Buildings
             if(constructionTick >= constructionTickMax)
             {
                 Destroy(gameObject);
-                Instantiate(Prefab, transform.position, Quaternion.identity);
+                Prefab = Instantiate(Prefab, transform.position, Quaternion.identity);
+                Prefab.GetComponent<BoxCollider>().isTrigger = false;
             }
         }
 
