@@ -8,25 +8,34 @@ namespace RTSGame.Buildings
     public class BuildingZone : MonoBehaviour
     {
 
-        /*public static BuildingZone Create(Vector3 position, Vector3 size,)
+        public static BuildingZone Create(Vector3 position, Vector3 size, int constructionTickMax, GameObject toBuild)
         {
-            Transform buildingZoneTransform
-            BuildingZone buildingZone =
-        }*/
+            Transform buildingZoneTransform = Instantiate(Game.GameHandler.instance.buildingZone, position, Quaternion.identity);
+            BuildingZone buildingZone = buildingZoneTransform.GetComponent<BuildingZone>();
+            buildingZone.SetUp(size, constructionTickMax, toBuild);
+            return buildingZone;
+        }
 
         private int constructionTick;
-        private int maxConstructionTick;
-        public GameObject prefab;
-        private Action onConstructionComplete;
+        private int constructionTickMax;
+        private GameObject Prefab;
+        //private Action onConstructionComplete;
+
+        public void SetUp(Vector3 size, int constructionTickMax, GameObject toBuild)
+        {
+            transform.localScale = size;
+            this.constructionTickMax = constructionTickMax;
+            Prefab = toBuild;
+        }
 
         public void AddConstructionTick()
         {
             constructionTick++;
 
-            if(constructionTick > maxConstructionTick)
+            if(constructionTick >= constructionTickMax)
             {
-                onConstructionComplete();
                 Destroy(gameObject);
+                Instantiate(Prefab, transform.position, Quaternion.identity);
             }
         }
 
@@ -37,7 +46,7 @@ namespace RTSGame.Buildings
 
         public bool IsBuilt()
         {
-            return constructionTick >= maxConstructionTick;
+            return constructionTick >= constructionTickMax;
         }
     }
 }

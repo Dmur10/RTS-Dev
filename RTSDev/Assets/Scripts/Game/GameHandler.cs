@@ -7,9 +7,8 @@ namespace RTSGame.Game
     public class GameHandler : MonoBehaviour
     {
 
-        private static GameHandler instance;
-        [SerializeField] private Transform resourceTransform;
-        [SerializeField] private Transform storageTransform;
+        public static GameHandler instance;
+        public Transform buildingZone;
 
         private void Awake()
         {

@@ -71,11 +71,12 @@ namespace RTSGame.Buildings
 
             //need to instantiate playerbuilding of correct type here use building
             basicBuilding = BuildingHandler.instance.GetBasicBuilding(type);
+
             buildingToPlace = GameObject.Instantiate(basicBuilding.buildingPrefab);
             _transform = buildingToPlace.transform;
-
-            Player.PlayerBuilding pb = buildingToPlace.GetComponent<Player.PlayerBuilding>();
-            pb.transform.SetParent(GameObject.Find(pb.buildingType.type.ToString()).transform);
+ 
+            //Player.PlayerBuilding pb = buildingToPlace.GetComponent<Player.PlayerBuilding>();
+            //pb.transform.SetParent(GameObject.Find(pb.buildingType.type.ToString()).transform);
 
             _materials = new List<Material>();
             foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
@@ -85,6 +86,11 @@ namespace RTSGame.Buildings
 
             SetMaterials();
             _lastPlacementPosition = Vector3.zero;
+        }
+
+        void CompleteConstruction(Vector3 position)
+        {
+
         }
 
         void CancelBuildingPlacement()
@@ -103,8 +109,12 @@ namespace RTSGame.Buildings
         public void Place()
         {
             Placement = BuildingPlacement.FIXED;
-            _transform.GetComponent<BoxCollider>().isTrigger = false;
-            SetMaterials();
+            //_transform.GetComponent<BoxCollider>().isTrigger = false;
+            BuildingZone temp = BuildingZone.Create(_transform.position, Vector3.one, 20, basicBuilding.buildingPrefab);
+            InputManager.InputHandler.instance.selectedUnits[0].GetComponent<Interactables.IWorker>().SetBuildZone(temp);
+            //SetMaterials();
+            Destroy(buildingToPlace.gameObject);
+            buildingToPlace = null;
         }
 
         public bool IsFixed { get => Placement == BuildingPlacement.FIXED; }

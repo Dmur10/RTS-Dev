@@ -45,7 +45,7 @@ namespace RTSGame.Interactables
                 case State.Building:
                     if (unit.IsIdle())
                     {
-                        PlayAnimationBuild(BuildZone.GetPosition(), 20f, () =>
+                        PlayAnimationBuild(BuildZone.GetPosition(), 5f, () =>
                         {
                             BuildZone.AddConstructionTick();
                             if(BuildZone.IsBuilt())
