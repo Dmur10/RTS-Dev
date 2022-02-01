@@ -22,7 +22,7 @@ namespace RTSGame.Interactables
         public UI.HUD.PlayerActions actions;
         public GameObject spawnMarker = null;
 
-        private void Awake()
+        override public void Awake()
         {
             unit = GetComponent<Units.Player.PlayerUnit>();
             state = State.Idle;
@@ -45,7 +45,7 @@ namespace RTSGame.Interactables
                 case State.Building:
                     if (unit.IsIdle())
                     {
-                        PlayAnimationBuild(BuildZone.GetPosition(), 5f, () =>
+                        PlayAnimationBuild(BuildZone.GetPosition(), 10f, () =>
                         {
                             BuildZone.AddConstructionTick();
                             if(BuildZone.IsBuilt())

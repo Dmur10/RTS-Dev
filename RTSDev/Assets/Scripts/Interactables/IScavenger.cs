@@ -53,7 +53,7 @@ namespace RTSGame.Interactables
                         }
                         else
                         {
-                            PlayAnimationMine(resourceTransform.position, 20f, () =>
+                            PlayAnimationMine(resourceTransform.position, 2f, () =>
                             {
                                 resourceAmt++;
                                 resourceTransform.gameObject.GetComponent<RTSResources.ResourceSource>().DecrementResource();

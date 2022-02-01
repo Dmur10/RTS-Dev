@@ -16,18 +16,6 @@ namespace RTSGame.RTSResources
         public ResourceType type;
         public float quantity = 10;
 
-        public void GatherResource(float amount)
-        {
-            if (quantity - amount <= 0)
-            {
-                RemoveResource();
-            }
-            else
-            {
-                quantity -= amount;
-            }
-        }
-
         public void DecrementResource()
         {
             if(quantity > 1)

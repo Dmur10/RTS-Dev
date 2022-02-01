@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RTSGame.Buildings
 {
@@ -19,7 +20,7 @@ namespace RTSGame.Buildings
         private int constructionTick;
         private int constructionTickMax;
         private GameObject Prefab;
-        //private Action onConstructionComplete;
+        public Image Progress;
 
         public void SetUp(Vector3 size, int constructionTickMax, GameObject toBuild)
         {
@@ -31,6 +32,8 @@ namespace RTSGame.Buildings
         public void AddConstructionTick()
         {
             constructionTick++;
+            Progress.fillAmount = (float)constructionTick / constructionTickMax;
+            Debug.Log(Progress.fillAmount);
 
             if(constructionTick >= constructionTickMax)
             {

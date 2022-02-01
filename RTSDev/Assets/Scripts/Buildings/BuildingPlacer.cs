@@ -109,10 +109,8 @@ namespace RTSGame.Buildings
         public void Place()
         {
             Placement = BuildingPlacement.FIXED;
-            //_transform.GetComponent<BoxCollider>().isTrigger = false;
-            BuildingZone temp = BuildingZone.Create(_transform.position, Vector3.one, 20, basicBuilding.buildingPrefab);
+            BuildingZone temp = BuildingZone.Create(_transform.position, new Vector3(basicBuilding.buildingPrefab.transform.localScale.x,0.1f,buildingToPlace.transform.localScale.z), 2000, basicBuilding.buildingPrefab);
             InputManager.InputHandler.instance.selectedUnits[0].GetComponent<Interactables.IWorker>().SetBuildZone(temp);
-            //SetMaterials();
             Destroy(buildingToPlace.gameObject);
             buildingToPlace = null;
         }
