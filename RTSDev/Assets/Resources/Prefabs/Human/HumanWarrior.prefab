@@ -157,6 +157,7 @@ MonoBehaviour:
     damage: 0
     health: 0
   statDisplay: {fileID: 497147177022536201}
+  atkCooldown: 0
 --- !u!1 &5671201979883741581
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,17 +19,36 @@ namespace RTSGame.Units.Player
 
         public UnitStatDisplay statDisplay;
 
+        private Transform target;
+        private UnitStatDisplay targetUnit;
+
+        private float distance;
+        private bool hasAggro = false;
+        public float atkCooldown;
+
         private void Start()
         {
             baseStats = unitType.baseStats;
             statDisplay.SetStatDisplayBasicUnit(baseStats, true);
             navAgent = GetComponent<NavMeshAgent>();
             
-        }  
+        }
+
+        private void Update()
+        {
+            atkCooldown -= Time.deltaTime;
+
+            if (hasAggro)
+            {
+                Attack();
+                MoveToTarget();
+            }
+        }
 
         // Update is called once per frame
         public void MoveUnit(Vector3 destination)
         {
+            target = null;
             if (navAgent == null)
             {
                 navAgent = GetComponent<NavMeshAgent>();
@@ -39,11 +58,13 @@ namespace RTSGame.Units.Player
 
         public void MoveUnit(Vector3 destination, float v, Action p)
         {
+            target = null;
             if (navAgent == null)
             {
                 navAgent = GetComponent<NavMeshAgent>();
             }
                 navAgent.SetDestination(destination);
+
             if (Vector3.Distance(transform.position, destination) < v)
             {
                 p.Invoke();
@@ -58,6 +79,41 @@ namespace RTSGame.Units.Player
             }
             return false;
         }
+
+        public void SetTarget(Transform tf)
+        {
+            target = tf;
+            targetUnit = target.gameObject.GetComponentInChildren<UnitStatDisplay>();
+            hasAggro = true;
+        }
+
+        private void MoveToTarget()
+        {
+            if (target == null)
+            {
+                navAgent.SetDestination(transform.position);
+                hasAggro = false;
+            }
+            else
+            {
+                distance = Vector3.Distance(target.position, transform.position);
+                navAgent.stoppingDistance = (baseStats.atkRange + 1);
+
+                if (distance <= baseStats.aggroRange)
+                {
+                    navAgent.SetDestination(target.position);
+                }
+            }
+        }
+        private void Attack()
+        {
+            if (atkCooldown <= 0 && distance <= baseStats.atkRange + 1)
+            {
+                targetUnit.takeDamage(baseStats.damage);
+                atkCooldown = baseStats.atkSpeed;
+            }
+        }
+
     }
 }
 

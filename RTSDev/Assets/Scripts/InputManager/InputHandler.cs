@@ -17,6 +17,7 @@ namespace RTSGame.InputManager
         private bool mouseHeld = false;
 
         public List<Transform> selectedUnits = new List<Transform>();
+        private int selectionLimit = 20;
         public Transform selectedBuilding = null;
         public Transform selectedResource = null;
 
@@ -30,105 +31,113 @@ namespace RTSGame.InputManager
         // Update is called once per frame
         public void HandleUnitMovement()
         {
-
-            if (Input.GetMouseButtonDown(0))
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                if (!EventSystem.current.IsPointerOverGameObject())
+
+                if (Input.GetMouseButtonDown(0))
                 {
-
-                    startPos = Input.mousePosition;
-                    endPos = Input.mousePosition;
-
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
+                    if (!EventSystem.current.IsPointerOverGameObject())
                     {
-                        if (AddedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
-                        {
-                            // use unit ui
-                            Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
 
-                            if (IsWorkerSelected())
+                        startPos = Input.mousePosition;
+                        endPos = Input.mousePosition;
+
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
+                        {
+                            if (AddedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
                             {
-                                iUnit.GetComponent<Interactables.IWorker>().OnBuilderSelect();
+                                // use unit ui
+                                Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
+
+                                if (IsWorkerSelected())
+                                {
+                                    iUnit.GetComponent<Interactables.IWorker>().OnBuilderSelect();
+                                }
+                            }
+                            else if (AddedBuilding(hit.transform))
+                            {
+                                // use building ui
+                            }
+                            else if (AddedResource(hit.transform))
+                            {
+                                // show resource stats
                             }
                         }
-                        else if (AddedBuilding(hit.transform))
+                        else
                         {
-                            // use building ui
+                            mouseHeld = true;
+                            DeSelect();
                         }
-                        else if (AddedResource(hit.transform))
-                        {
-                            // show resource stats
-                        }
-                    }
-                    else
-                    {
-                        mouseHeld = true;
-                        DeSelect();
                     }
                 }
-            }
-            if (Input.GetMouseButton(0) && mouseHeld)
-            {
-                UpdateSelectionBox(Input.mousePosition);
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (mouseHeld == true)
+                if (Input.GetMouseButton(0) && mouseHeld)
                 {
-                    mouseHeld = false;
-                    ReleaseSelectionBox();
+                    UpdateSelectionBox(Input.mousePosition);
                 }
-            }
 
-            if(Input.GetMouseButtonDown(1))
-            {
-                if (!EventSystem.current.IsPointerOverGameObject())
+                if (Input.GetMouseButtonUp(0))
+                {
+                    if (mouseHeld == true)
+                    {
+                        mouseHeld = false;
+                        ReleaseSelectionBox();
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(1))
                 {
                     if (HaveSelectedUnits())
                     {
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        //check if hit resource
-                        if (Physics.Raycast(ray, out hit))
-                        {
-                            Interactables.IResource iResource = hit.transform.GetComponent<Interactables.IResource>();
-                            if (iResource)
+                            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                            //check if hit resource
+                            if (Physics.Raycast(ray, out hit))
                             {
-                                if (IsScavengerSelected())
+                                Interactables.IResource iResource = hit.transform.GetComponent<Interactables.IResource>();
+                                if (iResource)
                                 {
-                                    RTSResources.ResourceSource resource = iResource.gameObject.GetComponent<RTSResources.ResourceSource>();
-                                    foreach (Transform unit in selectedUnits)
+                                    if (IsScavengerSelected())
                                     {
-                                        Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
-                                        scavenger.SetResource(hit.transform);
+                                        RTSResources.ResourceSource resource = iResource.gameObject.GetComponent<RTSResources.ResourceSource>();
+                                        foreach (Transform unit in selectedUnits)
+                                        {
+                                            Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
+                                            scavenger.SetResource(hit.transform);
+                                        }
                                     }
                                 }
-                            }
-                            if (hit.transform.GetComponent<Interactables.IStorage>())
-                            {
-                                if (IsScavengerSelected())
+                                if (hit.transform.GetComponent<Interactables.IStorage>())
+                                {
+                                    if (IsScavengerSelected())
+                                    {
+                                        foreach (Transform unit in selectedUnits)
+                                        {
+                                            Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
+                                        }
+                                    }
+                                }
+                                if (hit.transform.GetComponent<Units.Enemy.EnemyUnit>())
                                 {
                                     foreach (Transform unit in selectedUnits)
                                     {
-                                        Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
+                                        PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                        pU.SetTarget(hit.transform);
                                     }
-                                }
                             }
-                            else
-                            {
-                                foreach (Transform unit in selectedUnits)
+                                else
                                 {
-                                    PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                                    pU.MoveUnit(hit.point);
+                                    foreach (Transform unit in selectedUnits)
+                                    {
+                                        PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                        pU.MoveUnit(hit.point);
+                                    }
                                 }
                             }
                         }
-                    }
                     if (selectedBuilding != null)
-                    {
-                        selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();
-                    }
+                        {
+                            selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();
+                        }
                 }
             }
 
@@ -224,7 +233,7 @@ namespace RTSGame.InputManager
         private Interactables.IUnit AddedUnit(Transform tf, bool canMultiSelect = false)
         {
             Interactables.IUnit iUnit = tf.GetComponent<Interactables.IUnit>();
-            if (iUnit)
+            if (iUnit && selectedUnits.Count < selectionLimit+1)
             {
                 if (!canMultiSelect)
                 {
