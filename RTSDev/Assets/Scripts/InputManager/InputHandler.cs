@@ -124,7 +124,7 @@ namespace RTSGame.InputManager
                                     }
                                 }
                             }
-                        }
+                    }
                     if (selectedBuilding != null)
                         {
                             selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();

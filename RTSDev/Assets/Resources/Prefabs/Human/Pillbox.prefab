@@ -114,11 +114,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteracting: 0
   highlight: {fileID: 8955256145968052616}
-  actions: {fileID: 0}
+  actions: {fileID: 11400000, guid: 646799eebbf94e044b57de61d78733da, type: 2}
   spawnMarker: {fileID: 0}
   spawnMarkerGraphic: {fileID: 0}
   target: {fileID: 0}
   range: 10
+  damage: 25
+  atkSpeed: 4
 --- !u!114 &3756204208084827533
 MonoBehaviour:
   m_ObjectHideFlags: 0

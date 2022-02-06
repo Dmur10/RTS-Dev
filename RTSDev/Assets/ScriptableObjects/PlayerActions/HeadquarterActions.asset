@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e861f379cb3ff3b48a39c3743c7872ec, type: 3}
-  m_Name: WorkerBuildAction
+  m_Name: HeadquarterActions
   m_EditorClassIdentifier: 
   basicUnits: []
-  basicBuildings:
-  - {fileID: 11400000, guid: 1eefd7161340e734eb2c53ca86ccecda, type: 2}
-  - {fileID: 11400000, guid: 33ffcee3de46117488d394a20978ece7, type: 2}
-  - {fileID: 11400000, guid: 11ecf26a8d1af934b9500e7aca50bf25, type: 2}
-  - {fileID: 11400000, guid: 5148e93cb6ff34d46b62139e3828ace7, type: 2}
+  basicBuildings: []

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e861f379cb3ff3b48a39c3743c7872ec, type: 3}
-  m_Name: Resourcehut
+  m_Name: ResourcehutActions
   m_EditorClassIdentifier: 
   basicUnits: []
   basicBuildings: []

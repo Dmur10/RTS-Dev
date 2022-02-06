@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteracting: 0
   highlight: {fileID: 8287027865549941587}
-  actions: {fileID: 11400000, guid: ef92d0464a971d7439fb49308d83737f, type: 2}
+  actions: {fileID: 11400000, guid: 90ede9f98895bbd49a5a201ef810911b, type: 2}
   spawnMarker: {fileID: 3082662283039036179}
   spawnMarkerGraphic: {fileID: 5388624156386331955}
 --- !u!114 &6506583598363939690
