@@ -9,21 +9,28 @@ namespace RTSGame.Units.Enemy
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyUnit : MonoBehaviour
     {
+
+        private enum State
+        {
+            Idle,
+            Moving,
+            Following,
+            Attacking
+        }
+
+        private State state = State.Idle;
+
         private NavMeshAgent navAgent;
+        private Transform currentWaypoint;
 
         public BasicUnit unitType;
-
         [HideInInspector]
         public UnitStatTypes.Base baseStats;
-
         public UnitStatDisplay statDisplay;
 
         private Collider[] colliders;
-
         [SerializeField]private Transform target;
-
         private UnitStatDisplay targetUnit;
-
         private bool hasAggro = false;
 
         private float distance;
@@ -48,6 +55,30 @@ namespace RTSGame.Units.Enemy
             {
                 Attack();
                 MoveToTarget();
+            }
+
+            switch (state)
+            {
+                case State.Idle:
+                    break;
+                case State.Moving:
+                    if(currentWaypoint == null)
+                    {
+                        state = State.Idle;
+                    }
+                    break;
+                case State.Following:
+                    if(target == null)
+                    {
+                        state = State.Moving;
+                    }
+                    break;
+                case State.Attacking:
+                    if(target == null)
+                    {
+                        state = State.Moving;
+                    }
+                    break;
             }
         }
          

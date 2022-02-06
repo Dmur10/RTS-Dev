@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e861f379cb3ff3b48a39c3743c7872ec, type: 3}
   m_Name: HeadquarterActions
   m_EditorClassIdentifier: 
-  basicUnits: []
+  basicUnits:
+  - {fileID: 11400000, guid: 58a28208aba768b41ad2d88d389374a3, type: 2}
+  - {fileID: 11400000, guid: b7bf3e1290e79bf40b02015cd9174390, type: 2}
   basicBuildings: []
