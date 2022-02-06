@@ -20,7 +20,7 @@ namespace RTSGame.Units.Enemy
 
         private Collider[] colliders;
 
-        private Transform target;
+        [SerializeField]private Transform target;
 
         private UnitStatDisplay targetUnit;
 

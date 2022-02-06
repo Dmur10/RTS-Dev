@@ -19,7 +19,7 @@ namespace RTSGame.Units.Player
 
         public UnitStatDisplay statDisplay;
 
-        private Transform target;
+        [SerializeField]private Transform target = null;
         private UnitStatDisplay targetUnit;
 
         private float distance;
@@ -36,10 +36,9 @@ namespace RTSGame.Units.Player
 
         private void Update()
         {
-            atkCooldown -= Time.deltaTime;
-
             if (hasAggro)
             {
+                atkCooldown -= Time.deltaTime;
                 Attack();
                 MoveToTarget();
             }
@@ -107,7 +106,7 @@ namespace RTSGame.Units.Player
         }
         private void Attack()
         {
-            if (atkCooldown <= 0 && distance <= baseStats.atkRange + 1)
+            if (distance <= baseStats.atkRange + 1 && atkCooldown <= 0)
             {
                 targetUnit.takeDamage(baseStats.damage);
                 atkCooldown = baseStats.atkSpeed;

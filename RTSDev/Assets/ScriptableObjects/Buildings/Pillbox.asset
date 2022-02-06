@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   name: Pillbox
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 4776773028066963574, guid: 181f70927472a4a4ba17834a1bdea998, type: 3}
   SpawnTime: 0
   baseStats:
     health: 200

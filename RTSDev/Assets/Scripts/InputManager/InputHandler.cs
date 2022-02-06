@@ -33,12 +33,8 @@ namespace RTSGame.InputManager
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (!EventSystem.current.IsPointerOverGameObject())
-                    {
-
                         startPos = Input.mousePosition;
                         endPos = Input.mousePosition;
 
@@ -47,7 +43,6 @@ namespace RTSGame.InputManager
                         {
                             if (AddedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
                             {
-                                // use unit ui
                                 Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
 
                                 if (IsWorkerSelected())
@@ -57,11 +52,9 @@ namespace RTSGame.InputManager
                             }
                             else if (AddedBuilding(hit.transform))
                             {
-                                // use building ui
                             }
                             else if (AddedResource(hit.transform))
                             {
-                                // show resource stats
                             }
                         }
                         else
@@ -69,7 +62,6 @@ namespace RTSGame.InputManager
                             mouseHeld = true;
                             DeSelect();
                         }
-                    }
                 }
                 if (Input.GetMouseButton(0) && mouseHeld)
                 {
@@ -90,7 +82,6 @@ namespace RTSGame.InputManager
                     if (HaveSelectedUnits())
                     {
                             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                            //check if hit resource
                             if (Physics.Raycast(ray, out hit))
                             {
                                 Interactables.IResource iResource = hit.transform.GetComponent<Interactables.IResource>();
@@ -303,7 +294,6 @@ namespace RTSGame.InputManager
             {
                 if (!unit.gameObject.GetComponent<Interactables.IWorker>()  )
                 {
-                    Debug.Log("here");
                     return false;
                 }
             }

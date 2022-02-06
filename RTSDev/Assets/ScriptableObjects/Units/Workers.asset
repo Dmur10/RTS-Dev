@@ -23,4 +23,4 @@ MonoBehaviour:
     atkRange: 4
     atkSpeed: 5
     damage: 25
-    health: 50
+    health: 100
