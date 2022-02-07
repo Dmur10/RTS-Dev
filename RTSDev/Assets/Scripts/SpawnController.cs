@@ -6,17 +6,19 @@ public class SpawnController : MonoBehaviour
 {
     public enum SpawnerState {SPAWNING, WAITING, COUNTING };
 
-    [SerializeField]
+    [System.Serializable]
     public class Wave
     {
         public string name;
         public Transform[] Enemies;
         public int[] count;
         public float rate;
+        //public int spawnWidth;
     }
 
     private SpawnerState state = SpawnerState.COUNTING;
     public Wave[] waves;
+    private Transform[] line;
 
     IEnumerator SpawnWave(Wave wave)
     {
@@ -27,13 +29,21 @@ public class SpawnController : MonoBehaviour
         {
             for(int j = 0; j < wave.count[i]; j++)
             {
-                SpawnEnemy(wave.Enemies[i]);
+                SpawnEnemy(wave.Enemies[j]);
                 yield return new WaitForSeconds(1f / wave.rate);
             }
         }
         state = SpawnerState.WAITING;
         yield break;
     }
+
+    /*void SpawnLine()
+    {
+        for(int i = 0; i < line.Length; i++)
+        {
+            SpawnEnemy(line[i]);
+        }
+    }*/
 
     void SpawnEnemy(Transform enemy)
     {

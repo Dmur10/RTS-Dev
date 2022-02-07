@@ -2,13 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWaypoint : MonoBehaviour
+namespace RTSGame
 {
-    public void OnTriggerEnter(Collider other)
+    public class EnemyWaypoint : MonoBehaviour
     {
-        if (other.tag == "Enemy")
-        {
+        public Transform nextWayPoint;
+        public bool isLastWaypoint;
 
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Enemy")
+            {
+                if (isLastWaypoint)
+                {
+                    other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = null;
+                }
+                else
+                {
+                    other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = nextWayPoint;
+                }  
+            }
         }
     }
 }

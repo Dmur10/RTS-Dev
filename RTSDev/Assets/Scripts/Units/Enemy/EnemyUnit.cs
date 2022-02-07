@@ -10,7 +10,7 @@ namespace RTSGame.Units.Enemy
     public class EnemyUnit : MonoBehaviour
     {
 
-        private enum State
+        public enum State
         {
             Idle,
             Moving,
@@ -18,10 +18,10 @@ namespace RTSGame.Units.Enemy
             Attacking
         }
 
-        private State state = State.Idle;
+        public State state = State.Idle;
 
         private NavMeshAgent navAgent;
-        private Transform currentWaypoint;
+        public Transform currentWaypoint;
 
         public BasicUnit unitType;
         [HideInInspector]
