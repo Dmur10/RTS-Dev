@@ -14,7 +14,6 @@ namespace RTSGame.Units.Enemy
         {
             Idle,
             Moving,
-            Following,
             Attacking
         }
 
@@ -31,7 +30,6 @@ namespace RTSGame.Units.Enemy
         private Collider[] colliders;
         [SerializeField]private Transform target;
         private UnitStatDisplay targetUnit;
-        private bool hasAggro = false;
 
         private float distance;
 
@@ -47,41 +45,39 @@ namespace RTSGame.Units.Enemy
         private void Update()
         {
             atkCooldown -= Time.deltaTime;
-            if (!hasAggro)
-            {
-                checkForTarget();
-            }
-            else
-            {
-                Attack();
-                MoveToTarget();
-            }
 
             switch (state)
             {
                 case State.Idle:
+                    checkForTarget();
                     break;
                 case State.Moving:
                     if(currentWaypoint == null)
                     {
                         state = State.Idle;
                     }
-                    break;
-                case State.Following:
-                    if(target == null)
-                    {
-                        state = State.Moving;
-                    }
+                    checkForTarget();
                     break;
                 case State.Attacking:
                     if(target == null)
                     {
                         state = State.Moving;
                     }
+                    Attack();
+                    MoveToTarget();
                     break;
             }
         }
-         
+        public void MoveUnit(Vector3 destination)
+        {
+            if (navAgent == null)
+            {
+                navAgent = GetComponent<NavMeshAgent>();
+            }
+            navAgent.SetDestination(destination);
+            state = State.Moving;
+        }
+
         private void checkForTarget()
         {
             colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.pUnitLayer);
@@ -90,7 +86,7 @@ namespace RTSGame.Units.Enemy
             { 
                     target = colliders[i].gameObject.transform;
                     targetUnit = target.gameObject.GetComponentInChildren<UnitStatDisplay>();
-                    hasAggro = true;
+                    state = State.Attacking;
                     break;
             }
         }
@@ -100,7 +96,7 @@ namespace RTSGame.Units.Enemy
             if (target  == null)
             {
                 navAgent.SetDestination(transform.position);
-                hasAggro = false;
+                state = State.Moving;
             }
             else
             {
