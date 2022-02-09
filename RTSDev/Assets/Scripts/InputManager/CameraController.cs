@@ -9,10 +9,10 @@ namespace RTSGame.InputManager
         public float panSpeed = 30f;
         public float scrollSpeed = 3f;
 
-        public float topBorder = 1000f;
-        public float bottomBorder = 0f;
-        public float leftBorder = 0f;
-        public float rightBorder = 1000f;
+        public float topBorder = 1020f;
+        public float bottomBorder = -20f;
+        public float leftBorder = -20f;
+        public float rightBorder = 1020f;
 
         public float borderThickness = 10f;
         public float minZoom = 4f;
