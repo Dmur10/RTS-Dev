@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IFuelStation : MonoBehaviour
+namespace RTSGame.Interactables
 {
-    // Start is called before the first frame update
-    void Start()
+    public class IFuelStation : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

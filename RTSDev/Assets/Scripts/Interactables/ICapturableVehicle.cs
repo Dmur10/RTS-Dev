@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ICapturableVehicle : MonoBehaviour
+namespace RTSGame.Interactables
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ICapturableVehicle : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
