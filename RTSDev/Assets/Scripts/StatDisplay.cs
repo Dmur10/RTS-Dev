@@ -3,39 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StatDisplay : MonoBehaviour
+namespace RTSGame
 {
-    public float maxHealth, currentHealth;
-
-    [SerializeField] private Image healthBarAmount;
-
-    // Update is called once per frame
-    private void Update()
+    public class StatDisplay : MonoBehaviour
     {
-        HandleHeath();
-    }
+        public float maxHealth, currentHealth;
 
-    public void takeDamage(float damage)
-    {
-        float totalDamage = damage;
-        currentHealth -= totalDamage;
-    }
+        [SerializeField] private Image healthBarAmount;
 
-    private void HandleHeath()
-    {
-        Camera camera = Camera.main;
-        gameObject.transform.LookAt(gameObject.transform.position +
-            camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
-
-        healthBarAmount.fillAmount = currentHealth / maxHealth;
-        if (currentHealth <= 0)
+        // Update is called once per frame
+        private void Update()
         {
-            Die();
+            HandleHeath();
+        }
+
+        public void takeDamage(float damage)
+        {
+            float totalDamage = damage;
+            currentHealth -= totalDamage;
+        }
+
+        private void HandleHeath()
+        {
+            Camera camera = Camera.main;
+            gameObject.transform.LookAt(gameObject.transform.position +
+                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
+
+            healthBarAmount.fillAmount = currentHealth / maxHealth;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        protected virtual void Die()
+        {
+
         }
     }
 
-    protected virtual void Die()
-    {
-
-    }
 }

@@ -12,9 +12,10 @@ namespace RTSGame.Interactables
         {
             if (captured)
             {
-                Player.PlayerManager.instance.playerResources[(int)RTSResources.ResourceType.Fuel].AddAmount(1);
+                Player.PlayerManager.instance.playerResources[(int)RTSResources.ResourceType.Fuel].AddAmount(Time.deltaTime);
             }
         }
+
         public override void OnInteractEnter()
         {
             base.OnInteractEnter();
