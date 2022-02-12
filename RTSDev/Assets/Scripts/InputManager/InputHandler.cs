@@ -35,107 +35,115 @@ namespace RTSGame.InputManager
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                        startPos = Input.mousePosition;
-                        endPos = Input.mousePosition;
+                    startPos = Input.mousePosition;
+                    endPos = Input.mousePosition;
 
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out hit, 100, interactabeLayer))
+                    {
+                        if (AddedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
                         {
-                            if (AddedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
-                            {
-                                Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
+                            Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
 
-                                if (IsWorkerSelected())
-                                {
-                                    iUnit.GetComponent<Interactables.IWorker>().OnBuilderSelect();
-                                }
-                            }
-                            else if (AddedBuilding(hit.transform))
+                            if (IsWorkerSelected())
                             {
-                            }
-                            else if (AddedResource(hit.transform))
-                            {
+                                iUnit.GetComponent<Interactables.IWorker>().OnBuilderSelect();
                             }
                         }
-                        else
+                        else if (AddedBuilding(hit.transform))
                         {
-                            mouseHeld = true;
-                            DeSelect();
                         }
+                        else if (AddedResource(hit.transform))
+                        {
+                        }
+                    }
+                    else
+                    {
+                        mouseHeld = true;
+                        DeSelect();
+                    }
                 }
                 if (Input.GetMouseButton(0) && mouseHeld)
                 {
                     UpdateSelectionBox(Input.mousePosition);
                 }
 
-                if (Input.GetMouseButtonUp(0))
-                {
-                    if (mouseHeld == true)
-                    {
-                        mouseHeld = false;
-                        ReleaseSelectionBox();
-                    }
-                }
+               //mouse button up
 
                 if (Input.GetMouseButtonDown(1))
                 {
                     if (HaveSelectedUnits())
                     {
-                            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                            if (Physics.Raycast(ray, out hit))
-                            {
-                                Interactables.IResource iResource = hit.transform.GetComponent<Interactables.IResource>();
-                                if (iResource)
-                                {
-                                    if (IsScavengerSelected())
-                                    {
-                                        RTSResources.ResourceSource resource = iResource.gameObject.GetComponent<RTSResources.ResourceSource>();
-                                        foreach (Transform unit in selectedUnits)
-                                        {
-                                            Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
-                                            scavenger.SetResource(hit.transform);
-                                        }
-                                    }
-                                }
-                                if (hit.transform.GetComponent<Interactables.IStorage>())
-                                {
-                                    if (IsScavengerSelected())
-                                    {
-                                        foreach (Transform unit in selectedUnits)
-                                        {
-                                            Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
-                                        }
-                                    }
-                                }
-                                if (hit.transform.GetComponent<Units.Enemy.EnemyUnit>())
-                                {
-                                    foreach (Transform unit in selectedUnits)
-                                    {
-                                        PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                                        pU.SetTarget(hit.transform);
-                                    }
-                            }
-                                else
-                                {
-                                    foreach (Transform unit in selectedUnits)
-                                    {
-                                        PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                                        pU.MoveUnit(hit.point);
-                                    }
-                                }
-                            }
-                    }
-                    if (selectedBuilding != null)
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        if (Physics.Raycast(ray, out hit))
                         {
-                            selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();
+                            Interactables.IResource iResource = hit.transform.GetComponent<Interactables.IResource>();
+                            if (iResource)
+                            {
+                                if (IsScavengerSelected())
+                                {
+                                    RTSResources.ResourceSource resource = iResource.gameObject.GetComponent<RTSResources.ResourceSource>();
+                                    foreach (Transform unit in selectedUnits)
+                                    {
+                                        Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
+                                        scavenger.SetResource(hit.transform);
+                                    }
+                                }
+                            }
+                            else if (hit.transform.GetComponent<Interactables.IStorage>())
+                            {
+                                if (IsScavengerSelected())
+                                {
+                                    foreach (Transform unit in selectedUnits)
+                                    {
+                                        Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
+                                    }
+                                }
+                            }
+                            else if (hit.transform.GetComponent<Units.Enemy.EnemyUnit>())
+                            {
+                                foreach (Transform unit in selectedUnits)
+                                {
+                                    PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                    pU.SetTarget(hit.transform);
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("targetPostList");
+                                List<Vector3> targetPositionList = GetPositionListAround(hit.point, new float[] { 10f, 20f, 30f }, new int[] { 5, 10, 20 });
+                                 int targetPositionListIndex = 0;
+
+                                 foreach (Transform unit in selectedUnits)
+                                 { 
+                                    PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                    pU.MoveUnit(targetPositionList[targetPositionListIndex]);
+                                    targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+                                 }
+                            }
                         }
+                    }
+                    else if (selectedBuilding != null)
+                    {
+                        selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();
+                    }
                 }
             }
-
+            if (Input.GetMouseButtonUp(0))
+            {
+                Debug.Log("up");
+                if (mouseHeld == true)
+                {
+                    Debug.Log("here");
+                    mouseHeld = false;
+                    ReleaseSelectionBox();
+                }
+            }
         }
 
         private void ReleaseSelectionBox()
         {
+            Debug.Log("released");
             selectionBox.gameObject.SetActive(false);
             DeSelect();
 
@@ -306,11 +314,34 @@ namespace RTSGame.InputManager
             {
                 if (!unit.gameObject.GetComponent<Interactables.IScavenger>())
                 {
-                    Debug.Log("here");
                     return false;
                 }
             }
             return true;
+        }
+
+        private List<Vector3> GetPositionListAround(Vector3 startPosition, float[] distanceArray, int[] positionCountArray)
+        {
+            List<Vector3> positionList = new List<Vector3>();
+            positionList.Add(startPosition);
+            for (int i = 0; i < distanceArray.Length; i++)
+            {
+                positionList.AddRange(GetPositionListAround(startPosition, distanceArray[i], positionCountArray[i]));
+            }
+            return positionList;
+        }
+
+        private List<Vector3> GetPositionListAround(Vector3 startPosition, float distance, int positionCount)
+        {
+            List<Vector3> positionList = new List<Vector3>();
+            for (int i = 0; i < positionCount; i++)
+            {
+                float angle = i * (360f / positionCount);
+                Vector3 dir = Quaternion.Euler(0, 0, angle) * new Vector3(1,0);
+                Vector3 position = startPosition + dir * distance;
+                positionList.Add(position);
+            }
+            return positionList;
         }
     }
 }
