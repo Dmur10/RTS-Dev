@@ -111,8 +111,8 @@ namespace RTSGame.InputManager
                             else
                             {
                                 Debug.Log("targetPostList");
-                                List<Vector3> targetPositionList = GetPositionListAround(hit.point, new float[] { 10f, 20f, 30f }, new int[] { 5, 10, 20 });
-                                 int targetPositionListIndex = 0;
+                                List<Vector3> targetPositionList = GetPositionListAround(hit.point, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
+                                int targetPositionListIndex = 0;
 
                                  foreach (Transform unit in selectedUnits)
                                  { 
@@ -337,7 +337,7 @@ namespace RTSGame.InputManager
             for (int i = 0; i < positionCount; i++)
             {
                 float angle = i * (360f / positionCount);
-                Vector3 dir = Quaternion.Euler(0, 0, angle) * new Vector3(1,0);
+                Vector3 dir = Quaternion.Euler(0, angle, 0) * new Vector3(1,0);
                 Vector3 position = startPosition + dir * distance;
                 positionList.Add(position);
             }
