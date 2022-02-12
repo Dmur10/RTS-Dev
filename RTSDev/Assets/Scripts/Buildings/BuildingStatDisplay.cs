@@ -13,7 +13,6 @@ namespace RTSGame.Buildings
         {
             maxHealth = stats.health;
             isPLayerBuilding = isPlayer;
-
             currentHealth = maxHealth;
         }
 

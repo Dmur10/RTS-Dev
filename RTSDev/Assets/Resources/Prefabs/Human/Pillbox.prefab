@@ -137,6 +137,7 @@ MonoBehaviour:
   baseStats:
     health: 0
     attack: 0
+    atkRange: 0
   statDisplay: {fileID: 828064366627238702}
 --- !u!1 &8955256145968052616
 GameObject:
@@ -238,6 +239,14 @@ PrefabInstance:
     - target: {fileID: 6403168158998874289, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403168158998874289, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403168158998874289, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7404683725374082552, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
       propertyPath: m_Pivot.x
