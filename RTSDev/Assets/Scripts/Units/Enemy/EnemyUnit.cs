@@ -29,7 +29,7 @@ namespace RTSGame.Units.Enemy
 
         private Collider[] colliders;
         [SerializeField]private Transform target;
-        private UnitStatDisplay targetUnit;
+        private StatDisplay targetStatDisplay;
 
         private float distance;
 
@@ -50,6 +50,10 @@ namespace RTSGame.Units.Enemy
             {
                 case State.Idle:
                     checkForTarget();
+                    if(currentWaypoint != null)
+                    {
+                        state = State.Moving;
+                    }
                     break;
                 case State.Moving:
                     if(currentWaypoint == null)
@@ -85,7 +89,7 @@ namespace RTSGame.Units.Enemy
             for (int i = 0; i < colliders.Length;)
             { 
                     target = colliders[i].gameObject.transform;
-                    targetUnit = target.gameObject.GetComponentInChildren<UnitStatDisplay>();
+                    targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
                     state = State.Attacking;
                     break;
             }
@@ -115,7 +119,7 @@ namespace RTSGame.Units.Enemy
         {
             if(atkCooldown <= 0 && distance <= baseStats.atkRange+1)
             {
-                targetUnit.takeDamage(baseStats.damage);
+                targetStatDisplay.takeDamage(baseStats.damage);
                 atkCooldown = baseStats.atkSpeed;
             }
         }

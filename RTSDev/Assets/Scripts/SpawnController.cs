@@ -29,7 +29,7 @@ public class SpawnController : MonoBehaviour
         {
             for(int j = 0; j < wave.count[i]; j++)
             {
-                SpawnEnemy(wave.Enemies[j]);
+                SpawnEnemy(wave.Enemies[i]);
                 yield return new WaitForSeconds(1f / wave.rate);
             }
         }

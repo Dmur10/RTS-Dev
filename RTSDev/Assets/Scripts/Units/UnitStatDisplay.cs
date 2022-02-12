@@ -6,13 +6,8 @@ using UnityEngine.UI;
 
 namespace RTSGame.Units
 {
-    public class UnitStatDisplay : MonoBehaviour
+    public class UnitStatDisplay : StatDisplay
     {
-
-        public float maxHealth, currentHealth;
-
-        [SerializeField] private Image healthBarAmount;
-
         private bool isPLayerUnit = false;
 
         public void SetStatDisplayBasicUnit(UnitStatTypes.Base stats, bool isPlayer )
@@ -23,32 +18,7 @@ namespace RTSGame.Units
             currentHealth = maxHealth;
         }
 
-        // Update is called once per frame
-        private void Update()
-         {
-            HandleHeath();
-         }
-
-        public void takeDamage(float damage)
-        {
-            float totalDamage = damage;
-            currentHealth -= totalDamage;
-        }
-
-        private void HandleHeath()
-        {
-            Camera camera = Camera.main;
-            gameObject.transform.LookAt(gameObject.transform.position +
-                camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
-
-            healthBarAmount.fillAmount = currentHealth / maxHealth;
-            if (currentHealth <= 0)
-            { 
-                Die();
-            }
-        }
-
-        private void Die()
+        protected override void Die()
         {
             if (isPLayerUnit)
             {
