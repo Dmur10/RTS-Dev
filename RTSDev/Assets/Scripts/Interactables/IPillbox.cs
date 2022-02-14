@@ -8,7 +8,7 @@ namespace RTSGame.Interactables
     {
         private Collider[] colliders;
         [SerializeField]private Transform target;
-        private Units.UnitStatDisplay targetUnit;
+        private StatDisplay targetStatDisplay;
 
         private bool hasAggro = false;
         private float atkCooldown;
@@ -47,7 +47,7 @@ namespace RTSGame.Interactables
             for (int i = 0; i < colliders.Length;)
             {
                 target = colliders[i].gameObject.transform;
-                targetUnit = target.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
+                targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
                 hasAggro = true;
                 break;
             }
@@ -57,7 +57,7 @@ namespace RTSGame.Interactables
         {
             if (atkCooldown <= 0)
             {
-                targetUnit.takeDamage(damage);
+                targetStatDisplay.takeDamage(damage);
                 atkCooldown = atkSpeed;
             }
         }

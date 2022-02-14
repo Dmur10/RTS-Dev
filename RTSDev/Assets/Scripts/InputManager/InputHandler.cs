@@ -67,9 +67,6 @@ namespace RTSGame.InputManager
                 {
                     UpdateSelectionBox(Input.mousePosition);
                 }
-
-               //mouse button up
-
                 if (Input.GetMouseButtonDown(1))
                 {
                     if (HaveSelectedUnits())
@@ -131,10 +128,8 @@ namespace RTSGame.InputManager
             }
             if (Input.GetMouseButtonUp(0))
             {
-                Debug.Log("up");
                 if (mouseHeld == true)
                 {
-                    Debug.Log("here");
                     mouseHeld = false;
                     ReleaseSelectionBox();
                 }

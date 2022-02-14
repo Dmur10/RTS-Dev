@@ -16,11 +16,10 @@ namespace RTSGame.Units.Player
 
         [HideInInspector]
         public UnitStatTypes.Base baseStats;
-
         public UnitStatDisplay statDisplay;
 
         [SerializeField]private Transform target = null;
-        private UnitStatDisplay targetUnit;
+        private StatDisplay targetStatDisplay;
 
         private float distance;
         private bool hasAggro = false;
@@ -82,7 +81,7 @@ namespace RTSGame.Units.Player
         public void SetTarget(Transform tf)
         {
             target = tf;
-            targetUnit = target.gameObject.GetComponentInChildren<UnitStatDisplay>();
+            targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
             hasAggro = true;
         }
 
@@ -108,7 +107,7 @@ namespace RTSGame.Units.Player
         {
             if (distance <= baseStats.atkRange + 1 && atkCooldown <= 0)
             {
-                targetUnit.takeDamage(baseStats.damage);
+                targetStatDisplay.takeDamage(baseStats.damage);
                 atkCooldown = baseStats.atkSpeed;
             }
         }
