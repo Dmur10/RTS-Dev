@@ -87,12 +87,6 @@ namespace RTSGame.Buildings
             SetMaterials();
             _lastPlacementPosition = Vector3.zero;
         }
-
-        void CompleteConstruction(Vector3 position)
-        {
-
-        }
-
         void CancelBuildingPlacement()
         {
             Destroy(buildingToPlace.gameObject);
@@ -109,7 +103,7 @@ namespace RTSGame.Buildings
         public void Place()
         {
             Placement = BuildingPlacement.FIXED;
-            BuildingZone temp = BuildingZone.Create(_transform.position, new Vector3(basicBuilding.buildingPrefab.transform.localScale.x,0.1f,buildingToPlace.transform.localScale.z), 2000, basicBuilding.buildingPrefab);
+            BuildingZone temp = BuildingZone.Create(_transform.position, new Vector3(basicBuilding.buildingPrefab.transform.localScale.x,0.1f,buildingToPlace.transform.localScale.z), basicBuilding.SpawnTime, basicBuilding.buildingPrefab);
             InputManager.InputHandler.instance.selectedUnits[0].GetComponent<Interactables.IWorker>().SetBuildZone(temp);
             Destroy(buildingToPlace.gameObject);
             buildingToPlace = null;

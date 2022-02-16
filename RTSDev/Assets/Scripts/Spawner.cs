@@ -20,7 +20,7 @@ namespace RTSGame
         private SpawnerState state = SpawnerState.COUNTING;
         public Wave[] waves;
         public int maxWaves = 10;
-        public int waveNum;
+        public int waveNum = 0;
         public float counter;
 
         public Transform firstWayPoint;
@@ -50,12 +50,10 @@ namespace RTSGame
                     counter -= Time.deltaTime;
                     if (counter <= 0)
                     {
-                        state = SpawnerState.SPAWNING;
+                        StartCoroutine(SpawnWave(waves[waveNum]));
                     }
                     break;
                 case SpawnerState.SPAWNING:
-                    waveNum += 1;
-                    SpawnWave(waves[waveNum - 1]);
                     break;
                 case SpawnerState.WAITING:
                     break;
@@ -65,8 +63,10 @@ namespace RTSGame
         void SpawnEnemy(Transform enemy)
         {
             Debug.Log("Spawn enemy");
-            Instantiate(enemy, transform.position, transform.rotation);
-            enemy.gameObject.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = firstWayPoint;
+            GameObject spawnedEnemy = Instantiate(enemy.gameObject, transform.position, transform.rotation);
+            Units.Enemy.EnemyUnit eu = spawnedEnemy.GetComponent<Units.Enemy.EnemyUnit>();
+            eu.currentWaypoint = firstWayPoint;
+            eu.transform.parent = GameObject.Find( "E" + eu.unitType.type.ToString()).transform;
         }
     }
 }

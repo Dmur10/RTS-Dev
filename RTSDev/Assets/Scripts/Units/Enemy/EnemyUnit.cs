@@ -52,15 +52,15 @@ namespace RTSGame.Units.Enemy
                     checkForTarget();
                     if(currentWaypoint != null)
                     {
-                        state = State.Moving;
+                        MoveUnit(currentWaypoint.position);
                     }
                     break;
                 case State.Moving:
-                    if(currentWaypoint == null)
+                    checkForTarget();
+                    if (currentWaypoint == null)
                     {
                         state = State.Idle;
                     }
-                    checkForTarget();
                     break;
                 case State.Attacking:
                     if(target == null)

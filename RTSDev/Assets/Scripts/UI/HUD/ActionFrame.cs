@@ -114,10 +114,10 @@ namespace RTSGame.UI.HUD
 
         public void SpawnObject()
         {
-            GameObject spawnedObject = Instantiate(spawnOrder[0], new Vector3(spawnPoint.transform.parent.position.x,spawnPoint.transform.parent.position.y,spawnPoint.transform.parent.position.z), Quaternion.identity);
+            GameObject spawnedObject = Instantiate(spawnOrder[0], spawnPoint.transform.position, Quaternion.identity);
 
             Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
-            pu.transform.SetParent(GameObject.Find(pu.unitType.type.ToString() + "s").transform);
+            pu.transform.SetParent(GameObject.Find(pu.unitType.type.ToString()).transform);
 
             spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnPoint.transform.position);
             spawnQueue.Remove(spawnQueue[0]);
