@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 namespace RTSGame.Buildings
 {
@@ -53,7 +53,7 @@ namespace RTSGame.Buildings
                 SetPosition(raycastHit.point);
             }
 
-            if (HasValidPlacement && Input.GetMouseButtonDown(0))
+            if (HasValidPlacement && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Place();
                 buildingToPlace = null;

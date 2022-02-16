@@ -15,7 +15,8 @@ MonoBehaviour:
   type: 2
   name: Barracks
   buildingPrefab: {fileID: 6287805073163531369, guid: ea01def6cb974fd4283e8ce8bde5aa1c, type: 3}
-  SpawnTime: 0
+  SpawnTime: 500
   baseStats:
     health: 500
     attack: 0
+    atkRange: 0

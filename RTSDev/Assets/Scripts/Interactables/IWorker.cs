@@ -35,7 +35,7 @@ namespace RTSGame.Interactables
                 case State.Idle:
                     break;
                 case State.MovingToBuildingZone:
-                    if (unit.IsIdle())
+                    if (unit.IsIdle() && BuildZone != null)
                     {
                         unit.MoveUnit(BuildZone.GetPosition(), 10f, () => {
                             state = State.Building;
@@ -43,7 +43,7 @@ namespace RTSGame.Interactables
                     }
                     break;
                 case State.Building:
-                    if (unit.IsIdle())
+                    if (unit.IsIdle() && BuildZone != null)
                     {
                         PlayAnimationBuild(BuildZone.GetPosition(), 10f, () =>
                         {
@@ -54,7 +54,7 @@ namespace RTSGame.Interactables
                                 state = State.Idle;
                             }
                         });
-                    }
+                    } 
                     break;
             }
         }

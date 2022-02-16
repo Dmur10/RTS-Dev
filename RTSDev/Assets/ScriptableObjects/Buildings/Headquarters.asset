@@ -15,7 +15,8 @@ MonoBehaviour:
   type: 0
   name: Headquarters
   buildingPrefab: {fileID: 5975874794854153203, guid: 7cd590cbba75e2e4a92e4cab4f00f0c1, type: 3}
-  SpawnTime: 0
+  SpawnTime: 1000
   baseStats:
     health: 1000
     attack: 0
+    atkRange: 0
