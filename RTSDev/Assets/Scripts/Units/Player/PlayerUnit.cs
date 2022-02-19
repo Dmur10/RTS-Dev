@@ -35,9 +35,9 @@ namespace RTSGame.Units.Player
 
         private void Update()
         {
+            atkCooldown -= Time.deltaTime;
             if (hasAggro)
             {
-                atkCooldown -= Time.deltaTime;
                 Attack();
                 MoveToTarget();
             }
@@ -105,7 +105,7 @@ namespace RTSGame.Units.Player
         }
         private void Attack()
         {
-            if (distance <= baseStats.atkRange + 1 && atkCooldown <= 0)
+            if (atkCooldown <= 0 && distance <= baseStats.atkRange + 1 )
             {
                 targetStatDisplay.takeDamage(baseStats.damage);
                 atkCooldown = baseStats.atkSpeed;
