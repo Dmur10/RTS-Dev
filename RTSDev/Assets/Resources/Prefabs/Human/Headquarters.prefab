@@ -625,6 +625,7 @@ GameObject:
   - component: {fileID: 4655864928843114467}
   - component: {fileID: 6824153905680861566}
   - component: {fileID: 6506583598363939690}
+  - component: {fileID: 1332006239238325258}
   m_Layer: 7
   m_Name: Headquarters
   m_TagString: Untagged
@@ -713,6 +714,22 @@ MonoBehaviour:
     attack: 0
     atkRange: 0
   statDisplay: {fileID: 8615388277889144470}
+--- !u!208 &1332006239238325258
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975874794854153203}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8182055252101380360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,11 +1067,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
---- !u!224 &2018563629878192722 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7404683725374082552, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
-  m_PrefabInstance: {fileID: 8845589122545379242}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8615388277889144470 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -8263584633182621380, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
@@ -1066,3 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d40aff2f4a57f8489676fe6f7f34618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2018563629878192722 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7404683725374082552, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
+  m_PrefabInstance: {fileID: 8845589122545379242}
+  m_PrefabAsset: {fileID: 0}
