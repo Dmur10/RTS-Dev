@@ -96,6 +96,16 @@ namespace RTSGame.InputManager
                                         Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
                                     }
                                 }
+                            } 
+                            else if (hit.transform.GetComponent<Interactables.ICapturableVehicle>()) {
+                                if (IsScavengerSelected())
+                                {
+
+                                }
+                            } 
+                            else if (hit.transform.GetComponent<Interactables.IFuelStation>())
+                            {
+
                             }
                             else if (hit.transform.GetComponent<Units.Enemy.EnemyUnit>())
                             {

@@ -48,7 +48,7 @@ namespace RTSGame.Buildings
             }
 
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out raycastHit, 1000f, Globals.TERRAIN_LAYER_MASK))
+            if (Physics.Raycast(ray, out raycastHit, 1000f, 1<<8))
             {
                 SetPosition(raycastHit.point);
             }

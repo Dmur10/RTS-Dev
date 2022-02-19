@@ -6,6 +6,9 @@ namespace RTSGame.Interactables
 {
     public class ICapturableVehicle : IUnit
     {
+
+        public GameObject VehiclePrefab;
+
         public override void OnInteractEnter()
         {
             base.OnInteractEnter();
@@ -14,6 +17,12 @@ namespace RTSGame.Interactables
         public override void OnInteractExit()
         {
             base.OnInteractExit();
+        }
+
+        public void capture()
+        {
+            Instantiate(VehiclePrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
     }
 }

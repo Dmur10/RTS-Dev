@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3079992841712314668}
   - component: {fileID: -6496031739549054710}
   - component: {fileID: 3367952551950984980}
+  - component: {fileID: 4735969994704553376}
   m_Layer: 7
   m_Name: HumanWarrior
   m_TagString: Untagged
@@ -160,6 +161,19 @@ MonoBehaviour:
   statDisplay: {fileID: 497147177022536201}
   target: {fileID: 0}
   atkCooldown: 5
+--- !u!114 &4735969994704553376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947688385226542238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880824c6b085cdf418920342ab16446c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 1
 --- !u!1 &5671201979883741581
 GameObject:
   m_ObjectHideFlags: 0
