@@ -4209,6 +4209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feaf04557fefb494eaee6b6f80ef3f6d, type: 3}
+--- !u!146 &408608145 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 4385046361808504282, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+  m_PrefabInstance: {fileID: 2115144246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &430797754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4586,6 +4591,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465687228}
   m_CullTransparentMesh: 1
+--- !u!146 &503236620 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 568499785043490681, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+  m_PrefabInstance: {fileID: 2115144246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &511851411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7731,6 +7741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21456eb7a6b18e4480b596463b9692a, type: 3}
+--- !u!146 &971871716 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 6039218205193843838, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+  m_PrefabInstance: {fileID: 2115144246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &999056582
 GameObject:
   m_ObjectHideFlags: 0
@@ -8767,6 +8782,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160025605}
   m_CullTransparentMesh: 1
+--- !u!146 &1163034475 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 5851458295983634548, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+  m_PrefabInstance: {fileID: 2115144246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1173295888
 GameObject:
   m_ObjectHideFlags: 0
@@ -9931,6 +9951,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400122, guid: feaf04557fefb494eaee6b6f80ef3f6d, type: 3}
   m_PrefabInstance: {fileID: 1939417442}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1372644590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1056008596086336, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+  m_PrefabInstance: {fileID: 2115144246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1372644596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372644590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fd2ba1d846e4c49aefbaa1f988d43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontRight: {fileID: 1163034475}
+  frontLeft: {fileID: 971871716}
+  RearRight: {fileID: 408608145}
+  RearLeft: {fileID: 503236620}
+  acceleration: 500
+  brakingForce: 300
+  maxTurnAngle: 15
 --- !u!1001 &1385694703
 PrefabInstance:
   m_ObjectHideFlags: 0
