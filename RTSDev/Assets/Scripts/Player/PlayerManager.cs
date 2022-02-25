@@ -102,6 +102,26 @@ namespace RTSGame.Player
             }
             return closest;
         }
+
+        public bool HasPlayerLost()
+        {
+            foreach(Transform child in playerUnits)
+            {
+                if(child.childCount != 0)
+                {
+                    return false;
+                }
+            }
+
+            foreach(Transform child in playerBuildings)
+            {
+                if(child.childCount != 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
 }
