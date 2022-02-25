@@ -45,7 +45,7 @@ namespace RTSGame.Interactables
                     {
                         if ( currentTicks <= TotalCaptureTicks || captureTransform == null)
                         {
-                            captureTransform.GetComponent<ICapturable>();
+                            captureTransform.GetComponent<ICapturableVehicle>().capture();
                         }
                         else
                         {

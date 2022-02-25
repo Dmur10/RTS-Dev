@@ -98,9 +98,13 @@ namespace RTSGame.InputManager
                                 }
                             } 
                             else if (hit.transform.GetComponent<Interactables.ICapturableVehicle>()) {
-                                if (IsScavengerSelected())
+                                if (IsEngineerSelected())
                                 {
-
+                                    foreach (Transform unit in selectedUnits)
+                                    {
+                                        Interactables.IEngineer engineer = unit.gameObject.GetComponent<Interactables.IEngineer>();
+                                        engineer.SetCaptureTarget(hit.transform);
+                                    }
                                 }
                             } 
                             else if (hit.transform.GetComponent<Interactables.IFuelStation>())
@@ -318,6 +322,18 @@ namespace RTSGame.InputManager
             foreach (Transform unit in selectedUnits)
             {
                 if (!unit.gameObject.GetComponent<Interactables.IScavenger>())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool IsEngineerSelected()
+        {
+            foreach (Transform unit in selectedUnits)
+            {
+                if (!unit.gameObject.GetComponent<Interactables.IEngineer>())
                 {
                     return false;
                 }
