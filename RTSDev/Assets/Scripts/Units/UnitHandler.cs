@@ -10,7 +10,7 @@ namespace RTSGame.Units
         public static UnitHandler instance;
 
         [SerializeField]
-        private BasicUnit Workers, Warriors, Scavengers;
+        private BasicUnit Workers, Warriors, Scavengers, Engineers;
 
         public LayerMask pUnitLayer, eUnitLayer;
 
@@ -32,6 +32,9 @@ namespace RTSGame.Units
                     break;
                 case "Scavengers":
                     unit = Scavengers;
+                    break;
+                case "Engineers":
+                    unit = Engineers;
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} not found");

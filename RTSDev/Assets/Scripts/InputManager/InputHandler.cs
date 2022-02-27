@@ -109,7 +109,10 @@ namespace RTSGame.InputManager
                             } 
                             else if (hit.transform.GetComponent<Interactables.IFuelStation>())
                             {
+                                if (IsEngineerSelected())
+                                {
 
+                                }
                             }
                             else if (hit.transform.GetComponent<Units.Enemy.EnemyUnit>())
                             {

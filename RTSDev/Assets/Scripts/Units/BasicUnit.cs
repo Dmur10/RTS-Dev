@@ -11,7 +11,8 @@ namespace RTSGame.Units
         {
             Workers,
             Scavengers,
-            Warriors
+            Warriors,
+            Engineers
         }
 
         [Space(15)]
