@@ -21,6 +21,12 @@ namespace RTSGame
         {
             float totalDamage = damage;
             currentHealth -= totalDamage;
+            setFill();
+        }
+
+        public void setFill()
+        {
+            healthBarAmount.fillAmount = currentHealth / maxHealth;
         }
 
         private void HandleHeath()
@@ -29,7 +35,6 @@ namespace RTSGame
             gameObject.transform.LookAt(gameObject.transform.position +
                 camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
 
-            healthBarAmount.fillAmount = currentHealth / maxHealth;
             if (currentHealth <= 0)
             {
                 Die();

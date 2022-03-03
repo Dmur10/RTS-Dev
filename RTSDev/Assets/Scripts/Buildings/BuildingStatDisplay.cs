@@ -14,6 +14,7 @@ namespace RTSGame.Buildings
             maxHealth = stats.health;
             isPLayerBuilding = isPlayer;
             currentHealth = maxHealth;
+            setFill();
         }
 
         protected override void Die()

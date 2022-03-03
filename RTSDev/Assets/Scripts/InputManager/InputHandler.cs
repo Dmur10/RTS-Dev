@@ -109,7 +109,11 @@ namespace RTSGame.InputManager
                             {
                                 if (IsEngineerSelected())
                                 {
-
+                                    foreach (Transform unit in selectedUnits)
+                                    {
+                                        Interactables.IEngineer engineer = unit.gameObject.GetComponent<Interactables.IEngineer>();
+                                        engineer.SetCaptureTarget(hit.transform);
+                                    }
                                 }
                             }
                             else if (hit.transform.GetComponent<Units.Enemy.EnemyUnit>())

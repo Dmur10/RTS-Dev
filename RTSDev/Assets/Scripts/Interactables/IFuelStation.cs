@@ -4,15 +4,19 @@ using UnityEngine;
 
 namespace RTSGame.Interactables
 {
-    public class IFuelStation : IBuilding
+    public class IFuelStation : ICapturable
     {
         private bool captured = false;
+        private bool isPlayer = false;
 
         private void Update()
         {
             if (captured)
             {
-                Player.PlayerManager.instance.playerResources[(int)RTSResources.ResourceType.Fuel].AddAmount(Time.deltaTime);
+                if (isPlayer)
+                {
+                    Player.PlayerManager.instance.playerResources[(int)RTSResources.ResourceType.Fuel].AddAmount(Time.deltaTime);
+                }
             }
         }
 
@@ -24,6 +28,12 @@ namespace RTSGame.Interactables
         public override void OnInteractExit()
         {
             base.OnInteractExit();
+        }
+
+        public override void capture()
+        {
+            captured = true;
+            isPlayer = true;
         }
     }
 }

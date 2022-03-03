@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RTSGame.Interactables
 {
-    public class ICapturableVehicle : IUnit
+    public class ICapturableVehicle : ICapturable
     {
 
         public GameObject VehiclePrefab;
@@ -19,7 +19,7 @@ namespace RTSGame.Interactables
             base.OnInteractExit();
         }
 
-        public void capture()
+        public override void capture()
         {
             Instantiate(VehiclePrefab, transform.position, transform.rotation);
             Destroy(gameObject);

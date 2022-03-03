@@ -16,6 +16,7 @@ namespace RTSGame.Units
             isPLayerUnit = isPlayer;
 
             currentHealth = maxHealth;
+            setFill();
         }
 
         protected override void Die()

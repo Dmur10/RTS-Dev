@@ -1,18 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ICapturable : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+namespace RTSGame.Interactables {
+    public class ICapturable : Interactable
     {
-        
+        public override void OnInteractEnter()
+        {
+            base.OnInteractEnter();
+        }
+
+        public override void OnInteractExit()
+        {
+            base.OnInteractExit();
+        }
+
+        public virtual void capture()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
