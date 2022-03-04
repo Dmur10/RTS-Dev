@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTSGame
+namespace RTSGame.Upgrades
 {
     public enum UpgradeType
     {
@@ -12,7 +12,9 @@ namespace RTSGame
         Speed,
         BuildTime
     }
-    public class Upgrade : MonoBehaviour
+
+    [CreateAssetMenu(fileName = "New Upgrade", menuName = "New Upgrade/Basic")]
+    public class BasicUpgrade : ScriptableObject
     {
         public int size;
         public ScriptableObject[] targets;

@@ -4,25 +4,13 @@ using UnityEngine;
 
 namespace RTSGame.Buildings.Player
 {
-    public class PlayerBuilding : MonoBehaviour
+    public class PlayerBuilding : Building
     {
-
-        public BasicBuilding buildingType;
-
-        [HideInInspector]
-        public BuildingStatTypes.Base baseStats;
-
-        public BuildingStatDisplay statDisplay;
-
-        
-
         private void Start()
         {
             baseStats = buildingType.baseStats;
             statDisplay.SetStatDisplayBasicBuilding(baseStats, true);
         }
-
-        
     }
 }
 

@@ -4,30 +4,13 @@ using UnityEngine.AI;
 
 namespace RTSGame.Units.Player
 {
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class PlayerUnit : MonoBehaviour
+    public class PlayerUnit : Unit
     {
-
-        private NavMeshAgent navAgent;
-        public BasicUnit unitType;
-
-        [HideInInspector]
-        public UnitStatTypes.Base baseStats;
-        public UnitStatDisplay statDisplay;
-
-        [SerializeField]private Transform target = null;
-        private StatDisplay targetStatDisplay;
-
-        private float distance;
         private bool hasAggro = false;
-        public float atkCooldown;
 
         private void Start()
         {
-            baseStats = unitType.baseStats;
             statDisplay.SetStatDisplayBasicUnit(baseStats, true);
-            navAgent = GetComponent<NavMeshAgent>();
-            
         }
 
         private void Update()
@@ -91,7 +74,7 @@ namespace RTSGame.Units.Player
             }
             else
             {
-                distance = Vector3.Distance(target.position, transform.position);
+                float distance = Vector3.Distance(target.position, transform.position);
                 navAgent.stoppingDistance = (baseStats.atkRange + 1);
 
                 if (distance <= baseStats.aggroRange)
@@ -100,14 +83,7 @@ namespace RTSGame.Units.Player
                 }
             }
         }
-        private void Attack()
-        {
-            if (atkCooldown <= 0 && distance <= baseStats.atkRange + 1 )
-            {
-                targetStatDisplay.takeDamage(baseStats.damage);
-                atkCooldown = baseStats.atkSpeed;
-            }
-        }
+        
 
     }
 }

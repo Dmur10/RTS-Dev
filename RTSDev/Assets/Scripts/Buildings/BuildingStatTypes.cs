@@ -9,7 +9,8 @@ namespace RTSGame.Buildings
         [System.Serializable]
         public class Base
         {
-            public float health, attack, atkRange;
+            public float health, attack, atkSpeed, atkRange;
+            public float[] cost;
         }
     }
 }

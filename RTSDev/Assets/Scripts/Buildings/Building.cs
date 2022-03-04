@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+namespace RTSGame.Buildings
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Building : MonoBehaviour
     {
-        
-    }
+        public BasicBuilding buildingType;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [HideInInspector]
+        public BuildingStatTypes.Base baseStats;
+
+        public BuildingStatDisplay statDisplay;
     }
 }

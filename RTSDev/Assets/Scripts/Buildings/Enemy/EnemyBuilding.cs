@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBuilding : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+namespace RTSGame.Buildings.Enemy {
+    public class EnemyBuilding : Building
     {
-        
+        private void Start()
+        {
+            baseStats = buildingType.baseStats;
+            statDisplay.SetStatDisplayBasicBuilding(baseStats, false);
+        }
     }
 }
+

@@ -16,6 +16,11 @@ namespace RTSGame.UI.HUD
         [Header("Buildings")]
         [Space(15)]
         public List<Buildings.BasicBuilding> basicBuildings = new List<Buildings.BasicBuilding>();
+
+        [Space(5)]
+        [Header("Upgrade")]
+        [Space(15)]
+        public List<Upgrades.BasicUpgrade> basicUpgrades = new List<Upgrades.BasicUpgrade>();
     }
 }
 
