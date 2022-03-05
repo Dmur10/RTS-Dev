@@ -6,6 +6,10 @@ namespace RTSGame.UI.HUD
 {
     public class UpgradeBuildingAction : MonoBehaviour
     {
-
+        public void OnClick()
+        {
+            Debug.Log("name");
+            ActionFrame.instance.Upgrade(name);
+        }
     }
 }

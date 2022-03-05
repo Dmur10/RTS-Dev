@@ -8,6 +8,7 @@ namespace RTSGame.UI.HUD
     {
         public void OnClick()
         {
+            ActionFrame.instance.Upgrade(name);
         }
     }
 }

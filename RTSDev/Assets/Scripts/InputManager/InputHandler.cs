@@ -21,10 +21,10 @@ namespace RTSGame.InputManager
 
         public LayerMask interactabeLayer = new LayerMask();
 
-        private void Awake()
+        void Awake()
         {
             instance = this;
-        } 
+        }
 
         // Update is called once per frame
         public void HandleUnitMovement()

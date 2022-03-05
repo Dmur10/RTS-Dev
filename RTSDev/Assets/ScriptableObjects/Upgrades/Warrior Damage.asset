@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Warrior Damage
   m_EditorClassIdentifier: 
   size: 10
-  targets:
-  - {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
+  units: []
+  buildings: []
   upgradeType: 1

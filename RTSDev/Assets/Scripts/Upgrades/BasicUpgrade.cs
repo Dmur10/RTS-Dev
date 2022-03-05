@@ -17,7 +17,8 @@ namespace RTSGame.Upgrades
     public class BasicUpgrade : ScriptableObject
     {
         public int size;
-        public ScriptableObject[] targets;
+        public Units.BasicUnit[] units;
+        public Buildings.BasicBuilding[] buildings;
         public UpgradeType upgradeType;
     }
 }

@@ -61,7 +61,7 @@ namespace RTSGame.UI.HUD
                 {
                     Button btn = Instantiate(actionButtonUpgrade, layoutGroup);
                     btn.name = upgrade.name;
-
+                    Debug.Log(btn.name);
                     buttons.Add(btn);
                 }
             }
@@ -100,6 +100,15 @@ namespace RTSGame.UI.HUD
             
         }
 
+        public void Upgrade(string name)
+        {
+            Upgrades.BasicUpgrade upgrade = IsUpgrade(name);
+            if(upgrade != null)
+            {
+                Upgrades.UpgradeHandler.instance.ApplyUpgrade(upgrade);
+            }
+        }
+
         private Units.BasicUnit IsUnit(string name)
         {
             foreach (Units.BasicUnit unit in actionList.basicUnits)
@@ -124,6 +133,19 @@ namespace RTSGame.UI.HUD
             return null;
         }
 
+        private Upgrades.BasicUpgrade IsUpgrade(string name)
+        {
+            foreach(Upgrades.BasicUpgrade upgrade in actionList.basicUpgrades)
+            {
+                if(upgrade.name == name)
+                {
+                    return upgrade;
+                }
+            }
+            Debug.Log("fail");
+            return null;
+        }
+
         public void SpawnObject()
         {
             GameObject spawnedObject = Instantiate(spawnOrder[0], spawnPoint.transform.position, Quaternion.identity);
@@ -137,6 +159,4 @@ namespace RTSGame.UI.HUD
         }
     }
 
-   
-   
 }

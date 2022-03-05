@@ -21,7 +21,6 @@ namespace RTSGame.Units
         protected NavMeshAgent navAgent;
         public BasicUnit unitType;
 
-        [HideInInspector]
         public UnitStatTypes.Base baseStats;
         public UnitStatDisplay statDisplay;
 
