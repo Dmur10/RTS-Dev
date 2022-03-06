@@ -20,16 +20,17 @@ namespace RTSGame.Upgrades
                 switch (basicUpgrade.upgradeType)
                 {
                     case UpgradeType.Damage:
-                        unit.baseStats.damage = unit.baseStats.damage * (100 + basicUpgrade.size);
+                        Debug.Log("made it");
+                        unit.baseStats.damage *= (100 + basicUpgrade.size);
                         break;
                     case UpgradeType.Health:
-                        unit.baseStats.health = unit.baseStats.health * (100 + basicUpgrade.size);
+                        unit.baseStats.health *= (100 + basicUpgrade.size);
                         break;
                     case UpgradeType.Range:
-                        unit.baseStats.atkRange = unit.baseStats.atkRange * (100 + basicUpgrade.size);
+                        unit.baseStats.atkRange *= (100 + basicUpgrade.size);
                         break;
                     case UpgradeType.Speed:
-                        unit.baseStats.atkSpeed = unit.baseStats.atkSpeed * (100 + basicUpgrade.size);
+                        unit.baseStats.atkSpeed *= (100 + basicUpgrade.size);
                         break;
                 }
             }

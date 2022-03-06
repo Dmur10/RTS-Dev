@@ -30,7 +30,7 @@ namespace RTSGame.Units
         public float atkCooldown;
         protected float distance;
 
-        private void Start()
+        public void Start()
         {
             baseStats = unitType.baseStats;
             atkCooldown = baseStats.atkSpeed;

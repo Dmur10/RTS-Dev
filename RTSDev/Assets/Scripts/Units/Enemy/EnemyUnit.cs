@@ -23,6 +23,7 @@ namespace RTSGame.Units.Enemy
 
         private void Start()
         {
+            base.Start();
             statDisplay.SetStatDisplayBasicUnit(baseStats, false);
         }
 

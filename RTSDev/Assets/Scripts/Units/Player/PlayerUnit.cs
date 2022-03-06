@@ -10,6 +10,7 @@ namespace RTSGame.Units.Player
 
         private void Start()
         {
+            base.Start();
             statDisplay.SetStatDisplayBasicUnit(baseStats, true);
         }
 

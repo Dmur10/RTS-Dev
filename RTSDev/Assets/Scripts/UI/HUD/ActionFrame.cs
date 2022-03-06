@@ -92,6 +92,7 @@ namespace RTSGame.UI.HUD
 
             if (spawnQueue.Count == 1) 
             {
+                Debug.Log("starts");
                 ActionTimer.instance.StartCoroutine(ActionTimer.instance.SpawnQueueTimer());
             } else if (spawnQueue.Count == 0)
             {
@@ -148,9 +149,11 @@ namespace RTSGame.UI.HUD
 
         public void SpawnObject()
         {
+            Debug.Log("spawnObject");
             GameObject spawnedObject = Instantiate(spawnOrder[0], spawnPoint.transform.position, Quaternion.identity);
 
             Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
+            Debug.Log(pu.baseStats.health);
             pu.transform.SetParent(GameObject.Find(pu.unitType.type.ToString()).transform);
 
             spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnPoint.transform.position);
