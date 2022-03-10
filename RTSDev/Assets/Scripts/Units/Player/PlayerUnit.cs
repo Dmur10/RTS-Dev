@@ -6,6 +6,16 @@ namespace RTSGame.Units.Player
 {
     public class PlayerUnit : Unit
     {
+
+        public enum State
+        {
+            Idle,
+            Moving,
+            Attacking
+        }
+
+        public State state = State.Idle;
+
         private bool hasAggro = false;
 
         private void Start()

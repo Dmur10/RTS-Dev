@@ -9,15 +9,6 @@ namespace RTSGame.Units
     [RequireComponent(typeof(NavMeshAgent))]
     public class Unit : MonoBehaviour
     {
-        public enum State
-        {
-            Idle,
-            Moving,
-            Attacking
-        }
-
-        public State state = State.Idle;
-
         protected NavMeshAgent navAgent;
         public BasicUnit unitType;
 

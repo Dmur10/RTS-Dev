@@ -16,7 +16,7 @@ namespace RTSGame.Upgrades
     [CreateAssetMenu(fileName = "New Upgrade", menuName = "New Upgrade/Basic")]
     public class BasicUpgrade : ScriptableObject
     {
-        public int size;
+        public float size;
         public Units.BasicUnit[] units;
         public Buildings.BasicBuilding[] buildings;
         public UpgradeType upgradeType;

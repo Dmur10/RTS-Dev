@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7a5240de5d83b479a5b442ab2e1f3f, type: 3}
   m_Name: Warrior Damage
   m_EditorClassIdentifier: 
-  size: 10
+  size: 0.1
   units:
   - {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
   buildings: []

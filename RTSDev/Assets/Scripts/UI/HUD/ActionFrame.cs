@@ -14,6 +14,7 @@ namespace RTSGame.UI.HUD
         [SerializeField] private Button actionButtonUpgrade = null;
 
         [SerializeField] private Transform layoutGroup = null;
+        [SerializeField] private GameObject toolTip;
 
         private List<Button> buttons = new List<Button>();
         private PlayerActions actionList = null;
@@ -40,7 +41,6 @@ namespace RTSGame.UI.HUD
                 {
                     Button btn = Instantiate(actionButtonUnit, layoutGroup);
                     btn.name = unit.name;
-
                     buttons.Add(btn);
                 }
             }
@@ -50,7 +50,6 @@ namespace RTSGame.UI.HUD
                 {
                     Button btn = Instantiate(actionButtonBuilding, layoutGroup);
                     btn.name = building.name;
-
                     buttons.Add(btn);
                 }
             }
@@ -61,7 +60,6 @@ namespace RTSGame.UI.HUD
                 {
                     Button btn = Instantiate(actionButtonUpgrade, layoutGroup);
                     btn.name = upgrade.name;
-                    Debug.Log(btn.name);
                     buttons.Add(btn);
                 }
             }
