@@ -255,8 +255,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6287805073163531369}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -81.103584, y: 0, z: 88.981476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 2, z: 4}
   m_Children:
   - {fileID: 1850759533934929352}
@@ -327,6 +327,9 @@ MonoBehaviour:
   baseStats:
     health: 0
     attack: 0
+    atkSpeed: 0
+    atkRange: 0
+    cost: []
   statDisplay: {fileID: 8231549801982318860}
 --- !u!1 &8367733146722858642
 GameObject:

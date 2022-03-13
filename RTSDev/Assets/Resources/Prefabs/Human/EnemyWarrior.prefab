@@ -148,19 +148,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ea8ad13c512e2340a5a51d2e03808ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  currentWaypoint: {fileID: 0}
   unitType: {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
   baseStats:
-    cost: 0
     aggroRange: 0
     atkRange: 0
     atkSpeed: 0
     damage: 0
     health: 0
+    cost: []
   statDisplay: {fileID: 1737855034691493698}
   target: {fileID: 0}
+  StartWaypoint: {fileID: 0}
   atkCooldown: 0
+  state: 0
 --- !u!1 &7515771766131954911
 GameObject:
   m_ObjectHideFlags: 0

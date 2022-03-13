@@ -65,7 +65,7 @@ namespace RTSGame
             Debug.Log("Spawn enemy");
             GameObject spawnedEnemy = Instantiate(enemy.gameObject, transform.position, transform.rotation);
             Units.Enemy.EnemyUnit eu = spawnedEnemy.GetComponent<Units.Enemy.EnemyUnit>();
-            eu.currentWaypoint = firstWayPoint;
+            eu.StartWaypoint = firstWayPoint;
             eu.transform.parent = GameObject.Find( "E" + eu.unitType.type.ToString()).transform;
         }
     }

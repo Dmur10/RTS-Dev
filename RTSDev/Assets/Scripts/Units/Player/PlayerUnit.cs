@@ -7,13 +7,6 @@ namespace RTSGame.Units.Player
     public class PlayerUnit : Unit
     {
 
-        public enum State
-        {
-            Idle,
-            Moving,
-            Attacking
-        }
-
         public State state = State.Idle;
 
         private bool hasAggro = false;
@@ -26,6 +19,27 @@ namespace RTSGame.Units.Player
 
         private void Update()
         {
+            switch(state)
+            {
+                case State.Idle:
+                    //checkForTarget();
+                    break;
+                case State.Moving:
+                    break;
+                case State.Attacking:
+                    Attack();
+                    MoveToTarget();
+                    break;
+                case State.Aggresive:
+                    //check for target if have one chase it so like attacking but continuous till target dead or lost;
+                    break;
+                case State.Defensive:
+                    //check for target chase for a while and give up or has been killed.
+                    break;
+                case State.StandGround:
+                    //only attack enemy in range and do not move.
+                    break;
+            }
             atkCooldown -= Time.deltaTime;
             if (hasAggro)
             {
@@ -38,6 +52,7 @@ namespace RTSGame.Units.Player
         public void MoveUnit(Vector3 destination)
         {
             target = null;
+            state = State.Idle;
             if (navAgent == null)
             {
                 navAgent = GetComponent<NavMeshAgent>();
@@ -76,23 +91,17 @@ namespace RTSGame.Units.Player
             hasAggro = true;
         }
 
-        private void MoveToTarget()
+        public override bool CheckForTarget()
         {
-            if (target == null)
-            {
-                navAgent.SetDestination(transform.position);
-                hasAggro = false;
-            }
-            else
-            {
-                float distance = Vector3.Distance(target.position, transform.position);
-                navAgent.stoppingDistance = (baseStats.atkRange + 1);
+            colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.eUnitLayer);
 
-                if (distance <= baseStats.aggroRange)
-                {
-                    navAgent.SetDestination(target.position);
-                }
+            for (int i = 0; i < colliders.Length;)
+            {
+                target = colliders[i].gameObject.transform;
+                targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
+                return true;
             }
+            return false;
         }
         
 

@@ -15,11 +15,11 @@ namespace RTSGame
             {
                 if (isLastWaypoint)
                 {
-                    other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = null;
+                    //other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = null;
                 }
                 else
                 {
-                    other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = nextWayPoint;
+                    //other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = nextWayPoint;
                 }  
             }
         }

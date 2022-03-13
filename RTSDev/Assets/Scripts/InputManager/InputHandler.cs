@@ -70,7 +70,7 @@ namespace RTSGame.InputManager
                     if (HaveSelectedUnits())
                     {
                         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        if (Physics.Raycast(ray, out hit))
+                        if (Physics.Raycast(ray, out hit, 1000))
                         {
                             Interactables.IResource iResource = hit.transform.GetComponent<Interactables.IResource>();
                             if (iResource)
@@ -126,6 +126,8 @@ namespace RTSGame.InputManager
                             }
                             else
                             {
+                                Debug.Log(hit.point);
+                                Debug.Log(hit.collider);
                                 Debug.Log("targetPostList");
                                 List<Vector3> targetPositionList = GetPositionListAround(hit.point, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
                                 int targetPositionListIndex = 0;

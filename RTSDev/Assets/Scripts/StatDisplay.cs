@@ -11,6 +11,8 @@ namespace RTSGame
 
         [SerializeField] private Image healthBarAmount;
 
+        private bool isPlayer;
+
         // Update is called once per frame
         private void Update()
         {
@@ -22,6 +24,16 @@ namespace RTSGame
             float totalDamage = damage;
             currentHealth -= totalDamage;
             setFill();
+        }
+
+        public void SetIsPlayer(bool player)
+        {
+            this.isPlayer = player;
+        }
+
+        public bool IsPlayer()
+        {
+            return isPlayer;
         }
 
         public void setFill()

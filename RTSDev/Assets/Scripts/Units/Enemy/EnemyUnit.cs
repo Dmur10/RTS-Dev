@@ -17,10 +17,6 @@ namespace RTSGame.Units.Enemy
 
         public State state = State.Idle;
 
-        public Transform currentWaypoint;
-
-        private Collider[] colliders;
-
         private void Start()
         {
             base.Start();
@@ -31,18 +27,18 @@ namespace RTSGame.Units.Enemy
         {
             atkCooldown -= Time.deltaTime;
 
-            switch (state)
+        /*    switch (state)
             {
                 case State.Idle:
                     checkForTarget();
-                    if(currentWaypoint != null)
+                    if(StartWaypoint != null)
                     {
-                        MoveUnit(currentWaypoint.position);
+                        MoveUnit(StartWaypoint.position);
                     }
                     break;
                 case State.Moving:
                     checkForTarget();
-                    if (currentWaypoint == null)
+                    if (StartWaypoint == null)
                     {
                         state = State.Idle;
                     }
@@ -55,52 +51,21 @@ namespace RTSGame.Units.Enemy
                     Attack();
                     MoveToTarget();
                     break;
-            }
-        }
-        public void MoveUnit(Vector3 destination)
-        {
-            if (navAgent == null)
-            {
-                navAgent = GetComponent<NavMeshAgent>();
-            }
-            navAgent.SetDestination(destination);
-            state = State.Moving;
+            }*/
         }
 
-        private void checkForTarget()
+        public override bool CheckForTarget()
         {
             colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.pUnitLayer);
 
             for (int i = 0; i < colliders.Length;)
-            { 
-                    target = colliders[i].gameObject.transform;
-                    targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
-                    state = State.Attacking;
-                    break;
-            }
-        }
-
-        private void MoveToTarget()
-        {
-            if (target  == null)
             {
-                navAgent.SetDestination(transform.position);
-                state = State.Moving;
+                target = colliders[i].gameObject.transform;
+                targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
+                return true;
             }
-            else
-            {
-                float distance = Vector3.Distance(target.position, transform.position);
-                navAgent.stoppingDistance = (baseStats.atkRange + 1);
-
-                if (distance <= baseStats.aggroRange)
-                {
-                    navAgent.SetDestination(target.position);
-                }
-            }
-            
-        }
-
-        
+            return false;
+        }       
 
     }
 }

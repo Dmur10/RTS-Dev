@@ -8,12 +8,10 @@ namespace RTSGame.Units
 {
     public class UnitStatDisplay : StatDisplay
     {
-        private bool isPLayerUnit = false;
-
         public void SetStatDisplayBasicUnit(UnitStatTypes.Base stats, bool isPlayer )
         {
             maxHealth = stats.health;
-            isPLayerUnit = isPlayer;
+            SetIsPlayer(isPlayer);
 
             currentHealth = maxHealth;
             setFill();
@@ -21,7 +19,7 @@ namespace RTSGame.Units
 
         protected override void Die()
         {
-            if (isPLayerUnit)
+            if (IsPlayer())
             {
                 InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform.parent);
                 Destroy(gameObject.transform.parent.gameObject);

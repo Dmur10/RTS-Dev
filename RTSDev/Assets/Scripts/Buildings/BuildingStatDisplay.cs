@@ -7,19 +7,18 @@ namespace RTSGame.Buildings
 {
     public class BuildingStatDisplay : StatDisplay
     {
-        private bool isPLayerBuilding = false;
-
         public void SetStatDisplayBasicBuilding(BuildingStatTypes.Base stats, bool isPlayer)
         {
             maxHealth = stats.health;
-            isPLayerBuilding = isPlayer;
+            SetIsPlayer(isPlayer);
+
             currentHealth = maxHealth;
             setFill();
         }
 
         protected override void Die()
         {
-            if (isPLayerBuilding)
+            if (IsPlayer())
             {
                 if (InputManager.InputHandler.instance.selectedBuilding == this.transform.parent.gameObject.GetComponent<Player.PlayerBuilding>())
                 {
