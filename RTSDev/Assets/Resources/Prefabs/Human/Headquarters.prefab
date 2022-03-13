@@ -712,7 +712,9 @@ MonoBehaviour:
   baseStats:
     health: 0
     attack: 0
+    atkSpeed: 0
     atkRange: 0
+    cost: []
   statDisplay: {fileID: 8615388277889144470}
 --- !u!208 &1332006239238325258
 NavMeshObstacle:

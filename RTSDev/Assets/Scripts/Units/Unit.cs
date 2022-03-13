@@ -46,6 +46,11 @@ namespace RTSGame.Units
             finiteStateMachine = GetComponent<FSM.FiniteStateMachine>();
         }
 
+        public Transform GetTarget()
+        {
+            return target;
+        }
+
         public virtual bool CheckForTarget()
         {
             return false;
@@ -66,7 +71,6 @@ namespace RTSGame.Units
                     navAgent.SetDestination(target.position);
                 }
             }
-
         }
 
         protected void Attack()

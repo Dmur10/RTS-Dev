@@ -8,15 +8,6 @@ namespace RTSGame.Units.Enemy
 {
     public class EnemyUnit : Unit
     {
-        public enum State
-        {
-            Idle,
-            Moving,
-            Attacking
-        }
-
-        public State state = State.Idle;
-
         private void Start()
         {
             base.Start();

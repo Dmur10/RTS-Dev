@@ -20,13 +20,33 @@ namespace RTSGame.FSM
         {
             if (base.EnterState())
             {
-                unit.MoveToTarget();
+                target = unit.GetTarget();
+                if(target != null)
+                {
+                    unit.MoveToTarget();
+                }
             }
             return base.EnterState();
         }
 
         public override void UpdateState()
         {
+            if(target = null)
+            {
+                navMeshAgent.SetDestination(unit.transform.position);
+                fsm.EnterState(FSMStateType.Patrol);
+            }
+        }
+
+        private void MoveToTarget()
+        {
+                float distance = Vector3.Distance(target.position, unit.transform.position);
+                navMeshAgent.stoppingDistance = (unit.baseStats.atkRange + 1);
+
+                if (distance <= unit.baseStats.aggroRange)
+                {
+                    navMeshAgent.SetDestination(target.position);
+                }
         }
     }
 }

@@ -35,9 +35,9 @@ namespace RTSGame.Interactables
                 case State.Idle:
                     break;
                 case State.MovingToBuildingZone:
-                    if (unit.IsIdle() && BuildZone != null)
+                    if (BuildZone != null)
                     {
-                        unit.MoveUnit(BuildZone.GetPosition(), 10f, () => {
+                        unit.MoveUnit(BuildZone.GetPosition(), BuildZone.GetOffset(), () => {
                             state = State.Building;
                         });
                     }
@@ -45,7 +45,7 @@ namespace RTSGame.Interactables
                 case State.Building:
                     if (unit.IsIdle() && BuildZone != null)
                     {
-                        PlayAnimationBuild(BuildZone.GetPosition(), 10f, () =>
+                        PlayAnimationBuild(BuildZone.GetPosition(), BuildZone.GetOffset(), () =>
                         {
                             BuildZone.AddConstructionTick();
                             if(BuildZone.IsBuilt())
@@ -83,7 +83,10 @@ namespace RTSGame.Interactables
 
         private void PlayAnimationBuild(Vector3 position, float v, Action p)
         {
-            p.Invoke();
+            if (Vector3.Distance(transform.position, position) < v)
+            {
+                p.Invoke();
+            }
         }
     }
 }

@@ -19,21 +19,26 @@ namespace RTSGame.Buildings
 
         private int constructionTick;
         private int constructionTickMax;
+        private float offset;
         private GameObject Prefab;
         public Image Progress;
 
         public void SetUp(Vector3 size, int constructionTickMax, GameObject toBuild)
         {
             transform.localScale = size;
+            offset = Vector3.Distance(transform.position, transform.Find("Corner").position);
             this.constructionTickMax = constructionTickMax;
             Prefab = toBuild;
         }
 
+        public float GetOffset()
+        {
+            return offset;
+        }
         public void AddConstructionTick()
         {
             constructionTick++;
             Progress.fillAmount = (float)constructionTick / constructionTickMax;
-            Debug.Log(Progress.fillAmount);
 
             if(constructionTick >= constructionTickMax)
             {

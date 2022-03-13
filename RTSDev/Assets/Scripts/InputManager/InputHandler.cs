@@ -126,9 +126,6 @@ namespace RTSGame.InputManager
                             }
                             else
                             {
-                                Debug.Log(hit.point);
-                                Debug.Log(hit.collider);
-                                Debug.Log("targetPostList");
                                 List<Vector3> targetPositionList = GetPositionListAround(hit.point, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
                                 int targetPositionListIndex = 0;
 

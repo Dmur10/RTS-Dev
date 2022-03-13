@@ -69,14 +69,10 @@ namespace RTSGame.Buildings
                 Destroy(buildingToPlace.gameObject);
             }
 
-            //need to instantiate playerbuilding of correct type here use building
             basicBuilding = BuildingHandler.instance.GetBasicBuilding(type);
 
             buildingToPlace = GameObject.Instantiate(basicBuilding.buildingPrefab);
             _transform = buildingToPlace.transform;
- 
-            //Player.PlayerBuilding pb = buildingToPlace.GetComponent<Player.PlayerBuilding>();
-            //pb.transform.SetParent(GameObject.Find(pb.buildingType.type.ToString()).transform);
 
             _materials = new List<Material>();
             foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
