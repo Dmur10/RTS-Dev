@@ -1170,7 +1170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextWayPoint: {fileID: 0}
-  lastWaypoint: 0
+  lastWaypoint: 1
 --- !u!1001 &238969167
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,10 +20,8 @@ namespace RTSGame.FSM
             EnteredState = false;
             if (base.EnterState())
             {
-                target = unit.GetTarget();
                 EnteredState = true;
             }
-            Debug.Log(EnteredState);
             return EnteredState;
         }
 
@@ -46,6 +44,10 @@ namespace RTSGame.FSM
                 else if (distance > unit.baseStats.aggroRange)
                 {
                     unit.SetTarget(null);
+                }
+                else
+                {
+                    navMeshAgent.SetDestination(target.position);
                 }
             }
         }

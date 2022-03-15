@@ -18,13 +18,12 @@ namespace RTSGame.FSM
         {
             if (base.EnterState())
             {
-                waypoint = unit.waypoint.GetComponent<EnemyWaypoint>();
-
-                if(waypoint == null)
+                if (unit.GetWayPoint() == null)
                 {
                     EnteredState = false;
                 } else
                 {
+                    waypoint = unit.GetWayPoint().GetComponent<EnemyWaypoint>();
                     SetDestination(waypoint.transform.position);
                     EnteredState = true;
                 }
@@ -39,6 +38,8 @@ namespace RTSGame.FSM
                 if (unit.CheckForTarget())
                 {
                     fsm.EnterState(FSMStateType.Chase);
+                } else if(unit.GetWayPoint() == null){
+                    fsm.EnterState(FSMStateType.Idle);
                 }
                 else
                 {
@@ -46,13 +47,14 @@ namespace RTSGame.FSM
                     {
                         unit.SetWaypoint(waypoint.GetNextWaypoint());
 
-                        if (unit.waypoint == null)
+                        if (unit.GetWayPoint() == null)
                         {
                             fsm.EnterState(FSMStateType.Idle);
                         }
                         else
                         {
                             SetDestination(waypoint.GetNextWaypoint().position);
+                            waypoint = waypoint.GetNextWaypoint().GetComponent<EnemyWaypoint>();
                         }
                     }
                 }

@@ -25,7 +25,7 @@ namespace RTSGame.FSM
             if (unit.CheckForTarget())
             {
                 fsm.EnterState(FSMStateType.Chase);
-            } else if(unit.waypoint != null)
+            } else if(unit.GetWayPoint() != null)
             {
                 fsm.EnterState(FSMStateType.Patrol);
             }

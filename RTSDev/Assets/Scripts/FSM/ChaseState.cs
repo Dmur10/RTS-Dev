@@ -7,7 +7,6 @@ namespace RTSGame.FSM
     public class ChaseState : AbstractFSMState
     {
         Transform target;
-        StatDisplay targetStatDisplay;
         float distance;
 
         public override void OnEnable()
@@ -18,47 +17,53 @@ namespace RTSGame.FSM
 
         public override bool EnterState()
         {
+            EnteredState = false;
             if (base.EnterState())
             {
                 target = unit.GetTarget();
                 if(target != null)
                 {
-                    targetStatDisplay = target.GetComponentInChildren<StatDisplay>();
+                    EnteredState = true;
                     unit.MoveToTarget();
                 }
             }
-            return true;
+            return EnteredState;
         }
 
         public override void UpdateState()
         {
-            if (target == null)
+            if (EnteredState)
             {
-                navMeshAgent.SetDestination(unit.transform.position);
-                fsm.EnterState(FSMStateType.Patrol);
-            }
-            else
-            {
-                distance = Vector3.Distance(target.position, unit.transform.position);
-                if(unit.atkCooldown > 0)
-                {
-                    unit.atkCooldown -= Time.deltaTime;
-                }
-                
-                if (unit.atkCooldown <= 0 && distance < unit.baseStats.atkRange)
-                {
-                    unit.Attack();
-                } else if(distance > unit.baseStats.aggroRange)
+                if (target == null)
                 {
                     navMeshAgent.SetDestination(unit.transform.position);
-                    unit.SetTarget(null);
-                    fsm.EnterState(FSMStateType.Idle);
+                    fsm.EnterState(FSMStateType.Patrol);
                 }
                 else
                 {
-                    navMeshAgent.SetDestination(target.position);
+                    distance = Vector3.Distance(target.position, unit.transform.position);
+                    if (unit.atkCooldown > 0)
+                    {
+                        unit.atkCooldown -= Time.deltaTime;
+                    }
+
+                    if (unit.atkCooldown <= 0 && distance <= unit.baseStats.atkRange)
+                    {
+                        unit.Attack();
+                    }
+                    else if (distance > unit.baseStats.aggroRange)
+                    {
+                        navMeshAgent.SetDestination(unit.transform.position);
+                        unit.SetTarget(null);
+                        fsm.EnterState(FSMStateType.Idle);
+                    }
+                    else
+                    {
+                        navMeshAgent.SetDestination(target.position);
+                    }
                 }
             }
+            
         }
 
         private void MoveToTarget()

@@ -6,7 +6,6 @@ namespace RTSGame.FSM
 {
     public class HoldGroundState : AbstractFSMState
     {
-        Transform target;
         float distance;
 
         public override void OnEnable()
@@ -19,15 +18,12 @@ namespace RTSGame.FSM
         {
             if (!unit.HasTarget())
             {
-                if (unit.CheckForTarget())
-                {
-                    target = unit.GetTarget();
-                }
+                unit.CheckForTarget();
             }
             else
             {
-                distance = Vector3.Distance(target.position, unit.transform.position);
-                if (unit.atkCooldown <= 0 && distance < unit.baseStats.atkRange)
+                distance = Vector3.Distance(unit.GetTarget().position, unit.transform.position);
+                if (unit.atkCooldown <= 0 && distance <= unit.baseStats.atkRange)
                 {
                     unit.Attack();
                 }

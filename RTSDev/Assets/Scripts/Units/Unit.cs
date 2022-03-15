@@ -64,6 +64,11 @@ namespace RTSGame.Units
             return true;
         }
 
+        public Transform GetWayPoint()
+        {
+            return waypoint;
+        }
+
         public void SetWaypoint(Transform waypoint)
         {
             this.waypoint = waypoint;
@@ -101,7 +106,7 @@ namespace RTSGame.Units
             else
             {
                 float distance = Vector3.Distance(target.position, transform.position);
-                navAgent.stoppingDistance = (baseStats.atkRange + 1);
+                navAgent.stoppingDistance = (baseStats.atkRange);
 
                 if (distance <= baseStats.aggroRange)
                 {
