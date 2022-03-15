@@ -8,41 +8,10 @@ namespace RTSGame.Units.Enemy
 {
     public class EnemyUnit : Unit
     {
-        private void Start()
+        public void Start()
         {
             base.Start();
             statDisplay.SetStatDisplayBasicUnit(baseStats, false);
-        }
-
-        private void Update()
-        {
-            atkCooldown -= Time.deltaTime;
-
-        /*    switch (state)
-            {
-                case State.Idle:
-                    checkForTarget();
-                    if(StartWaypoint != null)
-                    {
-                        MoveUnit(StartWaypoint.position);
-                    }
-                    break;
-                case State.Moving:
-                    checkForTarget();
-                    if (StartWaypoint == null)
-                    {
-                        state = State.Idle;
-                    }
-                    break;
-                case State.Attacking:
-                    if(target == null)
-                    {
-                        state = State.Moving;
-                    }
-                    Attack();
-                    MoveToTarget();
-                    break;
-            }*/
         }
 
         public override bool CheckForTarget()

@@ -30,8 +30,9 @@ namespace RTSGame.Units
         [SerializeField] protected Transform target = null;
         protected StatDisplay targetStatDisplay;
 
-        public Transform StartWaypoint;
+        public Transform waypoint;
 
+        [SerializeField]
         protected Collider[] colliders;
 
         public float atkCooldown;
@@ -46,9 +47,45 @@ namespace RTSGame.Units
             finiteStateMachine = GetComponent<FSM.FiniteStateMachine>();
         }
 
+        void Update()
+        {
+            if (atkCooldown > 0)
+            {
+                atkCooldown -= Time.deltaTime;
+            }
+        }
+
+        public bool IsIdle()
+        {
+            if(navAgent.velocity.magnitude != 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void SetWaypoint(Transform waypoint)
+        {
+            this.waypoint = waypoint;
+        }
+
         public Transform GetTarget()
         {
             return target;
+        }
+
+        public void SetTarget(Transform target)
+        {
+            this.target = target;
+        }
+
+        public bool HasTarget()
+        {
+            if(target != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         public virtual bool CheckForTarget()
@@ -73,13 +110,10 @@ namespace RTSGame.Units
             }
         }
 
-        protected void Attack()
+        public void Attack()
         {
-            if (atkCooldown <= 0 && distance <= baseStats.atkRange + 1)
-            {
                 targetStatDisplay.takeDamage(baseStats.damage);
                 atkCooldown = baseStats.atkSpeed;
-            }
         }
     }
 

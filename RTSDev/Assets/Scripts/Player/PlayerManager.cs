@@ -61,7 +61,7 @@ namespace RTSGame.Player
                     else if (type == enemyUnits)
                     {
                         Units.Enemy.EnemyUnit eU = tf.GetComponent<Units.Enemy.EnemyUnit>();
-                        eU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(name); 
+                        eU.baseStats = Units.UnitHandler.instance.GetUnitBaseStats(name.Substring(1,name.Length-1)); 
                     }
                     else if (type = playerBuildings)
                     {

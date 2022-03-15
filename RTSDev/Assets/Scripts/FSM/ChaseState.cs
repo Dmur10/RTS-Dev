@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace RTSGame.FSM
 {
-    [CreateAssetMenu(fileName = "ChaseState", menuName = "FSM/States/Chase", order = 3)]
     public class ChaseState : AbstractFSMState
     {
         Transform target;
         StatDisplay targetStatDisplay;
+        float distance;
 
         public override void OnEnable()
         {
@@ -23,24 +23,47 @@ namespace RTSGame.FSM
                 target = unit.GetTarget();
                 if(target != null)
                 {
+                    targetStatDisplay = target.GetComponentInChildren<StatDisplay>();
                     unit.MoveToTarget();
                 }
             }
-            return base.EnterState();
+            return true;
         }
 
         public override void UpdateState()
         {
-            if(target = null)
+            if (target == null)
             {
                 navMeshAgent.SetDestination(unit.transform.position);
                 fsm.EnterState(FSMStateType.Patrol);
+            }
+            else
+            {
+                distance = Vector3.Distance(target.position, unit.transform.position);
+                if(unit.atkCooldown > 0)
+                {
+                    unit.atkCooldown -= Time.deltaTime;
+                }
+                
+                if (unit.atkCooldown <= 0 && distance < unit.baseStats.atkRange)
+                {
+                    unit.Attack();
+                } else if(distance > unit.baseStats.aggroRange)
+                {
+                    navMeshAgent.SetDestination(unit.transform.position);
+                    unit.SetTarget(null);
+                    fsm.EnterState(FSMStateType.Idle);
+                }
+                else
+                {
+                    navMeshAgent.SetDestination(target.position);
+                }
             }
         }
 
         private void MoveToTarget()
         {
-                float distance = Vector3.Distance(target.position, unit.transform.position);
+                distance = Vector3.Distance(target.position, unit.transform.position);
                 navMeshAgent.stoppingDistance = (unit.baseStats.atkRange + 1);
 
                 if (distance <= unit.baseStats.aggroRange)

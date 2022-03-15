@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RTSGame.FSM
 {
-    [CreateAssetMenu(fileName = "MoveToDestinationState", menuName = "FSM/States/MoveToDestination", order = 2)]
     public class MoveToDestinationState : AbstractFSMState
     {
 

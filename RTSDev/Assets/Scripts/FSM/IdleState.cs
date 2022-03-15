@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RTSGame.FSM
 {
-    [CreateAssetMenu(fileName ="IdleState", menuName ="FSM/States/Idle,",order =1)]
     public class IdleState : AbstractFSMState
     {
 
@@ -26,7 +25,7 @@ namespace RTSGame.FSM
             if (unit.CheckForTarget())
             {
                 fsm.EnterState(FSMStateType.Chase);
-            } else if(unit.StartWaypoint != null)
+            } else if(unit.waypoint != null)
             {
                 fsm.EnterState(FSMStateType.Patrol);
             }

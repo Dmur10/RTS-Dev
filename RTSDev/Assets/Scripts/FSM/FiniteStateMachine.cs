@@ -23,10 +23,11 @@ namespace RTSGame.FSM
 
             fsmStates = new Dictionary<FSMStateType, AbstractFSMState>();
 
-            NavMeshAgent navMeshAgent = this.GetComponent<NavMeshAgent>();
-            Units.Unit unit = this.GetComponent<Units.Unit>();
+            NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
+            Units.Unit unit = GetComponent<Units.Unit>();
+            GetComponents(validStates);
 
-            foreach(AbstractFSMState state in validStates)
+            foreach (AbstractFSMState state in validStates)
             {
                 state.SetExecutingFSM(this);
                 state.SetExecutingUnit(unit);

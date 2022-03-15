@@ -9,7 +9,7 @@ namespace RTSGame.FSM
         public override void OnEnable()
         {
             base.OnEnable();
-            StateType = FSMStateType.Attacking;
+            StateType = FSMStateType.Attack;
         }
 
         public override bool EnterState()

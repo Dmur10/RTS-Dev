@@ -17,10 +17,18 @@ namespace RTSGame.FSM
         Idle,
         Patrol,
         Chase,
-        Attacking,
+        Aggressive,
+        Defensive,
+        HoldGround,
+        MoveToBuildZone,
+        Building,
+        MoveToResource,
+        GatherResource,
+        MoveToStorage,
+        Attack,
         MoveToDestination,
     }
-    public abstract class AbstractFSMState : ScriptableObject
+    public abstract class AbstractFSMState : MonoBehaviour
     {
         protected NavMeshAgent navMeshAgent;
         protected Units.Unit unit;
@@ -39,12 +47,14 @@ namespace RTSGame.FSM
         {
             bool successNavMesh = true;
             bool successUnit = true;
+            bool successFSM = true;
             ExecutionState = ExecutionState.ACTIVE;
 
             successNavMesh = (navMeshAgent != null);
             successUnit = (unit != null);
+            successFSM = (fsm != null);
 
-            return successNavMesh && successUnit;
+            return successNavMesh && successUnit && successFSM;
         }
 
         public abstract void UpdateState();

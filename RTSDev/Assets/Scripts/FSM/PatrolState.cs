@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RTSGame.FSM
 {
-    [CreateAssetMenu(fileName = "PatrolState", menuName = "FSM/States/Patrol,", order = 2)]
     public class PatrolState : AbstractFSMState
     {
         EnemyWaypoint waypoint;
@@ -19,16 +18,13 @@ namespace RTSGame.FSM
         {
             if (base.EnterState())
             {
-                waypoint = unit.StartWaypoint.GetComponent<EnemyWaypoint>();
-                Debug.Log("entered");
+                waypoint = unit.waypoint.GetComponent<EnemyWaypoint>();
 
                 if(waypoint == null)
                 {
-                    Debug.Log("null");
                     EnteredState = false;
                 } else
                 {
-                    Debug.Log("not null");
                     SetDestination(waypoint.transform.position);
                     EnteredState = true;
                 }
@@ -44,16 +40,20 @@ namespace RTSGame.FSM
                 {
                     fsm.EnterState(FSMStateType.Chase);
                 }
-                if (waypoint.nextWayPoint == null)
-                {
-                    fsm.EnterState(FSMStateType.Idle);
-                }
                 else
                 {
                     if (Vector3.Distance(navMeshAgent.transform.position, waypoint.transform.position) < 1f)
                     {
-                        SetDestination(waypoint.nextWayPoint.position);
-                        waypoint = waypoint.nextWayPoint.GetComponent<EnemyWaypoint>();
+                        unit.SetWaypoint(waypoint.GetNextWaypoint());
+
+                        if (unit.waypoint == null)
+                        {
+                            fsm.EnterState(FSMStateType.Idle);
+                        }
+                        else
+                        {
+                            SetDestination(waypoint.GetNextWaypoint().position);
+                        }
                     }
                 }
             }

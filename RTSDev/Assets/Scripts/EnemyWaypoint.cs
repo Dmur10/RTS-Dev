@@ -6,22 +6,18 @@ namespace RTSGame
 {
     public class EnemyWaypoint : MonoBehaviour
     {
-        public Transform nextWayPoint;
-        public bool isLastWaypoint;
+        public Transform nextWayPoint = null;
+        [SerializeField]
+        bool lastWaypoint = false;
 
-        public void OnTriggerEnter(Collider other)
+        public bool isLastWayPoint()
         {
-            if (other.tag == "Enemy")
-            {
-                if (isLastWaypoint)
-                {
-                    //other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = null;
-                }
-                else
-                {
-                    //other.GetComponent<Units.Enemy.EnemyUnit>().currentWaypoint = nextWayPoint;
-                }  
-            }
+            return lastWaypoint;
+        }
+
+        public Transform GetNextWaypoint()
+        {
+            return nextWayPoint;
         }
     }
 }
