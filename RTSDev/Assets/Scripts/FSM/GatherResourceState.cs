@@ -2,17 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GatherResourceState : MonoBehaviour
+namespace RTSGame.FSM
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GatherResourceState : AbstractFSMState
     {
-        
-    }
+        private Interactables.IScavenger scavenger;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            StateType = FSMStateType.GatherResource;
+        }
+
+        public override bool EnterState()
+        {
+            EnteredState = false;
+            if (base.EnterState())
+            {
+                scavenger = unit.GetComponent<Interactables.IScavenger>();
+                if (scavenger != null)
+                {
+                    EnteredState = true;
+                }
+            }
+            return EnteredState;
+        }
+
+        public override void UpdateState()
+        {
+            if (unit.IsIdle())
+            {
+                if (scavenger.ExceededLimit() || scavenger.GetResource() == null)
+                {
+                    scavenger.SetResource(Player.PlayerManager.instance.GetClosestStorage(transform.position));
+                    fsm.EnterState(FSMStateType.MoveToStorage);
+                }
+                else
+                {
+                    scavenger.PlayAnimationMine(scavenger.GetResource().position, 2f, () =>
+                    {
+                        scavenger.SetResourceAmount(scavenger.GetResourceAmount() + 1);
+                        scavenger.GetResource().gameObject.GetComponent<RTSResources.ResourceSource>().DecrementResource();
+                    });
+                }
+            }
+        }
     }
 }

@@ -12,7 +12,11 @@ namespace RTSGame.Units
             Workers,
             Scavengers,
             Warriors,
-            Engineers
+            Engineers,
+            Scouts,
+            Infantrys,
+            Snipers,
+            Raiders
         }
 
         [Space(15)]

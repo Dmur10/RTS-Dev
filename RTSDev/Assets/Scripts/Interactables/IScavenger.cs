@@ -90,10 +90,49 @@ namespace RTSGame.Interactables
             base.OnInteractExit();
         }
 
+        public Transform GetResource()
+        {
+            return resourceTransform;
+        }
+
+        public Transform GetStorage()
+        {
+            return storageTransform;
+        }
+
         public void SetResource(Transform tf)
         {
             resourceTransform = tf;
             state = State.MovingToResource;
+        }
+
+        public void SetStorage(Transform tf)
+        {
+            storageTransform = tf;
+        }
+
+        public RTSResources.ResourceType GetResourceType()
+        {
+            return type;
+        }
+
+        public bool ExceededLimit()
+        {
+            if(resourceAmt > carryLimit - 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public float GetResourceAmount()
+        {
+            return resourceAmt;
+        }
+
+        public void SetResourceAmount(float amount)
+        {
+            resourceAmt = amount;
         }
 
         public void GatherResource(float amount, RTSResources.ResourceType rType)
@@ -104,7 +143,7 @@ namespace RTSGame.Interactables
             }              
         }
 
-        private void PlayAnimationMine(Vector3 position, float v, Action p)
+        public void PlayAnimationMine(Vector3 position, float v, Action p)
         {
             p.Invoke();
         }

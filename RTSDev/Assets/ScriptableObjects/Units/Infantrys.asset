@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53bfbcf0ce6675e4899984cac6ce3ebe, type: 3}
-  m_Name: Scavengers
+  m_Name: Infantrys
   m_EditorClassIdentifier: 
-  type: 1
-  unitName: Scavengers
-  HumanPrefab: {fileID: 2012680254559826809, guid: 0104726d2f1c78c419339c00264e19a3, type: 3}
-  BurnedPrefab: {fileID: 5622509123804195925, guid: f8c13e461085fc24b8cc647bc583ff09, type: 3}
+  type: 5
+  unitName: Infantrys
+  HumanPrefab: {fileID: 0}
+  BurnedPrefab: {fileID: 0}
   SpawnTime: 10
   baseStats:
-    aggroRange: 15
-    atkRange: 10
-    atkSpeed: 4
-    damage: 30
-    health: 75
+    aggroRange: 10
+    atkRange: 5
+    atkSpeed: 10
+    damage: 20
+    health: 100
     cost: []

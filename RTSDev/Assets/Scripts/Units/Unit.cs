@@ -1,4 +1,5 @@
 using RTSGame.Units;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace RTSGame.Units
     public class Unit : MonoBehaviour
     {
         protected NavMeshAgent navAgent;
-        protected FSM.FiniteStateMachine finiteStateMachine;
+        private FSM.FiniteStateMachine FiniteStateMachine;
 
         public BasicUnit unitType;
 
@@ -44,7 +45,7 @@ namespace RTSGame.Units
             baseStats = unitType.baseStats;
             atkCooldown = baseStats.atkSpeed;
             navAgent = GetComponent<NavMeshAgent>();
-            finiteStateMachine = GetComponent<FSM.FiniteStateMachine>();
+            FiniteStateMachine = GetComponent<FSM.FiniteStateMachine>();
         }
 
         void Update()
@@ -119,6 +120,35 @@ namespace RTSGame.Units
         {
                 targetStatDisplay.takeDamage(baseStats.damage);
                 atkCooldown = baseStats.atkSpeed;
+        }
+
+        public void MoveUnit(Vector3 destination)
+        {
+            target = null;
+            if (navAgent == null)
+            {
+                navAgent = GetComponent<NavMeshAgent>();
+            }
+            navAgent.SetDestination(destination);
+        }
+
+        public void MoveUnit(Vector3 destination, float v, Action p)
+        {
+            target = null;
+            if (navAgent == null)
+            {
+                navAgent = GetComponent<NavMeshAgent>();
+            }
+
+            if (Vector3.Distance(transform.position, destination) < v)
+            {
+                navAgent.SetDestination(transform.position);
+                p.Invoke();
+            }
+            else
+            {
+                navAgent.SetDestination(destination);
+            }
         }
     }
 

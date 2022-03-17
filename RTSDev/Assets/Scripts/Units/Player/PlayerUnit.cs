@@ -14,34 +14,6 @@ namespace RTSGame.Units.Player
         }
 
         // Update is called once per frame
-        public void MoveUnit(Vector3 destination)
-        {
-            target = null;
-            if (navAgent == null)
-            {
-                navAgent = GetComponent<NavMeshAgent>();
-            }
-            navAgent.SetDestination(destination);
-        }
-
-        public void MoveUnit(Vector3 destination, float v, Action p)
-        {
-            target = null;
-            if (navAgent == null)
-            {
-                navAgent = GetComponent<NavMeshAgent>();
-            }
-
-            if (Vector3.Distance(transform.position, destination) < v)
-            {
-                navAgent.SetDestination(transform.position);
-                p.Invoke();
-            }
-            else
-            {
-                navAgent.SetDestination(destination);
-            }
-        }
 
         public override bool CheckForTarget()
         {

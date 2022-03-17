@@ -70,6 +70,11 @@ namespace RTSGame.Interactables
             UI.HUD.ActionFrame.instance.ClearActions();
         }
 
+        public Buildings.BuildingZone GetBuildZone()
+        {
+            return BuildZone;
+        }
+
         public void SetBuildZone(Buildings.BuildingZone bz)
         {
             BuildZone = bz;
@@ -81,7 +86,7 @@ namespace RTSGame.Interactables
             UI.HUD.ActionFrame.instance.SetActionButtons(actions, spawnMarker);
         }
 
-        private void PlayAnimationBuild(Vector3 position, float v, Action p)
+        public void PlayAnimationBuild(Vector3 position, float v, Action p)
         {
             if (Vector3.Distance(transform.position, position) < v)
             {
