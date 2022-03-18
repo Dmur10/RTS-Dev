@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicUnits:
   - {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
+  - {fileID: 11400000, guid: b728ac756b1d4d64d8258b6b851ae35b, type: 2}
   basicBuildings: []
   basicUpgrades:
   - {fileID: 11400000, guid: bfd17f8fa8d46ba48ad8cfe17a4521d1, type: 2}

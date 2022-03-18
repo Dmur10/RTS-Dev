@@ -34,7 +34,7 @@ namespace RTSGame.FSM
             {
                 if (scavenger.ExceededLimit() || scavenger.GetResource() == null)
                 {
-                    scavenger.SetResource(Player.PlayerManager.instance.GetClosestStorage(transform.position));
+                    scavenger.SetStorage(Player.PlayerManager.instance.GetClosestStorage(transform.position));
                     fsm.EnterState(FSMStateType.MoveToStorage);
                 }
                 else

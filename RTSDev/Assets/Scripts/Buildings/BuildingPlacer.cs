@@ -22,7 +22,7 @@ namespace RTSGame.Buildings
         private Ray ray;
         private RaycastHit raycastHit;
         private Vector3 _lastPlacementPosition;
-        public bool isPlacing;
+        public bool isPlacing = false;
 
         private BuildingPlacement Placement = BuildingPlacement.VALID;
         private Transform _transform;
@@ -36,6 +36,7 @@ namespace RTSGame.Buildings
         // Update is called once per frame
         private void Update()
         {
+            Debug.Log(isPlacing);
             if (buildingToPlace == null)
             {
                 return;
@@ -56,7 +57,6 @@ namespace RTSGame.Buildings
             if (HasValidPlacement && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Place();
-                buildingToPlace = null;
             }
         }
 
@@ -69,15 +69,20 @@ namespace RTSGame.Buildings
                 Destroy(buildingToPlace.gameObject);
             }
 
-            basicBuilding = BuildingHandler.instance.GetBasicBuilding(type);
+            isPlacing = true;
 
+            basicBuilding = BuildingHandler.instance.GetBasicBuilding(type);
             buildingToPlace = GameObject.Instantiate(basicBuilding.buildingPrefab);
             _transform = buildingToPlace.transform;
 
             _materials = new List<Material>();
-            foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
+            Renderer[] renderers = _transform.Find("Mesh").GetComponentsInChildren<Renderer>();
+            foreach(Renderer renderer in renderers)
             {
-                _materials.Add(new Material(material));
+                foreach(Material material in renderer.materials)
+                {
+                    _materials.Add(new Material(material));
+                }
             }
 
             SetMaterials();
@@ -138,7 +143,13 @@ namespace RTSGame.Buildings
             {
                 return;
             }
-            buildingToPlace.transform.Find("Mesh").GetComponent<Renderer>().materials = materials.ToArray();
+
+            Renderer[] renderers = buildingToPlace.transform.Find("Mesh").GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.materials = materials.ToArray();
+            }
+            _materials = null;
         }
     }
 }

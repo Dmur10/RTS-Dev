@@ -7,16 +7,6 @@ using UnityEngine.AI;
 
 namespace RTSGame.Units
 {
-    public enum State
-    {
-        Idle,
-        Moving,
-        Attacking,
-        Aggresive,
-        Defensive,
-        StandGround
-    }
-
     [RequireComponent(typeof(NavMeshAgent), typeof(FSM.FiniteStateMachine))]
     public class Unit : MonoBehaviour
     {
@@ -54,6 +44,11 @@ namespace RTSGame.Units
             {
                 atkCooldown -= Time.deltaTime;
             }
+        }
+
+        public void SetFiniteState(FSM.FSMStateType type)
+        {
+            FiniteStateMachine.EnterState(type);
         }
 
         public bool IsIdle()

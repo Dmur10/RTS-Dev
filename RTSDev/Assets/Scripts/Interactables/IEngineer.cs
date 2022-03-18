@@ -7,28 +7,28 @@ namespace RTSGame.Interactables
 {
     public class IEngineer : IUnit
     {
-        private enum State
+        /*private enum State
         {
             Idle,
             MovingToCapturePoint,
             Capturing
-        }
+        }*/
 
-        private State state;
+        //private State state;
         private Transform captureTransform;
         private Units.Player.PlayerUnit unit;
 
-        private int TotalCaptureTicks;
-        private int currentTicks;
+        public int TotalCaptureTicks;
+        private int currentTicks = 0;
 
         private void Awake()
         {
             unit = GetComponent<Units.Player.PlayerUnit>();
-            state = State.Idle;
+            //state = State.Idle;
         }
         private void Update()
         {
-            switch (state)
+           /* switch (state)
             {
                 case State.Idle:
                     break;
@@ -56,7 +56,7 @@ namespace RTSGame.Interactables
                         }
                     }
                     break;
-            }
+            }*/
         }
         public override void OnInteractEnter()
         {
@@ -68,13 +68,34 @@ namespace RTSGame.Interactables
             base.OnInteractExit();
         }
 
+        public Transform GetCapturePoint()
+        {
+            return captureTransform;
+        }
+
         public void SetCaptureTarget(Transform tf)
         {
             captureTransform = tf;
-            state = State.MovingToCapturePoint;
+            unit.SetFiniteState(FSM.FSMStateType.MoveToCapturePoint);
+            //state = State.MovingToCapturePoint;
         }
 
-        private void PlayAnimationCapture(Vector3 position, float v, Action p)
+        public bool ExceededCaptureLimit()
+        {
+            if(currentTicks >= TotalCaptureTicks)
+            {
+                currentTicks = 0;
+                return true;
+            }
+            return false;
+        }
+
+        public void IncrementTicks()
+        {
+            currentTicks++;
+        }
+
+        public void PlayAnimationCapture(Vector3 position, float v, Action p)
         {
             p.Invoke();
         }

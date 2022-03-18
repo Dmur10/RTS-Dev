@@ -7,16 +7,12 @@ namespace RTSGame.Interactables
     public class IFuelStation : ICapturable
     {
         private bool captured = false;
-        private bool isPlayer = false;
 
         private void Update()
         {
             if (captured)
             {
-                if (isPlayer)
-                {
                     Player.PlayerManager.instance.playerResources[(int)RTSResources.ResourceType.Fuel].AddAmount(Time.deltaTime);
-                }
             }
         }
 
@@ -33,7 +29,6 @@ namespace RTSGame.Interactables
         public override void capture()
         {
             captured = true;
-            isPlayer = true;
         }
     }
 }

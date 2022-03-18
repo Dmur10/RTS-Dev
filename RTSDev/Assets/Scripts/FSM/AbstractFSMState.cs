@@ -27,6 +27,8 @@ namespace RTSGame.FSM
         MoveToStorage,
         Attack,
         MoveToDestination,
+        MoveToCapturePoint,
+        Capture
     }
     public abstract class AbstractFSMState : MonoBehaviour
     {

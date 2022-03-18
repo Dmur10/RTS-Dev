@@ -44,6 +44,8 @@ namespace RTSGame.Buildings
             {
                 Destroy(gameObject);
                 Prefab = Instantiate(Prefab, transform.position, Quaternion.identity);
+                Player.PlayerBuilding pb = Prefab.GetComponent<Player.PlayerBuilding>();
+                pb.transform.SetParent(GameObject.Find(pb.buildingType.type.ToString()).transform);
                 Prefab.GetComponent<BoxCollider>().isTrigger = false;
             }
         }

@@ -30,7 +30,7 @@ namespace RTSGame.UI.HUD
         
         }
 
-        public void SetActionButtons(PlayerActions actions, GameObject spawnLocation)
+        public void SetActionButtons(PlayerActions actions, GameObject spawnLocation = null)
         {
             actionList = actions;
             spawnPoint = spawnLocation;

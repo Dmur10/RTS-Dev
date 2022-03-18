@@ -8,55 +8,18 @@ namespace RTSGame.Interactables
     public class IWorker : IUnit
     {
 
-        private enum State
-        {
-            Idle,
-            MovingToBuildingZone,
-            Building
-        }
-
-        private State state;
         private Buildings.BuildingZone BuildZone;
         private Units.Player.PlayerUnit unit;
 
         public UI.HUD.PlayerActions actions;
-        public GameObject spawnMarker = null;
 
         override public void Awake()
         {
             unit = GetComponent<Units.Player.PlayerUnit>();
-            state = State.Idle;
         }
 
         private void Update()
         {
-            switch (state)
-            {
-                case State.Idle:
-                    break;
-                case State.MovingToBuildingZone:
-                    if (BuildZone != null)
-                    {
-                        unit.MoveUnit(BuildZone.GetPosition(), BuildZone.GetOffset(), () => {
-                            state = State.Building;
-                        });
-                    }
-                    break;
-                case State.Building:
-                    if (unit.IsIdle() && BuildZone != null)
-                    {
-                        PlayAnimationBuild(BuildZone.GetPosition(), BuildZone.GetOffset(), () =>
-                        {
-                            BuildZone.AddConstructionTick();
-                            if(BuildZone.IsBuilt())
-                            {
-                                BuildZone = null;
-                                state = State.Idle;
-                            }
-                        });
-                    } 
-                    break;
-            }
         }
 
         public override void OnInteractEnter()
@@ -78,12 +41,12 @@ namespace RTSGame.Interactables
         public void SetBuildZone(Buildings.BuildingZone bz)
         {
             BuildZone = bz;
-            state = State.MovingToBuildingZone;
+            unit.SetFiniteState(FSM.FSMStateType.MoveToBuildZone);
         }
 
         public void OnBuilderSelect()
         {
-            UI.HUD.ActionFrame.instance.SetActionButtons(actions, spawnMarker);
+            UI.HUD.ActionFrame.instance.SetActionButtons(actions);
         }
 
         public void PlayAnimationBuild(Vector3 position, float v, Action p)

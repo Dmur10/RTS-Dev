@@ -33,6 +33,11 @@ namespace RTSGame.InputManager
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    if(Buildings.BuildingPlacer.instance.isPlacing == true)
+                    {
+                        Buildings.BuildingPlacer.instance.isPlacing = false;
+                        return;
+                    }
                     startPos = Input.mousePosition;
                     endPos = Input.mousePosition;
 
@@ -95,21 +100,11 @@ namespace RTSGame.InputManager
                                     }
                                 }
                             } 
-                            else if (hit.transform.GetComponent<Interactables.ICapturableVehicle>()) {
-                                if (IsEngineerSelected())
-                                {
-                                    foreach (Transform unit in selectedUnits)
-                                    {
-                                        Interactables.IEngineer engineer = unit.gameObject.GetComponent<Interactables.IEngineer>();
-                                        engineer.SetCaptureTarget(hit.transform);
-                                    }
-                                }
-                            } 
-                            else if (hit.transform.GetComponent<Interactables.IFuelStation>())
+                            else if (hit.transform.GetComponent<Interactables.ICapturable>())
                             {
                                 if (IsEngineerSelected())
                                 {
-                                    foreach (Transform unit in selectedUnits)
+                                    foreach(Transform unit in selectedUnits)
                                     {
                                         Interactables.IEngineer engineer = unit.gameObject.GetComponent<Interactables.IEngineer>();
                                         engineer.SetCaptureTarget(hit.transform);

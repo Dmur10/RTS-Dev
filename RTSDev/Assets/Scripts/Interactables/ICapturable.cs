@@ -18,7 +18,7 @@ namespace RTSGame.Interactables {
 
         public virtual void capture()
         {
-            throw new NotImplementedException();
+
         }
     }
 

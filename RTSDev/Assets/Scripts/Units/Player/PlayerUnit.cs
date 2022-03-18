@@ -13,8 +13,6 @@ namespace RTSGame.Units.Player
             statDisplay.SetStatDisplayBasicUnit(baseStats, true);
         }
 
-        // Update is called once per frame
-
         public override bool CheckForTarget()
         {
             colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.eUnitLayer);
