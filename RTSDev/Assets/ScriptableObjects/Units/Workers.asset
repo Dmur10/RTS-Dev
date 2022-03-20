@@ -18,9 +18,10 @@ MonoBehaviour:
   BurnedPrefab: {fileID: 8443722267586602786, guid: cf8efe357bc3f674b8acb5a8b1ee4f7f, type: 3}
   SpawnTime: 15
   baseStats:
-    cost: 100
     aggroRange: 5
     atkRange: 4
     atkSpeed: 5
     damage: 25
     health: 100
+    cost:
+    - 50

@@ -6,6 +6,9 @@ using UnityEngine;
 namespace RTSGame.Interactables {
     public class ICapturable : Interactable
     {
+
+        public float offset;
+
         public override void OnInteractEnter()
         {
             base.OnInteractEnter();

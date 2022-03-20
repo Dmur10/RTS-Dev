@@ -36,7 +36,6 @@ namespace RTSGame.Buildings
         // Update is called once per frame
         private void Update()
         {
-            Debug.Log(isPlacing);
             if (buildingToPlace == null)
             {
                 return;

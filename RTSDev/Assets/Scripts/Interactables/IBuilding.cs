@@ -9,6 +9,7 @@ namespace RTSGame.Interactables
         public UI.HUD.PlayerActions actions;
         public GameObject spawnMarker = null;
         public GameObject spawnMarkerGraphic = null;
+        public float offset;
 
         public override void OnInteractEnter()
         {

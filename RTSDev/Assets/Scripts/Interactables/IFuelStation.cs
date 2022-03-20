@@ -6,6 +6,7 @@ namespace RTSGame.Interactables
 {
     public class IFuelStation : ICapturable
     {
+        [SerializeField]
         private bool captured = false;
 
         private void Update()

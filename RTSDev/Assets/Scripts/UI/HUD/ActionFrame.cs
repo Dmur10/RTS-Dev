@@ -147,6 +147,7 @@ namespace RTSGame.UI.HUD
 
         public void SpawnObject()
         {
+            ProductionQueue.instance.SetProgressAmount(0);
             Debug.Log("spawnObject");
             GameObject spawnedObject = Instantiate(spawnOrder[0], spawnPoint.transform.position, Quaternion.identity);
 

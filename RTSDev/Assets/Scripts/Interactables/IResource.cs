@@ -6,6 +6,8 @@ namespace RTSGame.Interactables
 {
     public class IResource : Interactable
     {
+        public float offset;
+
         public override void OnInteractEnter()
         {
             base.OnInteractEnter();

@@ -111,6 +111,21 @@ namespace RTSGame.Units
             }
         }
 
+        public void AggresiveStance()
+        {
+            FiniteStateMachine.EnterState(FSM.FSMStateType.Aggressive);
+        }
+
+        public void DefensiveStance()
+        {
+            FiniteStateMachine.EnterState(FSM.FSMStateType.Defensive);
+        }
+
+        public void HoldGroundStance()
+        {
+            FiniteStateMachine.EnterState(FSM.FSMStateType.HoldGround);
+        }
+
         public void Attack()
         {
                 targetStatDisplay.takeDamage(baseStats.damage);

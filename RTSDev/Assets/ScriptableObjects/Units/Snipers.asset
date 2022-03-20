@@ -16,11 +16,14 @@ MonoBehaviour:
   unitName: Snipers
   HumanPrefab: {fileID: 0}
   BurnedPrefab: {fileID: 0}
-  SpawnTime: 0
+  SpawnTime: 20
   baseStats:
-    aggroRange: 0
-    atkRange: 0
-    atkSpeed: 0
-    damage: 0
-    health: 0
-    cost: []
+    aggroRange: 15
+    atkRange: 10
+    atkSpeed: 10
+    damage: 50
+    health: 100
+    cost:
+    - 150
+    - 100
+    - 0

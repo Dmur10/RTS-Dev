@@ -23,4 +23,6 @@ MonoBehaviour:
     atkSpeed: 0
     damage: 0
     health: 100
-    cost: []
+    cost:
+    - 100
+    - 80

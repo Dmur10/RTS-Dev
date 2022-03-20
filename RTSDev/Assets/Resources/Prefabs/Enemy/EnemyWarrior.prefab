@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e42f9257330944998e92e9d925f790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 49490180312970701}
+  startingState: {fileID: -63330938265159106}
   currentState: {fileID: 0}
   validStates:
   - {fileID: 0}

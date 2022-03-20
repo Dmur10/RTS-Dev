@@ -246,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteracting: 0
   highlight: {fileID: 3471817751153645842}
-  TotalCaptureTicks: 0
+  TotalCaptureTicks: 10
 --- !u!114 &-6428524434659510105
 MonoBehaviour:
   m_ObjectHideFlags: 0

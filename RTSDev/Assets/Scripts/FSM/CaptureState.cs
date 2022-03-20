@@ -20,6 +20,7 @@ namespace RTSGame.FSM
             if (base.EnterState())
             {
                 engineer = unit.GetComponent<Interactables.IEngineer>();
+                EnteredState = true;
             }
             return EnteredState;
         }
@@ -28,13 +29,14 @@ namespace RTSGame.FSM
         {
             if (EnteredState)
             {
-                if (unit.IsIdle())
+                if (unit.IsIdle() && engineer.GetCapturePoint() != null)
                 {
                     if (engineer.ExceededCaptureLimit())
                     {
                         engineer.GetCapturePoint().GetComponent<Interactables.ICapturable>().capture();
+                        fsm.EnterState(FSMStateType.Idle);
                     }
-                    else if (engineer.GetCapturePoint() != null)
+                    else
                     {
                         engineer.PlayAnimationCapture(engineer.GetCapturePoint().position, 2f, () =>
                         {

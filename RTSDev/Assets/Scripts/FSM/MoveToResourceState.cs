@@ -32,7 +32,7 @@ namespace RTSGame.FSM
         {
             if (unit.IsIdle() && scavenger.GetResource()!=null)
             {
-                unit.MoveUnit(scavenger.GetResource().position, 10f, () => {
+                unit.MoveUnit(scavenger.GetResource().position, scavenger.GetResource().GetComponent<Interactables.IResource>().offset, () => {
                     fsm.EnterState(FSMStateType.GatherResource);
                 });
             }

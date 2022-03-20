@@ -46,6 +46,7 @@ namespace RTSGame.InputManager
                     {
                         if (AddedUnit(hit.transform, Input.GetKey(KeyCode.LeftShift)))
                         {
+                            UI.HUD.RightUIBoxFrame.instance.ActivateCommandBox();
                             Interactables.IUnit iUnit = hit.transform.GetComponent<Interactables.IUnit>();
 
                             if (IsWorkerSelected())
@@ -55,15 +56,18 @@ namespace RTSGame.InputManager
                         }
                         else if (AddedBuilding(hit.transform))
                         {
+                            UI.HUD.RightUIBoxFrame.instance.ActivateProductionQueue();
                         }
                         else if (AddedResource(hit.transform))
                         {
                         }
+
                     }
                     else
                     {
                         mouseHeld = true;
                         DeSelect();
+                        UI.HUD.RightUIBoxFrame.instance.ClearRightUI();
                     }
                 }
                 if (Input.GetMouseButton(0) && mouseHeld)
@@ -151,7 +155,6 @@ namespace RTSGame.InputManager
 
         private void ReleaseSelectionBox()
         {
-            Debug.Log("released");
             selectionBox.gameObject.SetActive(false);
             DeSelect();
 

@@ -32,9 +32,9 @@ namespace RTSGame.FSM
         {
             if (EnteredState)
             {
-                if (unit.IsIdle())
+                if (unit.IsIdle() && engineer.GetCapturePoint() != null)
                 {
-                    unit.MoveUnit(engineer.GetCapturePoint().position, 10f, () => {
+                    unit.MoveUnit(engineer.GetCapturePoint().position, engineer.GetCapturePoint().GetComponent<Interactables.ICapturable>().offset, () => {
                         fsm.EnterState(FSMStateType.Capture);
                     });
                 }

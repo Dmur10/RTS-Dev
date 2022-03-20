@@ -3,9 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RightUIBoxFrame : MonoBehaviour
+namespace RTSGame.UI.HUD
 {
-    public static RightUIBoxFrame instance = null;
+    public class RightUIBoxFrame : MonoBehaviour
+    {
+        public static RightUIBoxFrame instance = null;
+        public GameObject commandBox;
+        public GameObject productionQueue;
 
-    [SerializeField]private List<Image> imageQueue;
+        private void Awake()
+        {
+            instance = this;
+        }
+
+        public void ActivateCommandBox()
+        {
+            productionQueue.SetActive(false);
+            commandBox.SetActive(true);
+        }
+
+        public void ActivateProductionQueue()
+        {
+            commandBox.SetActive(false);
+            productionQueue.SetActive(true);
+        }
+
+        public void ClearRightUI()
+        {
+            commandBox.SetActive(false);
+            productionQueue.SetActive(false);
+        }
+    }
+
 }

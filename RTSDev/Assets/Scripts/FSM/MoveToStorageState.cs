@@ -32,7 +32,7 @@ namespace RTSGame.FSM
         {
             if (unit.IsIdle() && scavenger.GetStorage() != null)
             {
-                unit.MoveUnit(scavenger.GetStorage().position, 2f, () => {
+                unit.MoveUnit(scavenger.GetStorage().position, scavenger.GetStorage().GetComponent<Interactables.IBuilding>().offset, () => {
                     Player.PlayerManager.instance.playerResources[(int)scavenger.GetResourceType()].AddAmount(scavenger.GetResourceAmount());
                     scavenger.SetResourceAmount(0);
                     if (scavenger.GetResource() != null)
