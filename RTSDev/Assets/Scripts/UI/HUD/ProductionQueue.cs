@@ -10,6 +10,8 @@ namespace RTSGame.UI.HUD
         public static ProductionQueue instance = null;
         [SerializeField]
         private List<Image> images;
+        [SerializeField] private Transform layoutGroup = null;
+        [SerializeField] private Image productionImage = null;
 
         [SerializeField]
         private Image progressBar;
@@ -18,6 +20,18 @@ namespace RTSGame.UI.HUD
         {
             instance = this;
             progressBar.fillAmount = 0;
+        }
+
+        public void AddToQueue()
+        {
+            Image temp = Instantiate(productionImage, layoutGroup);
+            images.Add(temp);
+        }
+
+        public void RemoveFromQueue()
+        {
+            images.RemoveAt(0);
+            Destroy(layoutGroup.GetChild(0).gameObject);
         }
 
         public void SetProgressAmount(float amount)

@@ -80,6 +80,7 @@ namespace RTSGame.UI.HUD
             if (IsUnit(objectToSpawn))
             {
                 Units.BasicUnit unit = IsUnit(objectToSpawn);
+                ProductionQueue.instance.AddToQueue();
                 spawnQueue.Add(unit.SpawnTime);
                 spawnOrder.Add(unit.HumanPrefab);
             }
@@ -148,6 +149,7 @@ namespace RTSGame.UI.HUD
         public void SpawnObject()
         {
             ProductionQueue.instance.SetProgressAmount(0);
+            ProductionQueue.instance.RemoveFromQueue();
             Debug.Log("spawnObject");
             GameObject spawnedObject = Instantiate(spawnOrder[0], spawnPoint.transform.position, Quaternion.identity);
 
