@@ -16,7 +16,7 @@ MonoBehaviour:
   unitName: Engineers
   HumanPrefab: {fileID: 7322258960341005313, guid: a004c6e65337b454f87a65c7bb47ce91, type: 3}
   BurnedPrefab: {fileID: 0}
-  SpawnTime: 0
+  SpawnTime: 10
   baseStats:
     aggroRange: 0
     atkRange: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   unitName: Snipers
-  HumanPrefab: {fileID: 0}
+  HumanPrefab: {fileID: 4783051139400861022, guid: a8b24b9da29379640b49a82b25e361d0, type: 3}
   BurnedPrefab: {fileID: 0}
   SpawnTime: 20
   baseStats:

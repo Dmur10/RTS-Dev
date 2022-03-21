@@ -13,7 +13,7 @@ namespace RTSGame.Interactables
 
         public override void OnInteractEnter()
         {
-            UI.HUD.ActionFrame.instance.SetActionButtons(actions,spawnMarker);
+            UI.HUD.ActionFrame.instance.SetActionButtons(actions,spawnMarker, this.transform);
             if (spawnMarker)
             {
                 spawnMarkerGraphic.SetActive(true);

@@ -23,6 +23,7 @@ namespace RTSGame.UI.HUD
         public List<GameObject> spawnOrder = new List<GameObject>();
 
         public GameObject spawnPoint = null;
+        public Transform spawnLocation = null;
 
         private void Awake()
         {
@@ -30,10 +31,11 @@ namespace RTSGame.UI.HUD
         
         }
 
-        public void SetActionButtons(PlayerActions actions, GameObject spawnLocation = null)
+        public void SetActionButtons(PlayerActions actions, GameObject spawnPoint = null, Transform spawnLocation = null)
         {
             actionList = actions;
-            spawnPoint = spawnLocation;
+            this.spawnPoint = spawnPoint;
+            this.spawnLocation = spawnLocation;
 
             if (actions.basicUnits.Count>0)
             {
@@ -77,7 +79,7 @@ namespace RTSGame.UI.HUD
 
        public void StartSpawnTimer(string objectToSpawn)
         {
-            if (IsUnit(objectToSpawn))
+            if (IsUnit(objectToSpawn) && spawnOrder.Count < 9)
             {
                 Units.BasicUnit unit = IsUnit(objectToSpawn);
                 ProductionQueue.instance.AddToQueue();
@@ -149,9 +151,9 @@ namespace RTSGame.UI.HUD
         public void SpawnObject()
         {
             ProductionQueue.instance.SetProgressAmount(0);
-            ProductionQueue.instance.RemoveFromQueue();
             Debug.Log("spawnObject");
-            GameObject spawnedObject = Instantiate(spawnOrder[0], spawnPoint.transform.position, Quaternion.identity);
+            Debug.Log(spawnOrder[0]);
+            GameObject spawnedObject = Instantiate(spawnOrder[0], spawnLocation.transform.position, Quaternion.identity);
 
             Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
             Debug.Log(pu.baseStats.health);
@@ -160,6 +162,7 @@ namespace RTSGame.UI.HUD
             spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnPoint.transform.position);
             spawnQueue.Remove(spawnQueue[0]);
             spawnOrder.Remove(spawnOrder[0]);
+            ProductionQueue.instance.RemoveFromQueue();
         }
     }
 

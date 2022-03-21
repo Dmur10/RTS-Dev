@@ -16,7 +16,7 @@ MonoBehaviour:
   unitName: Raiders
   HumanPrefab: {fileID: 0}
   BurnedPrefab: {fileID: 0}
-  SpawnTime: 0
+  SpawnTime: 30
   baseStats:
     aggroRange: 0
     atkRange: 0
