@@ -18,8 +18,8 @@ namespace RTSGame.UI.HUD
         {
             if (ActionFrame.instance.spawnQueue.Count>0)
             {
-                Debug.Log($"Waiting for {ActionFrame.instance.spawnQueue[0]}");
-                yield return new WaitForSeconds(ActionFrame.instance.spawnQueue[0]);
+                Debug.Log($"Waiting for {ActionFrame.instance.spawnQueue[0].queue}");
+                yield return new WaitForSeconds(ActionFrame.instance.spawnQueue[0].queue);
                 ActionFrame.instance.SpawnObject();
                 Debug.Log("spawn");
             }

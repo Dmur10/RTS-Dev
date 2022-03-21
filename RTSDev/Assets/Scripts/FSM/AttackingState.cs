@@ -14,8 +14,11 @@ namespace RTSGame.FSM
 
         public override bool EnterState()
         {
-            base.EnterState();
-            Debug.Log("enter attacking");
+            EnteredState = false;
+            if (base.EnterState())
+            {
+                EnteredState = true;
+            }
 
             EnteredState = true;
             return EnteredState;
@@ -23,6 +26,7 @@ namespace RTSGame.FSM
 
         public override void UpdateState()
         {
+            //Move to target and attack if in range
         }
 
         public override bool ExitState()

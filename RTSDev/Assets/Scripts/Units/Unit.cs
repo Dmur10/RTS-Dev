@@ -139,6 +139,7 @@ namespace RTSGame.Units
             {
                 navAgent = GetComponent<NavMeshAgent>();
             }
+            //FiniteStateMachine.EnterState(FSM.FSMStateType.MoveToDestination);
             navAgent.SetDestination(destination);
         }
 

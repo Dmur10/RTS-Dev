@@ -18,10 +18,6 @@ namespace RTSGame.Interactables
             unit = GetComponent<Units.Player.PlayerUnit>();
         }
 
-        private void Update()
-        {
-        }
-
         public override void OnInteractEnter()
         {
             base.OnInteractEnter();

@@ -17,6 +17,7 @@ namespace RTSGame.FSM
             EnteredState = false;
             if (base.EnterState())
             {
+                unit.SetTarget(null);
                 EnteredState = true;
             }
             return EnteredState;

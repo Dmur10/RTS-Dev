@@ -8,6 +8,7 @@ namespace RTSGame.UI.HUD
     public class ProductionQueue : MonoBehaviour
     {
         public static ProductionQueue instance = null;
+
         [SerializeField]
         private List<Image> images;
         [SerializeField] private Transform layoutGroup = null;

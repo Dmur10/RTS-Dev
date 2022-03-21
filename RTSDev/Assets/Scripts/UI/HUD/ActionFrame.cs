@@ -5,8 +5,26 @@ using UnityEngine.UI;
 
 namespace RTSGame.UI.HUD
 {
+
+    public struct SpawnableObject
+    {
+        public float queue;
+        public GameObject order;
+        public GameObject spawnPoint;
+        public Transform spawnLocation;
+
+        public SpawnableObject(float queue, GameObject order, GameObject spawnPoint, Transform spawnLocation)
+        {
+            this.queue = queue;
+            this.order = order;
+            this.spawnPoint = spawnPoint;
+            this.spawnLocation = spawnLocation;
+        }
+    }
+
     public class ActionFrame : MonoBehaviour
     {
+        
         public static ActionFrame instance = null;
 
         [SerializeField] private Button actionButtonUnit = null;
@@ -19,8 +37,7 @@ namespace RTSGame.UI.HUD
         private List<Button> buttons = new List<Button>();
         private PlayerActions actionList = null;
 
-        public List<float> spawnQueue = new List<float>();
-        public List<GameObject> spawnOrder = new List<GameObject>();
+        public List<SpawnableObject> spawnQueue = new List<SpawnableObject>();
 
         public GameObject spawnPoint = null;
         public Transform spawnLocation = null;
@@ -34,8 +51,11 @@ namespace RTSGame.UI.HUD
         public void SetActionButtons(PlayerActions actions, GameObject spawnPoint = null, Transform spawnLocation = null)
         {
             actionList = actions;
-            this.spawnPoint = spawnPoint;
-            this.spawnLocation = spawnLocation;
+            if (spawnPoint != null && spawnLocation != null)
+            {
+                this.spawnPoint = spawnPoint;
+                this.spawnLocation = spawnLocation;
+            }
 
             if (actions.basicUnits.Count>0)
             {
@@ -65,7 +85,6 @@ namespace RTSGame.UI.HUD
                     buttons.Add(btn);
                 }
             }
-
         }
 
         public void ClearActions()
@@ -79,12 +98,11 @@ namespace RTSGame.UI.HUD
 
        public void StartSpawnTimer(string objectToSpawn)
         {
-            if (IsUnit(objectToSpawn) && spawnOrder.Count < 9)
+            if (IsUnit(objectToSpawn) && spawnQueue.Count < 9)//spawnOrder.Count < 9)
             {
                 Units.BasicUnit unit = IsUnit(objectToSpawn);
                 ProductionQueue.instance.AddToQueue();
-                spawnQueue.Add(unit.SpawnTime);
-                spawnOrder.Add(unit.HumanPrefab);
+                spawnQueue.Add(new SpawnableObject(unit.SpawnTime, unit.HumanPrefab, spawnPoint, spawnLocation));
             }
             else
             {
@@ -152,16 +170,14 @@ namespace RTSGame.UI.HUD
         {
             ProductionQueue.instance.SetProgressAmount(0);
             Debug.Log("spawnObject");
-            Debug.Log(spawnOrder[0]);
-            GameObject spawnedObject = Instantiate(spawnOrder[0], spawnLocation.transform.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(spawnQueue[0].order, spawnQueue[0].spawnLocation.position, Quaternion.identity);
 
             Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
             Debug.Log(pu.baseStats.health);
             pu.transform.SetParent(GameObject.Find(pu.unitType.type.ToString()).transform);
 
-            spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnPoint.transform.position);
+            spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnQueue[0].spawnPoint.transform.position);
             spawnQueue.Remove(spawnQueue[0]);
-            spawnOrder.Remove(spawnOrder[0]);
             ProductionQueue.instance.RemoveFromQueue();
         }
     }

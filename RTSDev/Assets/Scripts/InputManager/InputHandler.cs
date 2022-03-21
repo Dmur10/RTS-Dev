@@ -114,6 +114,16 @@ namespace RTSGame.InputManager
                                         engineer.SetCaptureTarget(hit.transform);
                                     }
                                 }
+                            }else if (hit.transform.GetComponent<Buildings.BuildingZone>())
+                            {
+                                if (IsWorkerSelected())
+                                {
+                                    foreach(Transform unit in selectedUnits)
+                                    {
+                                        Interactables.IWorker worker = unit.gameObject.GetComponent<Interactables.IWorker>();
+                                        worker.SetBuildZone(hit.transform.GetComponent<Buildings.BuildingZone>());
+                                    }
+                                }
                             }
                             else if (hit.transform.GetComponent<Units.Enemy.EnemyUnit>())
                             {
