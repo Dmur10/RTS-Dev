@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 namespace RTSGame.UI.HUD
 {
-    public class ProductionQueue : MonoBehaviour
+    public class ProductionQueueUI : MonoBehaviour
     {
-        public static ProductionQueue instance = null;
-
         [SerializeField]
         private List<Image> images;
         [SerializeField] private Transform layoutGroup = null;
@@ -19,7 +17,6 @@ namespace RTSGame.UI.HUD
 
         private void Awake()
         {
-            instance = this;
             progressBar.fillAmount = 0;
         }
 
@@ -33,6 +30,25 @@ namespace RTSGame.UI.HUD
         {
             images.RemoveAt(0);
             Destroy(layoutGroup.GetChild(0).gameObject);
+        }
+
+        public void ClearQueue()
+        {
+            images.Clear();
+            foreach (Transform child in layoutGroup)
+            {
+                Destroy(child.gameObject);
+            }
+            
+        }
+
+        public void FillQueue(List<Buildings.SpawnableObject> queue)
+        {
+            ClearQueue();
+            foreach(Buildings.SpawnableObject temp in queue)
+            {
+                AddToQueue();
+            }
         }
 
         public void SetProgressAmount(float amount)

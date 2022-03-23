@@ -7,7 +7,7 @@ namespace RTSGame.UI.HUD
 
     public class ActionTimer : MonoBehaviour
     {
-        public static ActionTimer instance = null;
+       /* public static ActionTimer instance = null;
 
         private void Awake()
         {
@@ -29,6 +29,7 @@ namespace RTSGame.UI.HUD
                 StartCoroutine(SpawnQueueTimer());
             }
         }
+       */
     }
 
 }

@@ -6,10 +6,10 @@ namespace RTSGame.UI.HUD
 {
     public class Action : MonoBehaviour
     {
-        public void OnClick(){
+        /*public void OnClick(){
             Debug.Log(name);
             ActionFrame.instance.StartSpawnTimer(name);
-        }
+        }*/
     }
 
 }

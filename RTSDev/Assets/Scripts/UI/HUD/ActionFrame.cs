@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace RTSGame.UI.HUD
 {
 
-    public struct SpawnableObject
+    /*public struct SpawnableObject
     {
         public float queue;
         public GameObject order;
@@ -20,7 +20,7 @@ namespace RTSGame.UI.HUD
             this.spawnPoint = spawnPoint;
             this.spawnLocation = spawnLocation;
         }
-    }
+    }*/
 
     public class ActionFrame : MonoBehaviour
     {
@@ -35,12 +35,12 @@ namespace RTSGame.UI.HUD
         [SerializeField] private GameObject toolTip;
 
         private List<Button> buttons = new List<Button>();
-        private PlayerActions actionList = null;
+        public PlayerActions actionList = null;
 
-        public List<SpawnableObject> spawnQueue = new List<SpawnableObject>();
+       //public List<SpawnableObject> spawnQueue = new List<SpawnableObject>();
 
-        public GameObject spawnPoint = null;
-        public Transform spawnLocation = null;
+       // public GameObject spawnPoint = null;
+       // public Transform spawnLocation = null;
 
         private void Awake()
         {
@@ -48,14 +48,14 @@ namespace RTSGame.UI.HUD
         
         }
 
-        public void SetActionButtons(PlayerActions actions, GameObject spawnPoint = null, Transform spawnLocation = null)
+        public void SetActionButtons(PlayerActions actions)//, GameObject spawnPoint = null, Transform spawnLocation = null)
         {
             actionList = actions;
-            if (spawnPoint != null && spawnLocation != null)
-            {
-                this.spawnPoint = spawnPoint;
-                this.spawnLocation = spawnLocation;
-            }
+           // if (spawnPoint != null && spawnLocation != null)
+            //{
+            //    this.spawnPoint = spawnPoint;
+            //    this.spawnLocation = spawnLocation;
+           // }
 
             if (actions.basicUnits.Count>0)
             {
@@ -96,12 +96,12 @@ namespace RTSGame.UI.HUD
             buttons.Clear();
         }
 
-       public void StartSpawnTimer(string objectToSpawn)
+      /* public void StartSpawnTimer(string objectToSpawn)
         {
             if (IsUnit(objectToSpawn) && spawnQueue.Count < 9)//spawnOrder.Count < 9)
             {
                 Units.BasicUnit unit = IsUnit(objectToSpawn);
-                ProductionQueue.instance.AddToQueue();
+                //ProductionQueue.instance.AddToQueue();
                 spawnQueue.Add(new SpawnableObject(unit.SpawnTime, unit.HumanPrefab, spawnPoint, spawnLocation));
             }
             else
@@ -118,7 +118,7 @@ namespace RTSGame.UI.HUD
                 ActionTimer.instance.StopAllCoroutines();
             }
             
-        }
+        }*/
 
         public void Upgrade(string name)
         {
@@ -141,18 +141,6 @@ namespace RTSGame.UI.HUD
             return null;
         }
 
-        private Buildings.BasicBuilding IsBuilding(string name)
-        {
-            foreach (Buildings.BasicBuilding building in actionList.basicBuildings)
-            {
-                if (building.name == name)
-                {
-                    return building;
-                }
-            }
-            return null;
-        }
-
         private Upgrades.BasicUpgrade IsUpgrade(string name)
         {
             foreach(Upgrades.BasicUpgrade upgrade in actionList.basicUpgrades)
@@ -166,9 +154,9 @@ namespace RTSGame.UI.HUD
             return null;
         }
 
-        public void SpawnObject()
+       /* public void SpawnObject()
         {
-            ProductionQueue.instance.SetProgressAmount(0);
+            //ProductionQueue.instance.SetProgressAmount(0);
             Debug.Log("spawnObject");
             GameObject spawnedObject = Instantiate(spawnQueue[0].order, spawnQueue[0].spawnLocation.position, Quaternion.identity);
 
@@ -178,8 +166,8 @@ namespace RTSGame.UI.HUD
 
             spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnQueue[0].spawnPoint.transform.position);
             spawnQueue.Remove(spawnQueue[0]);
-            ProductionQueue.instance.RemoveFromQueue();
-        }
+            //ProductionQueue.instance.RemoveFromQueue();
+        }*/
     }
 
 }
