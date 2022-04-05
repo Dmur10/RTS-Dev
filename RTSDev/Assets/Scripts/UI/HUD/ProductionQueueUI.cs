@@ -55,17 +55,6 @@ namespace RTSGame.UI.HUD
         {
             progressBar.fillAmount = amount;
         }
-
-        public IEnumerator StartProgressCountdown(float Duration)
-        {
-            float time = 0;
-            while(time < Duration)
-            {
-                time += Time.deltaTime;
-                SetProgressAmount(time / Duration);
-            }
-            yield return null;
-        }
     }
 }
 

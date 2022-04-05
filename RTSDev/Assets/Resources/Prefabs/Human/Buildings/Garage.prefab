@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 5866184269018779161}
   - component: {fileID: 5866184269018779147}
   - component: {fileID: 5866184269018778110}
+  - component: {fileID: -1502987663116011668}
   m_Layer: 7
   m_Name: Garage
   m_TagString: Untagged
@@ -580,6 +581,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 5866184269018777260}
   flagLocation: {fileID: 5866184269018777267}
+--- !u!114 &-1502987663116011668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866184269018776545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880824c6b085cdf418920342ab16446c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 1
 --- !u!1 &8226186665538258352
 GameObject:
   m_ObjectHideFlags: 0

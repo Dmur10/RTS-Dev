@@ -22,12 +22,24 @@ namespace RTSGame.Buildings
         public Transform spawnPoint = null;
         public Transform flagLocation = null;
 
+        private float filler = 0;
+        public float fill = 0;
+
         public IEnumerator SpawnQueueTimer()
         {
             if (spawnQueue.Count > 0)
             {
                 Debug.Log($"Waiting for {spawnQueue[0].queue}");
-                yield return new WaitForSeconds(spawnQueue[0].queue);
+                while(filler <= spawnQueue[0].queue)
+                {
+                    filler = filler + Time.deltaTime;
+                    fill = filler / spawnQueue[0].queue;
+                    Debug.Log(fill);
+                    yield return null;
+                }
+                filler = 0;
+                fill = 0;
+                //new WaitForSeconds(spawnQueue[0].queue);
                 SpawnObject();
                 Debug.Log("spawn");
             }

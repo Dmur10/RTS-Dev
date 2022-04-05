@@ -18,7 +18,7 @@ MonoBehaviour:
   BurnedPrefab: {fileID: 0}
   SpawnTime: 10
   baseStats:
-    aggroRange: 10
+    aggroRange: 0
     atkRange: 0
     atkSpeed: 0
     damage: 0

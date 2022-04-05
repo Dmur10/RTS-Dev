@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Garage
   m_EditorClassIdentifier: 
   type: 0
-  name: 
-  buildingPrefab: {fileID: 0}
+  name: Garage
+  buildingPrefab: {fileID: 5866184269018776545, guid: 49b94df6a05b95942aceb086c36f92a3, type: 3}
   SpawnTime: 700
   baseStats:
     health: 600

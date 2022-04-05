@@ -20,6 +20,19 @@ namespace RTSGame.Buildings
             instance = this;
         }
 
+        private void Update()
+        {
+            if(buildingProductionQueue != null)
+            {
+                SetProgress();
+            }
+        }
+
+        public void SetProgress()
+        {
+            productionQueueUI.SetProgressAmount(buildingProductionQueue.fill);
+        }
+
         public void AddToQueue(string name)
         {
             if (buildingProductionQueue.StartSpawnTimer(name))

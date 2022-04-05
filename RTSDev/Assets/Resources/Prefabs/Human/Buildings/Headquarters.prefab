@@ -657,6 +657,7 @@ GameObject:
   - component: {fileID: 6506583598363939690}
   - component: {fileID: 1332006239238325258}
   - component: {fileID: 1692325736901904289}
+  - component: {fileID: 5832807204859824346}
   m_Layer: 7
   m_Name: Headquarters
   m_TagString: Untagged
@@ -779,6 +780,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 3583247331564740641}
   flagLocation: {fileID: 1845217532532728432}
+--- !u!114 &5832807204859824346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975874794854153203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880824c6b085cdf418920342ab16446c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 1
 --- !u!1 &8182055252101380360
 GameObject:
   m_ObjectHideFlags: 0

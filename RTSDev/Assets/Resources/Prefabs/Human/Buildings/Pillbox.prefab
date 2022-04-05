@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6816408459195666194}
   - component: {fileID: 3756204208084827533}
   - component: {fileID: 5693897379609749925}
+  - component: {fileID: 2286794858076932765}
   m_Layer: 0
   m_Name: Pillbox
   m_TagString: Untagged
@@ -107,6 +108,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &2286794858076932765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776773028066963574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880824c6b085cdf418920342ab16446c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 1
 --- !u!1 &5965174807300823623
 GameObject:
   m_ObjectHideFlags: 0
