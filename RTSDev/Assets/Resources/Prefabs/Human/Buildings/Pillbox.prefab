@@ -66,7 +66,7 @@ MonoBehaviour:
   actions: {fileID: 11400000, guid: 646799eebbf94e044b57de61d78733da, type: 2}
   spawnMarker: {fileID: 0}
   spawnMarkerGraphic: {fileID: 0}
-  offset: 0
+  offset: 2
   target: {fileID: 0}
   range: 10
   damage: 25

@@ -53,6 +53,8 @@ namespace RTSGame.Buildings
                 ValidObject = true;
             } else if (IsUpgrade(objectToSpawn))
             {
+                Upgrades.BasicUpgrade upgrade = IsUpgrade(objectToSpawn);
+                //spawnQueue.Add(new SpawnableObject(upgrade.SpawnTime, upgrade));
                 ValidObject = true;
             }
             else
@@ -79,7 +81,6 @@ namespace RTSGame.Buildings
             GameObject spawnedObject = Instantiate(spawnQueue[0].order.HumanPrefab, spawnPoint.position, Quaternion.identity);
 
             Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
-            Debug.Log(pu.baseStats.health);
             pu.transform.SetParent(GameObject.Find(pu.unitType.type.ToString()).transform);
 
             spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(flagLocation.position);

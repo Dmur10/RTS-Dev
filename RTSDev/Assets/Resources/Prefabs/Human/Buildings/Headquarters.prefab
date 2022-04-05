@@ -728,7 +728,7 @@ MonoBehaviour:
   actions: {fileID: 11400000, guid: 90ede9f98895bbd49a5a201ef810911b, type: 2}
   spawnMarker: {fileID: 3082662283039036179}
   spawnMarkerGraphic: {fileID: 5388624156386331955}
-  offset: 0
+  offset: 5
 --- !u!114 &6506583598363939690
 MonoBehaviour:
   m_ObjectHideFlags: 0

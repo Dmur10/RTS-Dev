@@ -83,6 +83,7 @@ MonoBehaviour:
   actions: {fileID: 11400000, guid: a29ad15358843d44bbce7032801387ff, type: 2}
   spawnMarker: {fileID: 0}
   spawnMarkerGraphic: {fileID: 0}
+  offset: 2
 --- !u!114 &947999826608507313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +100,9 @@ MonoBehaviour:
   baseStats:
     health: 0
     attack: 0
+    atkSpeed: 0
     atkRange: 0
+    cost: []
   statDisplay: {fileID: 2376772920670800973}
 --- !u!208 &2946880265954509703
 NavMeshObstacle:

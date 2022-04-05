@@ -19,4 +19,9 @@ MonoBehaviour:
   baseStats:
     health: 500
     attack: 0
+    atkSpeed: 0
     atkRange: 0
+    cost:
+    - 200
+    - 300
+    - 0

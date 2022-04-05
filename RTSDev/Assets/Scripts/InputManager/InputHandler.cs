@@ -101,6 +101,7 @@ namespace RTSGame.InputManager
                                     foreach (Transform unit in selectedUnits)
                                     {
                                         Interactables.IScavenger scavenger = unit.gameObject.GetComponent<Interactables.IScavenger>();
+                                        scavenger.SetStorage(hit.transform);
                                     }
                                 }
                             } 
@@ -141,7 +142,7 @@ namespace RTSGame.InputManager
                                  foreach (Transform unit in selectedUnits)
                                  { 
                                     PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                                    pU.MoveUnit(targetPositionList[targetPositionListIndex]);
+                                    pU.SetDesitnation(targetPositionList[targetPositionListIndex]);
                                     targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
                                  }
                             }

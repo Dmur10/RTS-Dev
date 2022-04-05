@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 7
   unitName: Raiders
-  HumanPrefab: {fileID: 0}
+  HumanPrefab: {fileID: 4945973719156063243, guid: 9c85f1539e2d806428fc6e69ce3d8af1, type: 3}
   BurnedPrefab: {fileID: 0}
   SpawnTime: 30
   baseStats:
-    aggroRange: 0
-    atkRange: 0
-    atkSpeed: 10
+    aggroRange: 12
+    atkRange: 8
+    atkSpeed: 2
     damage: 20
-    health: 150
+    health: 200
     cost:
     - 100
     - 200

@@ -20,9 +20,6 @@ namespace RTSGame.Interactables
         {
             unit = GetComponent<Units.Player.PlayerUnit>();
         }
-        private void Update()
-        {
-        }
 
         public override void OnInteractEnter()
         {
@@ -46,13 +43,21 @@ namespace RTSGame.Interactables
 
         public void SetResource(Transform tf)
         {
-            resourceTransform = tf;
-            unit.SetFiniteState(FSM.FSMStateType.MoveToResource);
+            RTSResources.ResourceSource source = tf.GetComponent<RTSResources.ResourceSource>();
+            if (resourceAmt > 0 && type != source.GetResourceType())
+            {
+            } else
+            {
+                resourceTransform = tf;
+                type = source.GetResourceType();
+                unit.SetFiniteState(FSM.FSMStateType.MoveToResource);
+            }
         }
 
         public void SetStorage(Transform tf)
         {
             storageTransform = tf;
+            unit.SetFiniteState(FSM.FSMStateType.MoveToStorage);
         }
 
         public RTSResources.ResourceType GetResourceType()

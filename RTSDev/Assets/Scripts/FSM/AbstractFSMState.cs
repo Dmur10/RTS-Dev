@@ -17,6 +17,8 @@ namespace RTSGame.FSM
         Idle,
         Patrol,
         Chase,
+        MoveToDestination,
+        Attack,
         Aggressive,
         Defensive,
         HoldGround,
@@ -25,8 +27,6 @@ namespace RTSGame.FSM
         MoveToResource,
         GatherResource,
         MoveToStorage,
-        Attack,
-        MoveToDestination,
         MoveToCapturePoint,
         Capture
     }

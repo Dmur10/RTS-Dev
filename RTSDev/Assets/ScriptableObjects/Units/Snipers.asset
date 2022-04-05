@@ -19,7 +19,7 @@ MonoBehaviour:
   SpawnTime: 20
   baseStats:
     aggroRange: 15
-    atkRange: 10
+    atkRange: 12
     atkSpeed: 10
     damage: 50
     health: 100

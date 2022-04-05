@@ -5,23 +5,6 @@ using UnityEngine.UI;
 
 namespace RTSGame.UI.HUD
 {
-
-    /*public struct SpawnableObject
-    {
-        public float queue;
-        public GameObject order;
-        public GameObject spawnPoint;
-        public Transform spawnLocation;
-
-        public SpawnableObject(float queue, GameObject order, GameObject spawnPoint, Transform spawnLocation)
-        {
-            this.queue = queue;
-            this.order = order;
-            this.spawnPoint = spawnPoint;
-            this.spawnLocation = spawnLocation;
-        }
-    }*/
-
     public class ActionFrame : MonoBehaviour
     {
         
@@ -37,25 +20,15 @@ namespace RTSGame.UI.HUD
         private List<Button> buttons = new List<Button>();
         public PlayerActions actionList = null;
 
-       //public List<SpawnableObject> spawnQueue = new List<SpawnableObject>();
-
-       // public GameObject spawnPoint = null;
-       // public Transform spawnLocation = null;
-
         private void Awake()
         {
                 instance = this;
         
         }
 
-        public void SetActionButtons(PlayerActions actions)//, GameObject spawnPoint = null, Transform spawnLocation = null)
+        public void SetActionButtons(PlayerActions actions)
         {
             actionList = actions;
-           // if (spawnPoint != null && spawnLocation != null)
-            //{
-            //    this.spawnPoint = spawnPoint;
-            //    this.spawnLocation = spawnLocation;
-           // }
 
             if (actions.basicUnits.Count>0)
             {
@@ -63,6 +36,7 @@ namespace RTSGame.UI.HUD
                 {
                     Button btn = Instantiate(actionButtonUnit, layoutGroup);
                     btn.name = unit.name;
+                    btn.GetComponent<BuildUnit>().basicUnit = unit;
                     buttons.Add(btn);
                 }
             }
@@ -72,6 +46,7 @@ namespace RTSGame.UI.HUD
                 {
                     Button btn = Instantiate(actionButtonBuilding, layoutGroup);
                     btn.name = building.name;
+                    btn.GetComponent<BuildBuilding>().basicBuilding = building;
                     buttons.Add(btn);
                 }
             }
@@ -82,6 +57,7 @@ namespace RTSGame.UI.HUD
                 {
                     Button btn = Instantiate(actionButtonUpgrade, layoutGroup);
                     btn.name = upgrade.name;
+                    btn.GetComponent<PurchaseUpgrade>().basicUpgrade = upgrade;
                     buttons.Add(btn);
                 }
             }
@@ -95,30 +71,6 @@ namespace RTSGame.UI.HUD
             }
             buttons.Clear();
         }
-
-      /* public void StartSpawnTimer(string objectToSpawn)
-        {
-            if (IsUnit(objectToSpawn) && spawnQueue.Count < 9)//spawnOrder.Count < 9)
-            {
-                Units.BasicUnit unit = IsUnit(objectToSpawn);
-                //ProductionQueue.instance.AddToQueue();
-                spawnQueue.Add(new SpawnableObject(unit.SpawnTime, unit.HumanPrefab, spawnPoint, spawnLocation));
-            }
-            else
-            {
-                Debug.Log($"{objectToSpawn} is not spawnable");
-            }
-
-            if (spawnQueue.Count == 1) 
-            {
-                Debug.Log("starts");
-                ActionTimer.instance.StartCoroutine(ActionTimer.instance.SpawnQueueTimer());
-            } else if (spawnQueue.Count == 0)
-            {
-                ActionTimer.instance.StopAllCoroutines();
-            }
-            
-        }*/
 
         public void Upgrade(string name)
         {
@@ -153,21 +105,6 @@ namespace RTSGame.UI.HUD
             Debug.Log("fail");
             return null;
         }
-
-       /* public void SpawnObject()
-        {
-            //ProductionQueue.instance.SetProgressAmount(0);
-            Debug.Log("spawnObject");
-            GameObject spawnedObject = Instantiate(spawnQueue[0].order, spawnQueue[0].spawnLocation.position, Quaternion.identity);
-
-            Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
-            Debug.Log(pu.baseStats.health);
-            pu.transform.SetParent(GameObject.Find(pu.unitType.type.ToString()).transform);
-
-            spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnQueue[0].spawnPoint.transform.position);
-            spawnQueue.Remove(spawnQueue[0]);
-            //ProductionQueue.instance.RemoveFromQueue();
-        }*/
     }
 
 }

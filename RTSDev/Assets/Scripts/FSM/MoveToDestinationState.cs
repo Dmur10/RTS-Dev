@@ -18,6 +18,7 @@ namespace RTSGame.FSM
             if (base.EnterState())
             {
                 unit.SetTarget(null);
+                unit.MoveUnit(unit.GetDestination());
                 EnteredState = true;
             }
             return EnteredState;
@@ -26,6 +27,10 @@ namespace RTSGame.FSM
         {
             if (EnteredState)
             {
+                if (unit.IsIdle())
+                {
+                    fsm.EnterState(FSMStateType.Idle);
+                }
             }
         }
     }

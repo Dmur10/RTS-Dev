@@ -20,5 +20,6 @@ namespace RTSGame.Upgrades
         public Units.BasicUnit[] units;
         public Buildings.BasicBuilding[] buildings;
         public UpgradeType upgradeType;
+        public float[] cost;
     }
 }

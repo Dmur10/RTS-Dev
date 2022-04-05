@@ -23,11 +23,11 @@ namespace RTSGame.FSM
             else
             {
                 distance = Vector3.Distance(unit.GetTarget().position, unit.transform.position);
-                if (unit.atkCooldown <= 0 && distance <= unit.baseStats.atkRange)
+                if (unit.GetAtkCooldown() <= 0 && distance <= unit.baseStats.atkRange)
                 {
                     unit.Attack();
                 }
-                else if (distance > unit.baseStats.aggroRange)
+                else if (distance > unit.baseStats.aggroRange+1)
                 {
                     unit.SetTarget(null);
                 }

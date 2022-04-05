@@ -21,12 +21,12 @@ namespace RTSGame.Units
         {
             if (IsPlayer())
             {
-                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform.parent);
-                Destroy(gameObject.transform.parent.gameObject);
+                InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform.parent.parent);
+                Destroy(gameObject.transform.parent.parent.gameObject);
             } 
             else
             {
-                Destroy(gameObject.transform.parent.gameObject);
+                Destroy(gameObject.transform.parent.parent.gameObject);
             }
         }
     }

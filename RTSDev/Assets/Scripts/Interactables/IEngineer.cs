@@ -7,6 +7,7 @@ namespace RTSGame.Interactables
 {
     public class IEngineer : IUnit
     {
+        [SerializeField]
         private Transform captureTransform;
         private Units.Player.PlayerUnit unit;
 

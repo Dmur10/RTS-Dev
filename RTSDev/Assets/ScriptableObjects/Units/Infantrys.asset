@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   unitName: Infantrys
-  HumanPrefab: {fileID: 0}
+  HumanPrefab: {fileID: 1690045806468801336, guid: e3ca8f27f336f414690652e8ad66ab28, type: 3}
   BurnedPrefab: {fileID: 0}
-  SpawnTime: 10
+  SpawnTime: 15
   baseStats:
     aggroRange: 10
-    atkRange: 5
-    atkSpeed: 10
+    atkRange: 6
+    atkSpeed: 5
     damage: 20
     health: 100
     cost:

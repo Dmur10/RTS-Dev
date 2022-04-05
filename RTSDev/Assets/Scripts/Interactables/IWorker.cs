@@ -42,6 +42,7 @@ namespace RTSGame.Interactables
 
         public void OnBuilderSelect()
         {
+            UI.HUD.ActionFrame.instance.ClearActions();
             UI.HUD.ActionFrame.instance.SetActionButtons(actions);
         }
 

@@ -14,7 +14,10 @@ namespace RTSGame.Interactables
         public override void OnInteractEnter()
         {
             UI.HUD.ActionFrame.instance.SetActionButtons(actions);
-            Buildings.ProductionHandler.instance.SetProductionQueue(GetComponent<Buildings.BuildingProductionQueue>());
+            if(GetComponent<Buildings.BuildingProductionQueue>() != null)
+            {
+                Buildings.ProductionHandler.instance.SetProductionQueue(GetComponent<Buildings.BuildingProductionQueue>());
+            }
             if (spawnMarker)
             {
                 spawnMarkerGraphic.SetActive(true);

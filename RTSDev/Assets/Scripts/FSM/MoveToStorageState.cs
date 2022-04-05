@@ -30,10 +30,10 @@ namespace RTSGame.FSM
 
         public override void UpdateState()
         {
-            if (unit.IsIdle() && scavenger.GetStorage() != null)
+            if (scavenger.GetStorage() != null)
             {
                 unit.MoveUnit(scavenger.GetStorage().position, scavenger.GetStorage().GetComponent<Interactables.IBuilding>().offset, () => {
-                    Player.PlayerManager.instance.playerResources[(int)scavenger.GetResourceType()].AddAmount(scavenger.GetResourceAmount());
+                    Player.PlayerManager.instance.playerResources[scavenger.GetResourceType()].AddAmount(scavenger.GetResourceAmount());
                     scavenger.SetResourceAmount(0);
                     if (scavenger.GetResource() != null)
                     {

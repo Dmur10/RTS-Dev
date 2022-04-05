@@ -24,6 +24,7 @@ namespace RTSGame.Units.Enemy
                 targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
                 return true;
             }
+            target = null;
             return false;
         }       
 

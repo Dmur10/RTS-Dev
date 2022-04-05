@@ -6,7 +6,6 @@ namespace RTSGame.FSM
 {
     public class IdleState : AbstractFSMState
     {
-
         public override void OnEnable()
         {
             base.OnEnable();
@@ -14,9 +13,11 @@ namespace RTSGame.FSM
         }
         public override bool EnterState()
         {
-            base.EnterState();
-
-            EnteredState = true;
+            EnteredState = false;
+            if (base.EnterState())
+            {
+                EnteredState = true;
+            }
             return EnteredState;
         }
 

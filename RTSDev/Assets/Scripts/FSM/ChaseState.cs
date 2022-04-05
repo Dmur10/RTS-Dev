@@ -6,7 +6,6 @@ namespace RTSGame.FSM
 {
     public class ChaseState : AbstractFSMState
     {
-        Transform target;
         float distance;
 
         public override void OnEnable()
@@ -20,8 +19,7 @@ namespace RTSGame.FSM
             EnteredState = false;
             if (base.EnterState())
             {
-                target = unit.GetTarget();
-                if(target != null)
+                if(unit.GetTarget() != null)
                 {
                     EnteredState = true;
                     unit.MoveToTarget();
@@ -34,24 +32,27 @@ namespace RTSGame.FSM
         {
             if (EnteredState)
             {
-                if (target == null)
+                if (unit.GetTarget() == null)
                 {
                     navMeshAgent.SetDestination(unit.transform.position);
-                    fsm.EnterState(FSMStateType.Patrol);
+                    if (unit.GetWayPoint() != null)
+                    {
+                        fsm.EnterState(FSMStateType.Patrol);
+                    }
+                    else
+                    {
+                        fsm.EnterState(FSMStateType.Idle);
+                    }
                 }
                 else
                 {
-                    distance = Vector3.Distance(target.position, unit.transform.position);
-                    if (unit.atkCooldown > 0)
-                    {
-                        unit.atkCooldown -= Time.deltaTime;
-                    }
+                    distance = Vector3.Distance(unit.GetTarget().position, unit.transform.position);
 
-                    if (unit.atkCooldown <= 0 && distance <= unit.baseStats.atkRange)
+                    if (unit.GetAtkCooldown() <= 0 && distance <= unit.baseStats.atkRange)
                     {
                         unit.Attack();
                     }
-                    else if (distance > unit.baseStats.aggroRange)
+                    else if (distance > unit.baseStats.aggroRange+1)
                     {
                         navMeshAgent.SetDestination(unit.transform.position);
                         unit.SetTarget(null);
@@ -59,22 +60,11 @@ namespace RTSGame.FSM
                     }
                     else
                     {
-                        navMeshAgent.SetDestination(target.position);
+                        navMeshAgent.SetDestination(unit.GetTarget().position);
                     }
                 }
             }
             
-        }
-
-        private void MoveToTarget()
-        {
-                distance = Vector3.Distance(target.position, unit.transform.position);
-                navMeshAgent.stoppingDistance = (unit.baseStats.atkRange + 1);
-
-                if (distance <= unit.baseStats.aggroRange)
-                {
-                    navMeshAgent.SetDestination(target.position);
-                }
         }
     }
 }

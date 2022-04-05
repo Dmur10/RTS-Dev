@@ -17,3 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
   buildings: []
   upgradeType: 1
+  cost:
+  - 150
+  - 0
+  - 0

@@ -107,6 +107,7 @@ namespace RTSGame.Buildings
             InputManager.InputHandler.instance.selectedUnits[0].GetComponent<Interactables.IWorker>().SetBuildZone(temp);
             Destroy(buildingToPlace.gameObject);
             buildingToPlace = null;
+            Placement = BuildingPlacement.VALID;
         }
 
         public bool IsFixed { get => Placement == BuildingPlacement.FIXED; }
@@ -148,7 +149,7 @@ namespace RTSGame.Buildings
             {
                 renderer.materials = materials.ToArray();
             }
-            _materials = null;
+                _materials = null;
         }
     }
 }

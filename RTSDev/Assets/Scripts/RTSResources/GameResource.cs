@@ -10,8 +10,6 @@ namespace RTSGame.RTSResources
         private ResourceType _type;
         private float _currentAmount;
 
-        public static event EventHandler onAmountChange;
-
         public GameResource(ResourceType type, float initialAmount)
         {
             _type = type;
@@ -30,7 +28,7 @@ namespace RTSGame.RTSResources
 
         public void RemoveAmount(float value)
         {
-            _currentAmount -= value;
+        _currentAmount -= value;
         }
     }
 }

@@ -6,8 +6,8 @@ namespace RTSGame.RTSResources
 {
     public enum ResourceType
     {
-        Scrap,
         Food,
+        Scrap,
         Fuel
     }
 

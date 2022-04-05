@@ -21,12 +21,13 @@ namespace RTSGame.Units
         [SerializeField] protected Transform target = null;
         protected StatDisplay targetStatDisplay;
 
-        public Transform waypoint;
+        public Transform waypoint = null;
+        private Vector3 destination;
 
         [SerializeField]
         protected Collider[] colliders;
 
-        public float atkCooldown;
+        private float atkCooldown;
         protected float distance;
         
 
@@ -38,7 +39,7 @@ namespace RTSGame.Units
             FiniteStateMachine = GetComponent<FSM.FiniteStateMachine>();
         }
 
-        void Update()
+        public void Update()
         {
             if (atkCooldown > 0)
             {
@@ -53,11 +54,18 @@ namespace RTSGame.Units
 
         public bool IsIdle()
         {
-            if(navAgent.velocity.magnitude != 0)
+            float dist = navAgent.remainingDistance;
+            if (!navAgent.pathPending)
             {
-                return false;
+                if(navAgent.remainingDistance <= navAgent.stoppingDistance)
+                {
+                    if(!navAgent.hasPath || navAgent.velocity.sqrMagnitude == 0f)
+                    {
+                        return true;
+                    }
+                }
             }
-            return true;
+            return false;
         }
 
         public Transform GetWayPoint()
@@ -78,6 +86,11 @@ namespace RTSGame.Units
         public void SetTarget(Transform target)
         {
             this.target = target;
+            if(this.target != null)
+            {
+                targetStatDisplay = this.target.GetComponentInChildren<StatDisplay>();
+                FiniteStateMachine.EnterState(FSM.FSMStateType.Attack);
+            }
         }
 
         public bool HasTarget()
@@ -132,6 +145,23 @@ namespace RTSGame.Units
                 atkCooldown = baseStats.atkSpeed;
         }
 
+        public float GetAtkCooldown()
+        {
+            return atkCooldown;
+        }
+
+        public Vector3 GetDestination()
+        {
+            return destination;
+        }
+
+        public void SetDesitnation(Vector3 destination)
+        {
+            this.destination = destination;
+            SetTarget(null);
+            FiniteStateMachine.EnterState(FSM.FSMStateType.MoveToDestination);
+        }
+
         public void MoveUnit(Vector3 destination)
         {
             target = null;
@@ -139,7 +169,6 @@ namespace RTSGame.Units
             {
                 navAgent = GetComponent<NavMeshAgent>();
             }
-            //FiniteStateMachine.EnterState(FSM.FSMStateType.MoveToDestination);
             navAgent.SetDestination(destination);
         }
 
@@ -151,7 +180,7 @@ namespace RTSGame.Units
                 navAgent = GetComponent<NavMeshAgent>();
             }
 
-            if (Vector3.Distance(transform.position, destination) < v)
+            if (Vector3.Distance(transform.position, destination)  < v)
             {
                 navAgent.SetDestination(transform.position);
                 p.Invoke();

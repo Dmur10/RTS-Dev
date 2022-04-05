@@ -15,4 +15,7 @@ MonoBehaviour:
   basicUnits:
   - {fileID: 11400000, guid: 58a28208aba768b41ad2d88d389374a3, type: 2}
   - {fileID: 11400000, guid: b7bf3e1290e79bf40b02015cd9174390, type: 2}
+  - {fileID: 11400000, guid: f775b53bb654e61428a733eea660652c, type: 2}
+  - {fileID: 11400000, guid: 8abdfa03d23753a4c88c01c5233de325, type: 2}
   basicBuildings: []
+  basicUpgrades: []

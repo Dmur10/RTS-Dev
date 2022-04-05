@@ -8,6 +8,8 @@ namespace RTSGame.Interactables {
     {
 
         public float offset;
+        public GameObject prefab;
+        public Transform parent;
 
         public override void OnInteractEnter()
         {
@@ -18,10 +20,12 @@ namespace RTSGame.Interactables {
         {
             base.OnInteractExit();
         }
-
-        public virtual void capture()
+   
+        public void capture()
         {
-
+            GameObject temp = Instantiate(prefab, transform.position, transform.rotation);
+            temp.transform.SetParent(parent);
+            Destroy(gameObject);
         }
     }
 

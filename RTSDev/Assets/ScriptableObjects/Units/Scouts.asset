@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   unitName: Scouts
-  HumanPrefab: {fileID: 0}
+  HumanPrefab: {fileID: 3108283148093525287, guid: 29a45b83aca73b64cb4be8ea32775db6, type: 3}
   BurnedPrefab: {fileID: 0}
-  SpawnTime: 10
+  SpawnTime: 15
   baseStats:
     aggroRange: 10
-    atkRange: 5
-    atkSpeed: 1
+    atkRange: 4
+    atkSpeed: 2
     damage: 10
     health: 80
     cost:
     - 50
     - 20
+    - 0

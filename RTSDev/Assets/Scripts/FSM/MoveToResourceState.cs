@@ -30,7 +30,7 @@ namespace RTSGame.FSM
 
         public override void UpdateState()
         {
-            if (unit.IsIdle() && scavenger.GetResource()!=null)
+            if (scavenger.GetResource()!=null)
             {
                 unit.MoveUnit(scavenger.GetResource().position, scavenger.GetResource().GetComponent<Interactables.IResource>().offset, () => {
                     fsm.EnterState(FSMStateType.GatherResource);

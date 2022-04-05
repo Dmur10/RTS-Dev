@@ -15,7 +15,13 @@ MonoBehaviour:
   type: 1
   name: House
   buildingPrefab: {fileID: 0}
-  SpawnTime: 0
+  SpawnTime: 200
   baseStats:
     health: 200
     attack: 0
+    atkSpeed: 0
+    atkRange: 0
+    cost:
+    - 100
+    - 150
+    - 0

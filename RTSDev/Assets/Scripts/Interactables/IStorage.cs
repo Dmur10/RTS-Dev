@@ -10,7 +10,7 @@ namespace RTSGame.Interactables
         {
             if(gameObject.GetComponent<Buildings.Player.PlayerBuilding>())
             {
-                Player.PlayerManager.instance.playerResources[(int)rType].AddAmount(amount);
+                Player.PlayerManager.instance.playerResources[rType].AddAmount(amount);
             }
         }
     }

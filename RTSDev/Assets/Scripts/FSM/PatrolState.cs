@@ -16,15 +16,13 @@ namespace RTSGame.FSM
 
         public override bool EnterState()
         {
+            EnteredState = false;
             if (base.EnterState())
             {
-                if (unit.GetWayPoint() == null)
-                {
-                    EnteredState = false;
-                } else
+                if (unit.GetWayPoint() != null)
                 {
                     waypoint = unit.GetWayPoint().GetComponent<EnemyWaypoint>();
-                    SetDestination(waypoint.transform.position);
+                    navMeshAgent.SetDestination(waypoint.transform.position);
                     EnteredState = true;
                 }
             }
@@ -53,19 +51,11 @@ namespace RTSGame.FSM
                         }
                         else
                         {
-                            SetDestination(waypoint.GetNextWaypoint().position);
+                            navMeshAgent.SetDestination(waypoint.GetNextWaypoint().position);
                             waypoint = waypoint.GetNextWaypoint().GetComponent<EnemyWaypoint>();
                         }
                     }
                 }
-            }
-        }
-
-        private void SetDestination(Vector3 destination)
-        {
-            if(navMeshAgent != null && destination != null)
-            {
-                navMeshAgent.SetDestination(destination);
             }
         }
     }

@@ -15,8 +15,13 @@ MonoBehaviour:
   type: 3
   name: Resourcehut
   buildingPrefab: {fileID: 397844985300492584, guid: 5f7265ee3b8702d49a991e708a7dd438, type: 3}
-  SpawnTime: 150
+  SpawnTime: 300
   baseStats:
     health: 100
     attack: 0
+    atkSpeed: 0
     atkRange: 0
+    cost:
+    - 100
+    - 250
+    - 0
