@@ -30,31 +30,34 @@ namespace RTSGame.FSM
 
         public override void UpdateState()
         {
-            if (!unit.HasTarget())
+            if (EnteredState)
             {
-                if (unit.CheckForTarget())
+                if (!unit.HasTarget() && unit.IsIdle())
                 {
-                    target = unit.GetTarget();
-                    unit.MoveToTarget();
+                    if (unit.CheckForTarget())
+                    {
+                        target = unit.GetTarget();
+                        unit.MoveToTarget();
+                    }
                 }
-            }
-            else
-            {
-                maxDistance = Vector3.Distance(initialPosition, target.position);
-                distance = Vector3.Distance(target.position, unit.transform.position);
-                
-                if(maxDistance > unit.baseStats.aggroRange)
+                else if( unit.HasTarget())
                 {
-                    unit.SetTarget(null);
-                    navMeshAgent.SetDestination(initialPosition);
-                }
-                else if (unit.GetAtkCooldown() <= 0 && distance < unit.baseStats.atkRange)
-                {
-                    unit.Attack();
-                }
-                else if (distance > unit.baseStats.aggroRange+1)
-                {
-                    unit.SetTarget(null);
+                    maxDistance = Vector3.Distance(initialPosition, target.position);
+                    distance = Vector3.Distance(target.position, unit.transform.position);
+
+                    if ((maxDistance > unit.baseStats.aggroRange + unit.baseStats.atkRange + 1) || (distance > unit.baseStats.aggroRange + 1))
+                    {
+                        navMeshAgent.SetDestination(initialPosition);
+                        unit.SetTarget(null);
+                    }
+                    else if (unit.GetAtkCooldown() <= 0 && distance < unit.baseStats.atkRange)
+                    {
+                        unit.Attack();
+                    }
+                    else
+                    {
+                        navMeshAgent.SetDestination(unit.GetTarget().position);
+                    }
                 }
             }
         }

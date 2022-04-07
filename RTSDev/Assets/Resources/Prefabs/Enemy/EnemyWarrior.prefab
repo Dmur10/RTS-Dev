@@ -299,7 +299,6 @@ MonoBehaviour:
   target: {fileID: 0}
   waypoint: {fileID: 0}
   colliders: []
-  atkCooldown: 5
 --- !u!1 &5671201979883741581
 GameObject:
   m_ObjectHideFlags: 0
