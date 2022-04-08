@@ -10,6 +10,8 @@ namespace RTSGame.Interactables
         [SerializeField]private Transform target;
         private StatDisplay targetStatDisplay;
 
+        private FSM.FiniteStateMachine FiniteStateMachine;
+
         private bool hasAggro = false;
         private float atkCooldown;
 
@@ -26,7 +28,19 @@ namespace RTSGame.Interactables
                 checkForTarget();
             } else
             {
-                Attack();
+                float distance = Vector3.Distance(target.position, transform.position);
+                if (atkCooldown <= 0 && distance <= range)
+                {
+                    Attack();
+                } else if (distance > range + 1)
+                {
+                    targetStatDisplay.takeDamage(damage);
+                    atkCooldown = atkSpeed;
+                }
+                else
+                {
+                    hasAggro = false;
+                }
             }
         }
 
@@ -52,14 +66,25 @@ namespace RTSGame.Interactables
                 break;
             }
         }
+        public void MoveToTarget()
+        {
+            if (target == null)
+            {
+            }
+            else
+            {
+                float distance = Vector3.Distance(target.position, transform.position);
+
+                if (distance >= range)
+                {
+                }
+            }
+        }
 
         private void Attack()
         {
-            if (atkCooldown <= 0)
-            {
                 targetStatDisplay.takeDamage(damage);
                 atkCooldown = atkSpeed;
-            }
         }
     }
 }

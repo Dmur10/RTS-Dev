@@ -308,6 +308,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4489653911389599586}
     m_Modifications:
+    - target: {fileID: 149775898615266727, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1313402453015551785, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1.6
@@ -402,7 +406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7404683725374082552, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.9999999
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7404683725374082552, guid: 298c90eaee6008a4ea30f51a6fe6749b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
