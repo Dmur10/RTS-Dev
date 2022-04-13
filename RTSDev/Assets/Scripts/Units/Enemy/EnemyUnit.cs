@@ -18,11 +18,15 @@ namespace RTSGame.Units.Enemy
         {
             colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.pUnitLayer);
 
-            for (int i = 0; i < colliders.Length;)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                target = colliders[i].gameObject.transform;
-                targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
-                return true;
+                Debug.Log(colliders[i].tag);
+                if (colliders[i].gameObject.CompareTag("Player"))
+                {
+                    target = colliders[i].gameObject.transform;
+                    targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
+                    return true;
+                }
             }
             target = null;
             return false;

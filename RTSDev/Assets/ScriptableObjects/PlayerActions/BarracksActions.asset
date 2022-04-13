@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: BarracksActions
   m_EditorClassIdentifier: 
   basicUnits:
+  - {fileID: 11400000, guid: f775b53bb654e61428a733eea660652c, type: 2}
+  - {fileID: 11400000, guid: 2d0052eada34c374d96330255384abf1, type: 2}
+  - {fileID: 11400000, guid: 8abdfa03d23753a4c88c01c5233de325, type: 2}
   - {fileID: 11400000, guid: a502690934c2b264399bcc94c4af4c01, type: 2}
   - {fileID: 11400000, guid: b728ac756b1d4d64d8258b6b851ae35b, type: 2}
   basicBuildings: []

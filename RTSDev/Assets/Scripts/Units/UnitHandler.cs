@@ -10,13 +10,27 @@ namespace RTSGame.Units
         public static UnitHandler instance;
 
         [SerializeField]
-        private BasicUnit Workers, Warriors, Scavengers, Engineers, Infantrys, Scouts, Raiders, Snipers;
+        private BasicUnit Workers, Warriors, Scavengers, Engineers, Infantrys, Scouts, Raiders, Snipers, FuelRaiders;
 
         public LayerMask pUnitLayer, eUnitLayer;
 
         private void Awake()
         {
             instance = this;
+        }
+
+        public void ApplyFuelPenalty(float penalty)
+        {
+            Raiders.baseStats.damage = Raiders.baseStats.damage * penalty;
+            Raiders.baseStats.health = Raiders.baseStats.health * penalty;
+            Raiders.baseStats.atkSpeed = Raiders.baseStats.atkSpeed * (2-penalty);
+        }
+
+        public void resetFuelPenalty()
+        {
+            Raiders.baseStats.damage = FuelRaiders.baseStats.damage;
+            Raiders.baseStats.health = FuelRaiders.baseStats.health;
+            Raiders.baseStats.atkSpeed = FuelRaiders.baseStats.atkSpeed;
         }
 
         public UnitStatTypes.Base GetUnitBaseStats(string type)
@@ -47,6 +61,9 @@ namespace RTSGame.Units
                     break;
                 case "Raiders":
                     unit = Raiders;
+                    break;
+                case "ERaiders":
+                    unit = FuelRaiders;
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} not found");

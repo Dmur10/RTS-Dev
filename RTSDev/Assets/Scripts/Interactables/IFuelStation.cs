@@ -8,7 +8,7 @@ namespace RTSGame.Interactables
     {
         private void Update()
         {
-            Player.PlayerManager.instance.playerResources[RTSResources.ResourceType.Fuel].AddAmount(Time.deltaTime);
+            Player.PlayerManager.instance.playerResources[RTSResources.ResourceType.Fuel].AddAmount(Time.deltaTime*4);
         }
     }
 }

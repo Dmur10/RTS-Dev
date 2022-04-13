@@ -6,9 +6,10 @@ namespace RTSGame
 {
     public class EnemyWaypoint : MonoBehaviour
     {
-        public Transform nextWayPoint = null;
         [SerializeField]
-        bool lastWaypoint = false;
+        private Transform[] nextWayPoints;
+        [SerializeField]
+        private bool lastWaypoint = false;
 
         public bool isLastWayPoint()
         {
@@ -17,7 +18,11 @@ namespace RTSGame
 
         public Transform GetNextWaypoint()
         {
-            return nextWayPoint;
+            if (lastWaypoint)
+            {
+                return null;
+            }
+            return nextWayPoints[Random.Range(0,nextWayPoints.Length)];
         }
     }
 }

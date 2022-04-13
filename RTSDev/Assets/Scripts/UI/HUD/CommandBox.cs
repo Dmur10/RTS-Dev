@@ -10,32 +10,100 @@ namespace RTSGame.UI.HUD
         {
             foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
             {
-                unit.GetComponent<Units.Unit>().SetFiniteState(FSM.FSMStateType.Idle);
+                if(unit.GetComponent<Units.Unit>().GetFiniteState() != FSM.FSMStateType.Idle)
+                {
+                    unit.GetComponent<Units.Unit>().SetFiniteState(FSM.FSMStateType.Idle);
+                }
             }
         }
 
         public void SetAggressiveState()
         {
-            foreach( Transform unit in InputManager.InputHandler.instance.selectedUnits)
+            if (AllAggresive())
             {
-                unit.GetComponent<Units.Unit>().AggresiveStance();
+                foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+                {
+                    SetIdleStance();
+                }
+            } else
+            {
+                foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+                {
+                    unit.GetComponent<Units.Unit>().AggresiveStance();
+                }
             }
         }
 
         public void SetDefensiveState()
         {
-            foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+            if (AllDefensive())
             {
-                unit.GetComponent<Units.Unit>().DefensiveStance();
+                foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+                {
+                    SetIdleStance();
+                }
+            }
+            else
+            {
+                foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+                {
+                    unit.GetComponent<Units.Unit>().DefensiveStance();
+                }
             }
         }
 
         public void SetHoldGroundState()
         {
+            if (AllHold())
+            {
+                foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+                {
+                    SetIdleStance();
+                }
+            }
+            else
+            {
+                foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+                {
+                    unit.GetComponent<Units.Unit>().HoldGroundStance();
+                }
+            }
+        }
+
+        private bool AllAggresive()
+        {
+            foreach(Transform unit in InputManager.InputHandler.instance.selectedUnits )
+            {
+                if(unit.GetComponent<Units.Unit>().GetFiniteState() != FSM.FSMStateType.Aggressive)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool AllDefensive()
+        {
             foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
             {
-                unit.GetComponent<Units.Unit>().HoldGroundStance();
+                if (unit.GetComponent<Units.Unit>().GetFiniteState() != FSM.FSMStateType.Defensive)
+                {
+                    return false;
+                }
             }
+            return true;
+        }
+
+        private bool AllHold()
+        {
+            foreach (Transform unit in InputManager.InputHandler.instance.selectedUnits)
+            {
+                if (unit.GetComponent<Units.Unit>().GetFiniteState() != FSM.FSMStateType.HoldGround)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -32,6 +32,8 @@ namespace RTSGame.FSM
             {
                 if (unit.GetTarget() == null)
                 {
+                    navMeshAgent.stoppingDistance = 0;
+                    navMeshAgent.SetDestination(unit.transform.position);
                     fsm.EnterState(FSMStateType.Idle);
                 }
                 else

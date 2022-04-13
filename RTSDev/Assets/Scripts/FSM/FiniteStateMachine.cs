@@ -52,6 +52,11 @@ namespace RTSGame.FSM
             }
         }
 
+        public FSMStateType GetCurrentState()
+        {
+            return currentState.StateType;
+        }
+
         public void EnterState(AbstractFSMState nextState)
         {
             if (nextState == null)

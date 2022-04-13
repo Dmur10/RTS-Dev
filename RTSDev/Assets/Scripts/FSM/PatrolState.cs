@@ -41,18 +41,17 @@ namespace RTSGame.FSM
                 }
                 else
                 {
-                    if (Vector3.Distance(navMeshAgent.transform.position, waypoint.transform.position) < 1f)
+                    if (Vector3.Distance(unit.transform.position, unit.GetWayPoint().position) < 4f)
                     {
-                        unit.SetWaypoint(waypoint.GetNextWaypoint());
-
-                        if (unit.GetWayPoint() == null)
+                        if(waypoint.GetNextWaypoint() != null)
                         {
-                            fsm.EnterState(FSMStateType.Idle);
+                            unit.SetWaypoint(waypoint.GetNextWaypoint());
+                            waypoint = unit.GetWayPoint().GetComponent<EnemyWaypoint>();
+                            navMeshAgent.SetDestination(unit.GetWayPoint().position);
                         }
                         else
                         {
-                            navMeshAgent.SetDestination(waypoint.GetNextWaypoint().position);
-                            waypoint = waypoint.GetNextWaypoint().GetComponent<EnemyWaypoint>();
+                            unit.SetWaypoint(null);
                         }
                     }
                 }

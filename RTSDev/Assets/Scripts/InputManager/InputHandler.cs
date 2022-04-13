@@ -169,7 +169,6 @@ namespace RTSGame.InputManager
             selectionBox.gameObject.SetActive(false);
             DeSelect();
 
-
             Vector2 min = selectionBox.anchoredPosition;// - (selectionBox.sizeDelta / 2);
             Vector2 max = selectionBox.anchoredPosition + selectionBox.sizeDelta;/// 2);
 
@@ -185,6 +184,11 @@ namespace RTSGame.InputManager
                     }
                 }
                 
+            }
+
+            if(selectedUnits.Count > 0)
+            {
+                UI.HUD.RightUIBoxFrame.instance.ActivateCommandBox();
             }
         }
 

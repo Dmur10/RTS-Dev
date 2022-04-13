@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: -331372742791076970}
   m_Layer: 7
   m_Name: FuelStation 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

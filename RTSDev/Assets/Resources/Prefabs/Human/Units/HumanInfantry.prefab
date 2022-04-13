@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 1698901771184209531}
   - component: {fileID: -5177478681872002958}
   - component: {fileID: -1403585845299453537}
+  - component: {fileID: 5281998105776810926}
   m_Layer: 7
   m_Name: HumanInfantry
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +106,6 @@ MonoBehaviour:
   target: {fileID: 0}
   waypoint: {fileID: 0}
   colliders: []
-  atkCooldown: 4
 --- !u!114 &5605328345238940166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +230,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b3e95217be1c447a48d43aa21a585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &5281998105776810926
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690045806468801336}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2261450226986952417
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +549,6 @@ GameObject:
   - component: {fileID: 2537289020075639212}
   - component: {fileID: 6218556379449314499}
   - component: {fileID: 9034496454366073417}
-  - component: {fileID: 4609486848432294453}
   m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
@@ -609,19 +621,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4609486848432294453
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897518361868976174}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4938758548115834833
 GameObject:
   m_ObjectHideFlags: 0

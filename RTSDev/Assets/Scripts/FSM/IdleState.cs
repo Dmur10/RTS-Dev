@@ -16,6 +16,7 @@ namespace RTSGame.FSM
             EnteredState = false;
             if (base.EnterState())
             {
+                navMeshAgent.stoppingDistance = 0;
                 EnteredState = true;
             }
             return EnteredState;

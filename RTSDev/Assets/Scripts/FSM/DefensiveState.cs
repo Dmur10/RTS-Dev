@@ -6,10 +6,9 @@ namespace RTSGame.FSM
 {
     public class DefensiveState : AbstractFSMState
     {
-        Transform target;
-        float distance;
-        Vector3 initialPosition;
-        float maxDistance;
+        private float distance;
+        private Vector3 initialPosition;
+        private float maxDistance;
 
         public override void OnEnable()
         {
@@ -36,14 +35,13 @@ namespace RTSGame.FSM
                 {
                     if (unit.CheckForTarget())
                     {
-                        target = unit.GetTarget();
                         unit.MoveToTarget();
                     }
                 }
                 else if( unit.HasTarget())
                 {
-                    maxDistance = Vector3.Distance(initialPosition, target.position);
-                    distance = Vector3.Distance(target.position, unit.transform.position);
+                    maxDistance = Vector3.Distance(initialPosition, unit.GetTarget().position);
+                    distance = Vector3.Distance(unit.GetTarget().position, unit.transform.position);
 
                     if ((maxDistance > unit.baseStats.aggroRange + unit.baseStats.atkRange + 1) || (distance > unit.baseStats.aggroRange + 1))
                     {

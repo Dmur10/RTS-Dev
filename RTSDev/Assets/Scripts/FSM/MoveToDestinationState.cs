@@ -18,6 +18,7 @@ namespace RTSGame.FSM
             if (base.EnterState())
             {
                 unit.SetTarget(null);
+                navMeshAgent.stoppingDistance = 0;
                 unit.MoveUnit(unit.GetDestination());
                 EnteredState = true;
             }

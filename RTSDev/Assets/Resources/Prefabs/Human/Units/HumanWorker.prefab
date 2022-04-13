@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 7203360676805560620}
   m_Layer: 7
   m_Name: HumanWorker
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,7 +198,6 @@ MonoBehaviour:
   target: {fileID: 0}
   waypoint: {fileID: 0}
   colliders: []
-  atkCooldown: 10
 --- !u!114 &7547965668791130179
 MonoBehaviour:
   m_ObjectHideFlags: 0

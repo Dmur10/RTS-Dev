@@ -6,7 +6,7 @@ namespace RTSGame.FSM
 {
     public class ChaseState : AbstractFSMState
     {
-        float distance;
+        private float distance;
 
         public override void OnEnable()
         {
@@ -34,6 +34,7 @@ namespace RTSGame.FSM
             {
                 if (unit.GetTarget() == null)
                 {
+                    navMeshAgent.stoppingDistance = 0;
                     navMeshAgent.SetDestination(unit.transform.position);
                     if (unit.GetWayPoint() != null)
                     {

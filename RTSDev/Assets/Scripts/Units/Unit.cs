@@ -52,6 +52,11 @@ namespace RTSGame.Units
             FiniteStateMachine.EnterState(type);
         }
 
+        public FSM.FSMStateType GetFiniteState()
+        {
+            return FiniteStateMachine.GetCurrentState();
+        }
+
         public bool IsIdle()
         {
             float dist = navAgent.remainingDistance;
@@ -108,12 +113,6 @@ namespace RTSGame.Units
         }
         public void MoveToTarget()
         {
-            if (target == null)
-            {
-                navAgent.SetDestination(transform.position);
-            }
-            else
-            {
                 float distance = Vector3.Distance(target.position, transform.position);
                 navAgent.stoppingDistance = (baseStats.atkRange);
 
@@ -121,7 +120,6 @@ namespace RTSGame.Units
                 {
                     navAgent.SetDestination(target.position);
                 }
-            }
         }
 
         public void AggresiveStance()

@@ -6,8 +6,7 @@ namespace RTSGame.FSM
 {
     public class AggressiveState : AbstractFSMState
     {
-        Transform target;
-        float distance;
+        private float distance;
 
         public override void OnEnable()
         {
@@ -31,12 +30,11 @@ namespace RTSGame.FSM
             {
                 if (unit.CheckForTarget())
                 {
-                    target = unit.GetTarget();
                     unit.MoveToTarget();
                 }
             } else
             {
-                distance = Vector3.Distance(target.position, unit.transform.position);
+                distance = Vector3.Distance(unit.GetTarget().position, unit.transform.position);
                 if (unit.GetAtkCooldown() <= 0 && distance < unit.baseStats.atkRange)
                 {
                     unit.Attack();
@@ -47,7 +45,7 @@ namespace RTSGame.FSM
                 }
                 else
                 {
-                    navMeshAgent.SetDestination(target.position);
+                    navMeshAgent.SetDestination(unit.GetTarget().position);
                 }
             }
         }

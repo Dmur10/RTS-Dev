@@ -6,7 +6,7 @@ namespace RTSGame.FSM
 {
     public class HoldGroundState : AbstractFSMState
     {
-        float distance;
+        private float distance;
 
         public override void OnEnable()
         {

@@ -13,7 +13,8 @@ namespace RTSGame.Buildings
             House,
             Barracks,
             Resourcehut,
-            Pillbox
+            Pillbox,
+            Garage
         }
 
         [Space(15)]

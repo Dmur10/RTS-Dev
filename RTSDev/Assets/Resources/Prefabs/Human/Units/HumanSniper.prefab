@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: -6578478846046519753}
   m_Layer: 7
   m_Name: HumanSniper
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -447,7 +447,6 @@ MonoBehaviour:
   target: {fileID: 0}
   waypoint: {fileID: 0}
   colliders: []
-  atkCooldown: 5
 --- !u!114 &1792098885579508832
 MonoBehaviour:
   m_ObjectHideFlags: 0

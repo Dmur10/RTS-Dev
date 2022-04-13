@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e159283d425144d47b1ddccb4cb5512a, type: 3}
   m_Name: Garage
   m_EditorClassIdentifier: 
-  type: 0
+  type: 5
   name: Garage
   buildingPrefab: {fileID: 5866184269018776545, guid: 49b94df6a05b95942aceb086c36f92a3, type: 3}
   SpawnTime: 700
@@ -24,4 +24,4 @@ MonoBehaviour:
     cost:
     - 200
     - 350
-    - 0
+    - 50
