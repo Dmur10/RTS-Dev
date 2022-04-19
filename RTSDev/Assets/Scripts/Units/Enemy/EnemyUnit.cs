@@ -20,7 +20,6 @@ namespace RTSGame.Units.Enemy
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                Debug.Log(colliders[i].tag);
                 if (colliders[i].gameObject.CompareTag("Player"))
                 {
                     target = colliders[i].gameObject.transform;

@@ -43,9 +43,9 @@ namespace RTSGame
             {
                 anchoredPosition.x = canvasRectTransform.rect.width - backgroundRectTransform.rect.width;
             }
-            if (anchoredPosition.y - backgroundRectTransform.rect.height > canvasRectTransform.rect.height)
+            if (anchoredPosition.y - backgroundRectTransform.rect.height < 0)
             {
-                anchoredPosition.y = canvasRectTransform.rect.height - backgroundRectTransform.rect.height;
+                anchoredPosition.y = 0 + backgroundRectTransform.rect.height;
             }
             transform.GetComponent<RectTransform>().anchoredPosition = anchoredPosition;
         }

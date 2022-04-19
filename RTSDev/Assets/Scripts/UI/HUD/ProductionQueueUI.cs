@@ -20,9 +20,10 @@ namespace RTSGame.UI.HUD
             progressBar.fillAmount = 0;
         }
 
-        public void AddToQueue()
+        public void AddToQueue(string name)
         {
             Image temp = Instantiate(productionImage, layoutGroup);
+            temp.name = name.Substring(0, name.Length-1);
             images.Add(temp);
         }
 
@@ -47,7 +48,7 @@ namespace RTSGame.UI.HUD
             ClearQueue();
             foreach(Buildings.SpawnableObject temp in queue)
             {
-                AddToQueue();
+                AddToQueue(temp.order.unitName);
             }
         }
 

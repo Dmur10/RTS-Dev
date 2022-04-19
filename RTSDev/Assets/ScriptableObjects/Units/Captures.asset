@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bfbcf0ce6675e4899984cac6ce3ebe, type: 3}
+  m_Name: Captures
+  m_EditorClassIdentifier: 
+  type: 9
+  unitName: Captures
+  HumanPrefab: {fileID: 1580311041582534770, guid: fb154bf33b3a36d42ad88af92b1eabc9, type: 3}
+  BurnedPrefab: {fileID: 0}
+  SpawnTime: 0
+  baseStats:
+    aggroRange: 24
+    atkRange: 20
+    atkSpeed: 8
+    damage: 40
+    health: 300
+    cost: []

@@ -23,12 +23,12 @@ namespace RTSGame.Buildings
                 if (InputManager.InputHandler.instance.selectedBuilding == this.transform.parent.gameObject.GetComponent<Player.PlayerBuilding>())
                 {
                     InputManager.InputHandler.instance.selectedBuilding = null;
-                    Destroy(gameObject.transform.parent.gameObject);
+                    Destroy(gameObject.transform.parent.parent.gameObject);
                 }
             }
             else
             {
-                Destroy(gameObject.transform.parent.gameObject);
+                Destroy(gameObject.transform.parent.parent.gameObject);
             }
         }
     }

@@ -100,6 +100,47 @@ namespace RTSGame.Player
             }
         }
 
+        public Transform GetClosestPlayerObject(Vector3 position)
+        {
+            Transform closest = null;
+            foreach (Transform tf in playerUnits)
+            {
+                foreach (Transform child in tf)
+                {
+                    if (closest == null)
+                    {
+                        closest = child;
+                    }
+                    else
+                    {
+                        if (Vector3.Distance(position, child.position) < Vector3.Distance(position, closest.position))
+                        {
+                            closest = child;
+                        }
+                    }
+                }
+            }
+
+            foreach (Transform tf in playerBuildings)
+            {
+                foreach(Transform child in tf)
+                {
+                    if (closest == null)
+                    {
+                        closest = child;
+                    }
+                    else
+                    {
+                        if (Vector3.Distance(position, child.position) < Vector3.Distance(position, closest.position))
+                        {
+                            closest = child;
+                        }
+                    }
+                }
+            }
+            return closest;
+        }
+
         public Transform GetClosestStorage(Vector3 position)
         {
             Transform closest = null;

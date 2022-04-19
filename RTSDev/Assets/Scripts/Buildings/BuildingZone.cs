@@ -27,6 +27,10 @@ namespace RTSGame.Buildings
         {
             transform.localScale = size;
             offset = Vector3.Distance(transform.position, transform.Find("Corner").position);
+            if(offset < 5f)
+            {
+                offset = 5f;
+            }
             this.constructionTickMax = constructionTickMax;
             Prefab = toBuild;
         }

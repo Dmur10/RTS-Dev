@@ -15,7 +15,7 @@ namespace RTSGame.Units.Player
 
         public override bool CheckForTarget()
         {
-            colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.eUnitLayer);
+            colliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.pUnitLayer);
 
             for (int i = 0; i < colliders.Length; i++)
             {

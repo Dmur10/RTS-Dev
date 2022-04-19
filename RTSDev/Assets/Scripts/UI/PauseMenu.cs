@@ -13,6 +13,10 @@ namespace RTSGame.UI
         // Update is called once per frame
         void Update()
         {
+            if (Game.GameHandler.instance.IsGameOver())
+            {
+                return;
+            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (IsPaused)
@@ -39,9 +43,9 @@ namespace RTSGame.UI
             IsPaused = true;
         }
 
-        public void Save()
+        public void Restart()
         {
-            //
+            SceneManager.LoadScene("MainScene");
         }
 
         public void LoadMenu()

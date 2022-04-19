@@ -298,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8430724561626344256}
   - component: {fileID: 6501567514334623159}
+  - component: {fileID: 6502550690343043673}
   m_Layer: 0
   m_Name: Dead_Tree_14
   m_TagString: Untagged
@@ -349,3 +350,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7544312844810055491}
   m_Enabled: 1
+--- !u!208 &6502550690343043673
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9056776316064075475}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 2, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2, z: 0}
+  m_TimeToStationary: 0.5

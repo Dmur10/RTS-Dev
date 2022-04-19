@@ -6,7 +6,7 @@ namespace RTSGame.InputManager
 {
     public class CameraController : MonoBehaviour
     {
-        public float panSpeed = 30f;
+        public float panSpeed = 60f;
         public float scrollSpeed = 3f;
 
         public float topBorder = 1020f;
@@ -14,9 +14,9 @@ namespace RTSGame.InputManager
         public float leftBorder = -20f;
         public float rightBorder = 1020f;
 
-        public float borderThickness = 10f;
-        public float minZoom = 4f;
-        public float maxZoom = 12f;
+        public float borderThickness = 5f;
+        public float minZoom = 8f;
+        public float maxZoom = 20f;
 
         private Camera cam;
 

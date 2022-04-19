@@ -27,7 +27,7 @@ namespace RTSGame.FSM
                 {
                     unit.Attack();
                 }
-                else if (distance > unit.baseStats.aggroRange+1)
+                else if (distance > unit.baseStats.aggroRange+2)
                 {
                     unit.SetTarget(null);
                 }

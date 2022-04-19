@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8746102667940118771}
   - component: {fileID: 123711074077451589}
   - component: {fileID: 3794671341628993188}
-  - component: {fileID: 2238324916092797932}
   m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2238324916092797932
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151871052444605550}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1683534809414804890
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 1683534809414804890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 2, z: 4}
+  m_LocalScale: {x: 8, y: 2, z: 8}
   m_Children:
   - {fileID: 6462928689196233787}
   - {fileID: 8746102667940118771}
@@ -172,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169dc7013d49e894e863186bba604fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingType: {fileID: 11400000, guid: 11ecf26a8d1af934b9500e7aca50bf25, type: 2}
+  buildingType: {fileID: 11400000, guid: 718ca0435d7087e4ba3b4a86c599af03, type: 2}
   baseStats:
     health: 0
     attack: 0
@@ -192,7 +178,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.5, z: 0}
   m_TimeToStationary: 0.5

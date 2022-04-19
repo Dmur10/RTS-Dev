@@ -14,11 +14,23 @@ namespace RTSGame.Interactables
 
         private bool hasAggro = false;
         private float atkCooldown;
+        private string targetTag;
 
+        //get from base stats
         public float range = 10;
         public float damage = 25;
         public float atkSpeed = 4;
 
+        private void Awake()
+        {
+            if(tag == "Enemy")
+            {
+                targetTag = "Player";
+            } else if(tag == "Player")
+            {
+                targetTag = "Enemy";
+            }
+        }
         // Update is called once per frame
         void Update()
         {
@@ -47,7 +59,6 @@ namespace RTSGame.Interactables
         public override void OnInteractEnter()
         {
             base.OnInteractEnter();
-            OnDrawGizmosSelected();
         }
         void OnDrawGizmosSelected()
         {
@@ -56,27 +67,16 @@ namespace RTSGame.Interactables
 
         private void checkForTarget()
         {
-            colliders = Physics.OverlapSphere(transform.position, range, Units.UnitHandler.instance.eUnitLayer);
+            colliders = Physics.OverlapSphere(transform.position, range, Units.UnitHandler.instance.pUnitLayer);
 
-            for (int i = 0; i < colliders.Length;)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                target = colliders[i].gameObject.transform;
-                targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
-                hasAggro = true;
-                break;
-            }
-        }
-        public void MoveToTarget()
-        {
-            if (target == null)
-            {
-            }
-            else
-            {
-                float distance = Vector3.Distance(target.position, transform.position);
-
-                if (distance >= range)
+                if (colliders[i].gameObject.CompareTag(targetTag))
                 {
+                    target = colliders[i].gameObject.transform;
+                    targetStatDisplay = target.gameObject.GetComponentInChildren<StatDisplay>();
+                    hasAggro = true;
+                    break;
                 }
             }
         }

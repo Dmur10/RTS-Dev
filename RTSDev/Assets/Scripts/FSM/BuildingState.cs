@@ -32,7 +32,7 @@ namespace RTSGame.FSM
         {
             if (EnteredState)
             {
-                if (unit.IsIdle() && worker.GetBuildZone() != null)
+                if (worker.GetBuildZone() != null)
                 {
                     Buildings.BuildingZone bz = worker.GetBuildZone();
                     worker.PlayAnimationBuild(bz.GetPosition(), bz.GetOffset(), () =>

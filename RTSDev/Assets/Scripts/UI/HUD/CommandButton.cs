@@ -8,11 +8,11 @@ namespace RTSGame.UI.HUD
     public class CommandButton : MonoBehaviour
     {
         [SerializeField]
-        private Button button;
+        private Image image;
 
         public void ShowToolTip()
         {
-            ToolTip.ShowToolTip_Static(button.name);
+            ToolTip.ShowToolTip_Static(image.name);
         }
 
         public void HideToolTip()

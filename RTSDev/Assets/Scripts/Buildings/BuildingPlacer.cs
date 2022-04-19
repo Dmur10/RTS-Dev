@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 namespace RTSGame.Buildings
@@ -72,6 +73,7 @@ namespace RTSGame.Buildings
 
             basicBuilding = BuildingHandler.instance.GetBasicBuilding(type);
             buildingToPlace = GameObject.Instantiate(basicBuilding.buildingPrefab);
+            buildingToPlace.GetComponent<NavMeshObstacle>().enabled = false;
             _transform = buildingToPlace.transform;
 
             _materials = new List<Material>();
@@ -104,7 +106,10 @@ namespace RTSGame.Buildings
         {
             Placement = BuildingPlacement.FIXED;
             BuildingZone temp = BuildingZone.Create(_transform.position, new Vector3(basicBuilding.buildingPrefab.transform.localScale.x,0.1f,buildingToPlace.transform.localScale.z), basicBuilding.SpawnTime, basicBuilding.buildingPrefab);
-            InputManager.InputHandler.instance.selectedUnits[0].GetComponent<Interactables.IWorker>().SetBuildZone(temp);
+            foreach(Transform tf in InputManager.InputHandler.instance.selectedUnits)
+            {
+                tf.GetComponent<Interactables.IWorker>().SetBuildZone(temp);
+            }
             Destroy(buildingToPlace.gameObject);
             buildingToPlace = null;
             Placement = BuildingPlacement.VALID;

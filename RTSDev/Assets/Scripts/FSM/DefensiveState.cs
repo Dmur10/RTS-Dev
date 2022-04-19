@@ -43,7 +43,7 @@ namespace RTSGame.FSM
                     maxDistance = Vector3.Distance(initialPosition, unit.GetTarget().position);
                     distance = Vector3.Distance(unit.GetTarget().position, unit.transform.position);
 
-                    if ((maxDistance > unit.baseStats.aggroRange + unit.baseStats.atkRange + 1) || (distance > unit.baseStats.aggroRange + 1))
+                    if ((maxDistance > unit.baseStats.aggroRange + unit.baseStats.atkRange + 2) || (distance > unit.baseStats.aggroRange + 2))
                     {
                         navMeshAgent.SetDestination(initialPosition);
                         unit.SetTarget(null);

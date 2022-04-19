@@ -29,8 +29,6 @@ namespace RTSGame
 
         public void OnPostRender()
         {
-
-
             Vector3 minViewportPoint = minimap.WorldToViewportPoint(GetCameraFrustumPoint(new Vector3(0f, 0f)));
             Vector3 maxViewportPoint = minimap.WorldToViewportPoint(GetCameraFrustumPoint(new Vector3(Screen.width, Screen.height)));
 

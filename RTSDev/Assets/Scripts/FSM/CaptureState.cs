@@ -29,11 +29,26 @@ namespace RTSGame.FSM
         {
             if (EnteredState)
             {
-                if (unit.IsIdle() && engineer.GetCapturePoint() != null)
+                if (engineer.GetCapturePoint() != null)
                 {
+                    Interactables.ICapturable cp = engineer.GetCapturePoint().GetComponent<Interactables.ICapturable>();
+
+                    engineer.PlayAnimationCapture(engineer.GetCapturePoint().position, cp.offset, () =>
+                    {
+                        cp.AddCaptureTick();
+                        if (cp.IsCaptured())
+                        {
+                            engineer.SetCaptureTarget(null);
+                            InputManager.InputHandler.instance.selectedUnits.Remove(engineer.transform);
+                            Destroy(engineer.gameObject);
+                            fsm.EnterState(FSMStateType.Idle);
+                        }
+                    });
+                    /*
                     if (engineer.ExceededCaptureLimit())
                     {
                         engineer.GetCapturePoint().GetComponent<Interactables.ICapturable>().capture();
+                        Destroy(unit.gameObject);
                         fsm.EnterState(FSMStateType.Idle);
                     }
                     else
@@ -43,6 +58,7 @@ namespace RTSGame.FSM
                             engineer.IncrementTicks();
                         });
                     }
+                    */
                 }
             }
         }

@@ -84,7 +84,7 @@ MonoBehaviour:
   actions: {fileID: 11400000, guid: a29ad15358843d44bbce7032801387ff, type: 2}
   spawnMarker: {fileID: 0}
   spawnMarkerGraphic: {fileID: 0}
-  offset: 4
+  offset: 8
 --- !u!114 &947999826608507313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,11 +115,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
 --- !u!114 &8270187069082162356
 MonoBehaviour:

@@ -30,7 +30,7 @@ namespace RTSGame.FSM
 
         public override void UpdateState()
         {
-            if (unit.IsIdle())
+            if (EnteredState)
             {
                 if (scavenger.ExceededLimit() || scavenger.GetResource() == null)
                 {

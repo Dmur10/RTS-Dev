@@ -34,6 +34,7 @@ namespace RTSGame.FSM
             {
                 if (worker.GetBuildZone() != null)
                 {
+                    Debug.Log(worker.GetBuildZone().GetOffset());
                     unit.MoveUnit(worker.GetBuildZone().GetPosition(), worker.GetBuildZone().GetOffset(), () => {
                         fsm.EnterState(FSMStateType.Building);
                     });

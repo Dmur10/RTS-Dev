@@ -18,8 +18,8 @@ MonoBehaviour:
   BurnedPrefab: {fileID: 0}
   SpawnTime: 30
   baseStats:
-    aggroRange: 12
-    atkRange: 8
+    aggroRange: 24
+    atkRange: 16
     atkSpeed: 2
     damage: 20
     health: 200

@@ -51,9 +51,10 @@ namespace RTSGame.FSM
 
                     if (unit.GetAtkCooldown() <= 0 && distance <= unit.baseStats.atkRange)
                     {
+                        Debug.Log("Attacks");
                         unit.Attack();
                     }
-                    else if (distance > unit.baseStats.aggroRange+1)
+                    else if (distance > unit.baseStats.aggroRange+2)
                     {
                         navMeshAgent.SetDestination(unit.transform.position);
                         unit.SetTarget(null);

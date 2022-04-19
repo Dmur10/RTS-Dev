@@ -17,7 +17,8 @@ namespace RTSGame.Units
             Infantrys,
             Snipers,
             Raiders,
-            ERaiders
+            ERaiders,
+            Captures
         }
 
         [Space(15)]

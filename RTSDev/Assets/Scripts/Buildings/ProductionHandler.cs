@@ -37,7 +37,7 @@ namespace RTSGame.Buildings
         {
             if (buildingProductionQueue.StartSpawnTimer(name))
             {
-                productionQueueUI.AddToQueue();
+                productionQueueUI.AddToQueue(name);
             }
         }
 
