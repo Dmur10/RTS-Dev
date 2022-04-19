@@ -46,6 +46,7 @@ namespace RTSGame.UI
         public void Restart()
         {
             SceneManager.LoadScene("MainScene");
+            Time.timeScale = 1f;
         }
 
         public void LoadMenu()
